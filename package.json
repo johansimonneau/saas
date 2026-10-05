@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/prune-sitemap.mjs",
+    "build": "node scripts/check-todo.mjs && astro build && node scripts/prune-sitemap.mjs",
     "preview": "astro preview",
     "new": "node scripts/new-review.mjs",
     "post": "node scripts/new-post.mjs",
