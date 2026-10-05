@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "new": "node scripts/new-review.mjs",
     "post": "node scripts/new-post.mjs",
+    "tool": "node scripts/new-tool.mjs",
     "check:legal": "node scripts/check-legal.mjs"
   },
   "dependencies": {

@@ -35,8 +35,8 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
     <table><tbody>
       <tr><th>Tarif</th><td>{d.pricingModel}{d.startingPrice && ` — ${d.startingPrice}`}{d.freeTrialDays && ` · essai ${d.freeTrialDays} j`}</td></tr>
       <tr><th>Pour</th><td>{d.audiences.join(', ')}</td></tr>
-      <tr><th>Langues</th><td>{d.languages.join(', ')}{d.frenchSupport && ' · support en français'}</td></tr>
-      <tr><th>Plateformes</th><td>{d.apps.join(', ')}{d.api && ' · API disponible'}</td></tr>
+      {(d.languages.length > 0 || d.frenchSupport) && <tr><th>Langues</th><td>{[d.languages.join(', '), d.frenchSupport && 'support en français'].filter(Boolean).join(' · ')}</td></tr>}
+      {(d.apps.length > 0 || d.api) && <tr><th>Plateformes</th><td>{[d.apps.join(', '), d.api && 'API disponible'].filter(Boolean).join(' · ')}</td></tr>}
       {d.supportChannels.length > 0 && <tr><th>Support</th><td>{d.supportChannels.join(', ')}</td></tr>}
     </tbody></table>
 

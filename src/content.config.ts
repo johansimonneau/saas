@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { CATEGORIES, AUDIENCES, PRICING_MODELS, TEAM_SIZES, REVIEW_LAYOUTS, BLOG_CATEGORIES } from './config';
+import { SITE, CATEGORIES, AUDIENCES, PRICING_MODELS, TEAM_SIZES, REVIEW_LAYOUTS, BLOG_CATEGORIES } from './config';
 
 const category = z.enum(CATEGORIES);
 const audience = z.enum(AUDIENCES);
@@ -60,6 +60,7 @@ const annuaire = defineCollection({
     status: z.enum(['pending', 'published']).default('pending'),
     editorial: z.boolean().default(false),   // true = fiche enrichie par l'éditeur du site => indexable
     sponsored: z.boolean().default(false),
+    popularity: z.number().optional(),       // plus haut = plus populaire ; vide = tirage au sort du jour
     listedAt: z.coerce.date(),
     category,
     tags: z.array(z.string()).max(8).default([]),
@@ -69,10 +70,10 @@ const annuaire = defineCollection({
     freeTrialDays: z.number().int().optional(),
     features: z.array(z.string()).min(3).max(12),
     integrations: z.array(z.string()).default([]),
-    languages: z.array(z.string()).default(['Français']),
+    languages: z.array(z.string()).default([]),
     frenchSupport: z.boolean().default(false),
     supportChannels: z.array(z.string()).default([]),
-    apps: z.array(z.enum(['iOS', 'Android', 'Web', 'Desktop'])).default(['Web']),
+    apps: z.array(z.enum(['iOS', 'Android', 'Web', 'Desktop'])).default([]),
     api: z.boolean().default(false),
     company: z.object({
       name: z.string(),
@@ -105,7 +106,7 @@ const blog = defineCollection({
     featured: z.boolean().default(false),
     category: z.enum(BLOG_CATEGORIES),
     tags: z.array(z.string()).default([]),
-    author: z.string().default('Johan Simonneau'),
+    author: z.string().default(SITE.author),
     takeaways: z.array(z.string()).default([]),   // « L'essentiel en 30 secondes »
   }),
 });

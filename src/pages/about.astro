@@ -2,9 +2,27 @@
 import Base from '../layouts/Base.astro';
 import { SITE } from '../config';
 ---
-<Base title="À propos" description={`Qui est derrière ${SITE.name} et comment nous testons les outils SaaS.`}>
-  <h1>À propos de {SITE.name}</h1>
-  <p>À RÉDIGER : votre vrai parcours d'indépendant (conseil aux entreprises depuis 2019, La Riche, Indre-et-Loire). Qui vous êtes, quels outils vous avez utilisés en production, et pourquoi les lecteurs peuvent se fier à votre avis. Cette page est un signal E-E-A-T majeur et nécessaire à l'approbation AdSense.</p>
-  <h2>Comment nous testons</h2>
-  <p>À RÉDIGER : décrivez votre méthode (comptes réels, durée minimale d'essai, critères de notation, gestion des mises à jour).</p>
+<Base title="À propos" description={`Qui est derrière ${SITE.name} et comment sont testés les outils SaaS : usage réel, tarifs relevés à date, transparence sur l'affiliation.`}>
+  <section class="hero">
+    <h1>À propos de <span class="hl">{SITE.name}</span></h1>
+    <p class="lead">Un média indépendant qui présente les outils SaaS pour indépendants et dirigeants de TPE, un outil à la fois.</p>
+  </section>
+  <div class="prose">
+    <h2>Qui écrit ici</h2>
+    <p>{SITE.name} est édité par un indépendant, consultant en conseil aux entreprises. Il teste les outils pour son propre travail, d'abord en micro-entreprise. Les informations légales de l'éditeur figurent dans les <a href="/mentions-legales/">mentions légales</a>.</p>
+
+    <h2>Comment sont faits les tests</h2>
+    <ul>
+      <li><strong>Usage réel d'abord.</strong> Un avis part d'un outil utilisé, pas d'une fiche produit recopiée. Quand un point n'a pas été testé, c'est dit.</li>
+      <li><strong>Tarifs relevés à date.</strong> Les prix viennent des pages officielles et sont datés dans chaque article. Ils changent : vérifiez-les avant de vous engager.</li>
+      <li><strong>Des limites, toujours.</strong> Chaque test indique pour qui l'outil convient et pour qui il ne convient pas.</li>
+      <li><strong>Tests et comparatifs.</strong> La rubrique <a href="/tests/">Tests</a> réunit les avis sur un seul outil et les comparatifs face à face.</li>
+    </ul>
+
+    <h2>Comment le site gagne de l'argent</h2>
+    <p>Par des liens d'affiliation et, plus tard, de la publicité. Une commission ne modifie jamais une note ni un verdict : voir la page <a href="/disclosure/">transparence et affiliation</a>.</p>
+
+    <h2>Annuaire</h2>
+    <p>L'<a href="/annuaire/">annuaire</a> reçoit un nouvel outil chaque jour. Les éditeurs peuvent <a href="/soumettre/">soumettre leur fiche</a> gratuitement ; elle est relue avant publication.</p>
+  </div>
 </Base>

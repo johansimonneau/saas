@@ -2,15 +2,25 @@
 import Base from '../../layouts/Base.astro';
 import { getReviews, fmtDate } from '../../lib/content';
 const reviews = await getReviews();
+const isDuel = (r: (typeof reviews)[number]) => r.data.layout === 'duel' || !!r.data.versus;
+const comparisons = reviews.filter(isDuel);
+const tests = reviews.filter(r => !isDuel(r));
 ---
-<Base title="Tous les tests SaaS" description="Tous les outils SaaS testés, du plus récent au plus ancien : tarifs, avantages, limites et alternatives.">
-  <section class="hero"><h1>Tous les <span class="hl">tests</span></h1><p class="lead">Un outil, un verdict. Du plus récent au plus ancien.</p></section>
-  {reviews.length === 0 ? <p class="muted">Les premiers tests arrivent.</p> :
-    <div class="grid">{reviews.map(r => (
-      <a class="card" href={`/tests/${r.id}/`} style="text-decoration:none;color:inherit">
-        <span class="chip accent">{r.data.category}</span>
-        <h3 style="margin:.5rem 0">{r.data.title}</h3>
-        <p class="muted" style="margin:0">{r.data.punchline ?? r.data.description}</p>
-        <p class="muted" style="margin:.5rem 0 0;font-size:.82rem">{fmtDate(r.data.pubDate)}{r.data.rating && ` · ${r.data.rating}/5`}</p>
-      </a>))}</div>}
+<Base title="Tests et comparatifs SaaS" description="Tests d'outils SaaS et comparatifs face à face, du plus récent au plus ancien : tarifs relevés à date, avantages, limites et alternatives.">
+  <section class="hero"><h1>Tests et <span class="hl">comparatifs</span></h1><p class="lead">Un outil, un verdict. Ou deux outils face à face. Du plus récent au plus ancien.</p></section>
+  {reviews.length === 0 ? <p class="muted">Les premiers tests arrivent.</p> : (
+    <>
+      {comparisons.length > 0 && <><h2>Comparatifs</h2><div class="grid">{comparisons.map(r => (
+        <a class="card item" href={`/tests/${r.id}/`}><span class="chip lime">Comparatif</span> <span class="chip">{r.data.category}</span>
+          <h3>{r.data.title}</h3><p class="muted">{r.data.punchline ?? r.data.description}</p><p class="meta">{fmtDate(r.data.pubDate)}</p></a>))}</div></>}
+      {tests.length > 0 && <><h2>Tests d'un outil</h2><div class="grid">{tests.map(r => (
+        <a class="card item" href={`/tests/${r.id}/`}><span class="chip accent">{r.data.category}</span>
+          <h3>{r.data.title}</h3><p class="muted">{r.data.punchline ?? r.data.description}</p><p class="meta">{fmtDate(r.data.pubDate)}{r.data.rating && ` · ${r.data.rating}/5`}</p></a>))}</div></>}
+    </>
+  )}
 </Base>
+<style>
+  .item { display: block; text-decoration: none; color: var(--ink); transition: transform .08s, box-shadow .08s; }
+  .item:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .item h3 { margin: .5rem 0; } .item p { margin: .3rem 0; } .meta { font-size: .82rem; color: var(--muted); }
+</style>

@@ -17,7 +17,7 @@ const accent = GROUP_COLORS[groupOf(d.category)];
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'Review', headline: d.title,
   datePublished: d.pubDate.toISOString(), dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
-  author: { '@type': 'Person', name: SITE.author },
+  author: { '@type': 'Organization', name: SITE.author },
   itemReviewed: { '@type': 'SoftwareApplication', name: d.tool.name, applicationCategory: 'BusinessApplication', url: d.tool.website },
   ...(d.rating && { reviewRating: { '@type': 'Rating', ratingValue: d.rating, bestRating: 5 } }),
 };

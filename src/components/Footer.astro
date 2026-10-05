@@ -1,10 +1,36 @@
 ---
 import { SITE } from '../config';
+import { getPopularTools } from '../lib/content';
+const popular = await getPopularTools(6);
 ---
 <footer class="site-footer">
-  <div class="wrap">
-    <p><strong>{SITE.name}</strong> — {SITE.tagline}</p>
-    <p>© {new Date().getFullYear()} · Certains liens sont affiliés (<a href="/disclosure/">transparence</a>).</p>
-    <p><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="/cookies/">Cookies</a> · <a href="/cgu/">CGU</a> · <a href="/about/">À propos</a></p>
+  <div class="wrap cols">
+    <div>
+      <p><strong>{SITE.name}</strong></p>
+      <p>{SITE.tagline}</p>
+      <p>© {new Date().getFullYear()} · Certains liens sont affiliés (<a href="/disclosure/">transparence</a>).</p>
+    </div>
+    <div>
+      <p><strong>Outils SaaS populaires</strong></p>
+      {popular.length > 0
+        ? <ul>{popular.map(t => <li><a href={`/annuaire/${t.id}/`}>{t.data.name}</a></li>)}</ul>
+        : <p>L'annuaire arrive bientôt.</p>}
+      <p><a href="/annuaire/">Tout l'annuaire →</a></p>
+    </div>
+    <div>
+      <p><strong>Le site</strong></p>
+      <ul>
+        <li><a href="/tests/">Tests et comparatifs</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/soumettre/">Ajouter un SaaS</a></li>
+        <li><a href="/about/">À propos</a></li>
+      </ul>
+      <p><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="/cookies/">Cookies</a> · <a href="/cgu/">CGU</a></p>
+    </div>
   </div>
 </footer>
+<style>
+  .cols { display: grid; gap: 2rem; grid-template-columns: 1.3fr 1fr 1fr; }
+  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+  p { margin: .3rem 0; } ul { list-style: none; padding: 0; margin: .3rem 0; } li { padding: .1rem 0; }
+</style>
