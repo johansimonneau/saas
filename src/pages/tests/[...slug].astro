@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import AdSlot from '../../components/AdSlot.astro';
-import AffiliateCTA from '../../components/AffiliateCTA.astro';
+import ToolCTA from '../../components/ToolCTA.astro';
 import { SITE, groupOf, GROUP_COLORS, catSlug } from '../../config';
 import { getReviews, fmtDate } from '../../lib/content';
 
@@ -12,13 +12,15 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
-const url = d.tool.affiliateUrl ?? d.tool.website;
+// Aucun lien direct vers le site de l'outil : lien affilié si connu, sinon formulaire « en savoir plus ».
+const ctaItems = [{ name: d.tool.name, affiliateUrl: d.tool.affiliateUrl },
+  ...(d.layout === 'duel' && d.versus ? [{ name: d.versus.name, affiliateUrl: d.versus.affiliateUrl }] : [])];
 const accent = GROUP_COLORS[groupOf(d.category)];
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'Review', headline: d.title,
   datePublished: d.pubDate.toISOString(), dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
   author: { '@type': 'Organization', name: SITE.author },
-  itemReviewed: { '@type': 'SoftwareApplication', name: d.tool.name, applicationCategory: 'BusinessApplication', url: d.tool.website },
+  itemReviewed: { '@type': 'SoftwareApplication', name: d.tool.name, applicationCategory: 'BusinessApplication', ...(d.tool.affiliateUrl && { url: d.tool.affiliateUrl }) },
   ...(d.rating && { reviewRating: { '@type': 'Rating', ratingValue: d.rating, bestRating: 5 } }),
 };
 const L = d.layout;
@@ -99,7 +101,7 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
       </tbody></table>
     )}
 
-    <AffiliateCTA name={d.tool.name} url={url} trial={d.tool.freeTrial} pricing={d.tool.pricing} sponsored={!!d.tool.affiliateUrl} />
+    <ToolCTA items={ctaItems} trial={d.tool.freeTrial} pricing={d.tool.pricing} uid="haut" />
     {L === 'classique' && <p><strong>Notre verdict :</strong> {d.handsOn.verdict}</p>}
     <AdSlot slot="" label="Publicité" />
 
@@ -118,7 +120,7 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
     )}
     {d.alternatives.length > 0 && <p><strong>Alternatives :</strong> {d.alternatives.join(', ')}</p>}
     <AdSlot slot="" label="Publicité" />
-    <AffiliateCTA name={d.tool.name} url={url} trial={d.tool.freeTrial} pricing={d.tool.pricing} sponsored={!!d.tool.affiliateUrl} />
+    <ToolCTA items={ctaItems} trial={d.tool.freeTrial} pricing={d.tool.pricing} uid="bas" />
   </article>
 </Base>
 <style>

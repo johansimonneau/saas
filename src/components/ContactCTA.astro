@@ -1,0 +1,57 @@
+---
+// Remplace le lien direct vers un outil tant qu'aucun programme d'affiliation n'est associé.
+interface Props { names: string[]; uid: string }
+const { names, uid } = Astro.props;
+const label = names.join(' ou ');
+---
+<div class="cta card contact">
+  <div>
+    <strong>Envie d'en savoir plus sur {label} ?</strong><br />
+    <span class="muted">Laissez votre e-mail, nous revenons vers vous.</span>
+  </div>
+  <details class="more">
+    <summary class="btn lime">Je veux en savoir plus →</summary>
+    <form class="cform" novalidate>
+      {names.length > 1
+        ? <><label for={`t-${uid}`}>Votre question concerne</label><select id={`t-${uid}`} name="tool">{names.map(n => <option>{n}</option>)}</select></>
+        : <input type="hidden" name="tool" value={names[0]} />}
+      <label for={`e-${uid}`}>Votre e-mail *</label><input id={`e-${uid}`} name="email" type="email" required autocomplete="email" />
+      <label for={`n-${uid}`}>Votre prénom (facultatif)</label><input id={`n-${uid}`} name="name" autocomplete="given-name" />
+      <label for={`m-${uid}`}>Votre question (facultatif)</label><textarea id={`m-${uid}`} name="message" rows="3" maxlength="1000"></textarea>
+      <input type="text" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+      <label class="ck"><input type="checkbox" name="consent" required /><span>J'accepte que mon e-mail serve à me répondre (<a href="/confidentialite/" target="_blank">confidentialité</a>). *</span></label>
+      <p><button class="btn" type="submit">Envoyer</button></p>
+      <p class="msg" role="status"></p>
+    </form>
+  </details>
+</div>
+<style>
+  .contact { display: grid; gap: 1rem; margin: 1.5rem 0; background: #f4f0ff; }
+  .contact summary { list-style: none; cursor: pointer; display: inline-block; }
+  .contact summary::-webkit-details-marker { display: none; }
+  .cform { margin-top: 1rem; display: grid; gap: .3rem; max-width: 460px; }
+  .cform label { margin-top: .5rem; }
+  .cform label.ck { display: flex; gap: .5rem; align-items: flex-start; font-weight: 600; }
+  .cform .ck input { width: auto; margin-top: .3rem; }
+  .msg { font-weight: 700; margin: 0; }
+</style>
+<script is:inline>
+  (function () {
+    if (window.__cform) return; window.__cform = true;
+    document.addEventListener('submit', async function (e) {
+      var f = e.target.closest && e.target.closest('.cform'); if (!f) return;
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+      var msg = f.querySelector('.msg'), btn = f.querySelector('button[type=submit]'), fd = new FormData(f);
+      var data = { tool: fd.get('tool'), email: fd.get('email'), name: fd.get('name'), message: fd.get('message'),
+        company_site: fd.get('company_site'), consent: fd.has('consent'), page: location.pathname };
+      btn.disabled = true; msg.textContent = 'Envoi…';
+      try {
+        var r = await fetch('/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
+        var j = await r.json().catch(function () { return {}; });
+        if (r.ok) { f.reset(); msg.textContent = '✅ Merci, c\'est envoyé. Nous revenons vers vous rapidement.'; }
+        else { msg.textContent = '⚠️ ' + (j.error || 'Erreur, réessayez plus tard.'); btn.disabled = false; }
+      } catch (err) { msg.textContent = '⚠️ Réseau indisponible, réessayez.'; btn.disabled = false; }
+    });
+  })();
+</script>

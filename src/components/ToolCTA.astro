@@ -1,0 +1,15 @@
+---
+// Bouton d'appel à l'action d'une page outil :
+//  - lien affilié connu  -> lien sponsorisé
+//  - lien direct autorisé (directUrl) -> lien simple
+//  - sinon -> formulaire « en savoir plus » (aucun lien direct vers le site de l'outil)
+import AffiliateCTA from './AffiliateCTA.astro';
+import ContactCTA from './ContactCTA.astro';
+interface Item { name: string; affiliateUrl?: string; directUrl?: string }
+interface Props { items: Item[]; pricing: string; trial?: boolean; uid: string }
+const { items, pricing, trial = false, uid } = Astro.props;
+const linked = items.filter(i => i.affiliateUrl || i.directUrl);
+const contact = items.filter(i => !i.affiliateUrl && !i.directUrl).map(i => i.name);
+---
+{linked.map(i => <AffiliateCTA name={i.name} url={(i.affiliateUrl ?? i.directUrl)!} pricing={pricing} trial={trial} sponsored={!!i.affiliateUrl} />)}
+{contact.length > 0 && <ContactCTA names={contact} uid={uid} />}

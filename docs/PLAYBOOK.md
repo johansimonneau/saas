@@ -87,3 +87,11 @@ Quand vous aurez des statistiques (clics, pages vues), renseignez `popularity: 1
 ## Anonymat de l'éditeur
 Le nom propre n'apparaît que là où la loi l'impose : mentions légales et politique de confidentialité (bloc `LEGAL` de `src/config.ts`) et, pour le contact, les CGU.
 Partout ailleurs la signature est `SITE.author` (« La rédaction SaaSbrief »). Ne tapez pas votre nom dans les articles.
+
+## Liens vers les outils : règle « pas de lien direct sans affiliation »
+Tant qu'un outil n'a pas de `affiliateUrl`, **aucune page ne renvoie vers son site** : le bouton devient un formulaire « Je veux en savoir plus »
+(`src/components/ContactCTA.astro`) qui vous envoie « Quelqu'un souhaite en savoir plus sur [outil] ».
+- Dès que vous avez un lien d'affiliation : renseignez `tool.affiliateUrl` (tests) ou `affiliateUrl` (fiches annuaire) : le bouton devient un lien sponsorisé automatiquement.
+- Comparatif (`duel`) : `versus.affiliateUrl` pour le second outil ; un seul formulaire regroupe les outils sans lien.
+- Fiche d'un éditeur qui a soumis son outil et que vous voulez lier directement : `directLink: true` (lien simple, sans mention d'affiliation).
+- Les demandes arrivent par e-mail (Resend) si `RESEND_API_KEY` et `CONTACT_TO_EMAIL` sont définies sur Vercel, sinon en issue (étiquette `contact`) dans le dépôt privé des soumissions.

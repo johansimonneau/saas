@@ -38,6 +38,7 @@ const reviews = defineCollection({
     skipIf: z.array(z.string()).default([]),          // … évitez-le si…
     versus: z.object({                                 // layout « duel »
       name: z.string(),
+      affiliateUrl: z.string().url().optional(),
       rows: z.array(z.object({ label: z.string(), tool: z.string(), other: z.string() })).min(3),
     }).optional(),
     // Preuve d'expérience directe (E-E-A-T). Obligatoire pour publier.
@@ -90,6 +91,7 @@ const annuaire = defineCollection({
     }).default({ gdpr: false, dpa: false, certifications: [] }),
     demoUrl: z.string().url().optional(),
     affiliateUrl: z.string().url().optional(),
+    directLink: z.boolean().default(false),   // true = autorise un lien direct vers le site (sinon : formulaire « en savoir plus »)
   }),
 });
 

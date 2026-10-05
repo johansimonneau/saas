@@ -55,7 +55,7 @@ import { CATEGORY_GROUPS, AUDIENCES, PRICING_MODELS, TEAM_SIZES } from '../confi
     <label for="affiliateProgram">Programme d'affiliation (URL, commission)</label><input id="affiliateProgram" name="affiliateProgram" placeholder="Si vous en avez un : nous le proposons à nos lecteurs" />
 
     <input type="text" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
-    <label class="ck"><input type="checkbox" name="consent" required /> Je certifie que ces informations sont exactes et j'accepte les <a href="/cgu/" target="_blank">CGU</a> et la <a href="/confidentialite/" target="_blank">politique de confidentialité</a>. *</label>
+    <label class="ck consent"><input type="checkbox" name="consent" required /><span>Je certifie que ces informations sont exactes et j'accepte les <a href="/cgu/" target="_blank">CGU</a> et la <a href="/confidentialite/" target="_blank">politique de confidentialité</a>. *</span></label>
     <p><button class="btn" type="submit" id="go">Envoyer ma fiche</button></p>
     <p id="msg" role="status"></p>
   </form>
@@ -65,6 +65,8 @@ import { CATEGORY_GROUPS, AUDIENCES, PRICING_MODELS, TEAM_SIZES } from '../confi
   .row { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .form label { margin-top: .8rem; } .form label.ck { display: inline-flex; gap: .4rem; align-items: center; font-weight: 600; margin: .3rem .8rem .3rem 0; }
   .ck input { width: auto; }
+  .form label.ck.consent { display: flex; align-items: flex-start; }
+  .consent input { margin-top: .35rem; }
   #msg { font-weight: 700; }
 </style>
 <script is:inline>
