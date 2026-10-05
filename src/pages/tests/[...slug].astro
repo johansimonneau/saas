@@ -76,7 +76,7 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
       </header>
     )}
 
-    <p class="muted small">Transparence : certains liens sont affiliés, sans jamais influencer notre avis. <a href="/disclosure/">Détails</a></p>
+    {(d.tool.affiliateUrl || d.versus?.affiliateUrl) && <p class="muted small">Transparence : cette page contient des liens affiliés, sans jamais influencer notre avis. <a href="/disclosure/">Détails</a></p>}
 
     {/* ── BLOCS SPÉCIFIQUES AVANT LE CORPS ── */}
     {L === 'checklist' && (d.goIf.length > 0 || d.skipIf.length > 0) && (
