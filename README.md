@@ -1,4 +1,4 @@
-# SaaSDaily : site de niche SEO (une présentation SaaS par jour)
+# SaaSbrief : site de niche SEO (une présentation SaaS par jour)
 
 Site statique Astro. Le contenu = fichiers Markdown dans `src/content/reviews/`.
 

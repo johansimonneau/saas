@@ -1,8 +1,8 @@
 // Un seul endroit pour changer la marque. Remplacez les valeurs avant le lancement.
 export const SITE = {
-  name: 'SaaSDaily',
+  name: 'SaaSbrief',
   tagline: 'Les outils SaaS des indépendants et dirigeants de TPE, testés un par un.',
-  url: 'https://example.com',
+  url: 'https://saasbrief.fr',
   lang: 'fr',
   author: 'Votre Nom',
   // Publicité : renseignez votre identifiant éditeur AdSense (ca-pub-XXXXXXXXXXXXXXXX) une fois approuvé.
