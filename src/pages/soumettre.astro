@@ -30,8 +30,8 @@ import { CATEGORY_GROUPS, AUDIENCES, PRICING_MODELS, TEAM_SIZES } from '../confi
       <div><label for="freeTrialDays">Essai gratuit (jours)</label><input id="freeTrialDays" name="freeTrialDays" type="number" min="0" max="365" /></div></div>
 
     <h2>3. Fonctionnalités et intégrations</h2>
-    <label for="features">Fonctionnalités clés, une par ligne (3 à 12) *</label><textarea id="features" name="features" rows="6" required></textarea>
-    <label for="integrations">Intégrations, une par ligne</label><textarea id="integrations" name="integrations" rows="3"></textarea>
+    <label for="features">Fonctionnalités clés, une par ligne (3 à 12) *</label><textarea id="features" name="features" rows="6" required placeholder="Devis et factures&#10;Relances automatiques&#10;Export comptable"></textarea>
+    <label for="integrations">Intégrations, une par ligne</label><textarea id="integrations" name="integrations" rows="3" placeholder="Stripe&#10;Qonto"></textarea>
     <div class="row"><div><label for="languages">Langues de l'interface</label><input id="languages" name="languages" value="Français, Anglais" /></div>
       <div><label for="supportChannels">Canaux de support</label><input id="supportChannels" name="supportChannels" placeholder="Chat, e-mail, téléphone" /></div></div>
     <label>Plateformes</label><div class="stack"><Checks name="apps" items={['Web', 'iOS', 'Android', 'Desktop']} /></div>
