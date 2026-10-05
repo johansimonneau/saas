@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+const now = new Date();
+const reviews = (await getCollection('reviews', r => !r.data.draft && r.data.pubDate <= now))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Base title={SITE.name} description={SITE.tagline}>
+  <h1>{SITE.tagline}</h1>
+  <p>Honest, hands-on SaaS presentations for small teams: what it does, who it's for, what it costs, and when to skip it.</p>
+  <h2>Latest</h2>
+  <ul>
+    {reviews.slice(0, 20).map(r => (
+      <li>
+        <a href={`/reviews/${r.id}/`}>{r.data.title}</a>
+        <small> — {r.data.category} · {r.data.pubDate.toISOString().slice(0, 10)}</small>
+      </li>
+    ))}
+  </ul>
+  <p><a href="/reviews/">Browse all →</a></p>
+</Base>

@@ -1,0 +1,51 @@
+---
+import { SITE } from '../config';
+interface Props { title: string; description: string; ogType?: string; jsonLd?: object }
+const { title, description, ogType = 'website', jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+---
+<!doctype html>
+<html lang={SITE.lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  {SITE.adsensePublisherId && (
+    <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsensePublisherId}`} crossorigin="anonymous"></script>
+  )}
+  {SITE.analyticsDomain && <script defer data-domain={SITE.analyticsDomain} src="https://plausible.io/js/script.js"></script>}
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">{SITE.name}</a>
+    <nav><a href="/reviews/">All reviews</a><a href="/about/">About</a></nav>
+  </header>
+  <main><slot /></main>
+  <footer>
+    <p>© {new Date().getFullYear()} {SITE.name}. Some links are affiliate links — see our <a href="/disclosure/">disclosure</a>.</p>
+  </footer>
+</body>
+</html>
+<style is:global>
+  :root { --fg:#1a1a2e; --muted:#666; --accent:#4f46e5; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:17px/1.7 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--fg); }
+  header, footer, main { max-width: 760px; margin: 0 auto; padding: 1rem 1.25rem; }
+  header { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; }
+  header nav a { margin-left: 1rem; }
+  .brand { font-weight: 800; font-size: 1.25rem; text-decoration: none; color: var(--accent); }
+  a { color: var(--accent); }
+  h1,h2,h3 { line-height: 1.25; }
+  table { border-collapse: collapse; width: 100%; } td,th { border:1px solid #ddd; padding:.4rem .6rem; text-align:left; }
+  footer { color: var(--muted); font-size: .85rem; border-top: 1px solid #eee; margin-top: 3rem; }
+</style>
