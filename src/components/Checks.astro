@@ -1,0 +1,5 @@
+---
+interface Props { name: string; items: readonly string[] }
+const { name, items } = Astro.props;
+---
+{items.map(i => <label class="ck"><input type="checkbox" name={name} value={i} /> {i}</label>)}

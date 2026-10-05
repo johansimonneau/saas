@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getReviews, fmtDate } from '../../lib/content';
+const reviews = await getReviews();
+---
+<Base title="Tous les tests SaaS" description="Tous les outils SaaS testés, du plus récent au plus ancien : tarifs, avantages, limites et alternatives.">
+  <section class="hero"><h1>Tous les <span class="hl">tests</span></h1><p class="lead">Un outil, un verdict. Du plus récent au plus ancien.</p></section>
+  {reviews.length === 0 ? <p class="muted">Les premiers tests arrivent.</p> :
+    <div class="grid">{reviews.map(r => (
+      <a class="card" href={`/tests/${r.id}/`} style="text-decoration:none;color:inherit">
+        <span class="chip accent">{r.data.category}</span>
+        <h3 style="margin:.5rem 0">{r.data.title}</h3>
+        <p class="muted" style="margin:0">{r.data.punchline ?? r.data.description}</p>
+        <p class="muted" style="margin:.5rem 0 0;font-size:.82rem">{fmtDate(r.data.pubDate)}{r.data.rating && ` · ${r.data.rating}/5`}</p>
+      </a>))}</div>}
+</Base>

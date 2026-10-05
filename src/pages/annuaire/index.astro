@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import ToolCard from '../../components/ToolCard.astro';
+import { CATEGORY_GROUPS, AUDIENCES, PRICING_MODELS } from '../../config';
+import { getTools } from '../../lib/content';
+const tools = await getTools();
+---
+<Base title="Annuaire des SaaS pour indépendants et TPE" description="Annuaire de SaaS classés par catégorie, profil et modèle tarifaire : facturation, compta, CRM, automatisation et plus encore.">
+  <section class="hero">
+    <h1>L'annuaire des <span class="hl">SaaS</span> qui comptent.</h1>
+    <p class="lead">Filtrez par besoin, profil et budget. Chaque fiche est relue avant publication.</p>
+  </section>
+
+  <form class="filters card" onsubmit="return false">
+    <input id="q" type="search" placeholder="Rechercher un outil, une fonction…" aria-label="Rechercher" />
+    <select id="cat" aria-label="Catégorie">
+      <option value="">Toutes catégories</option>
+      {Object.entries(CATEGORY_GROUPS).map(([g, cs]) => <optgroup label={g}>{cs.map(c => <option>{c}</option>)}</optgroup>)}
+    </select>
+    <select id="aud" aria-label="Profil"><option value="">Tous profils</option>{AUDIENCES.map(a => <option>{a}</option>)}</select>
+    <select id="price" aria-label="Tarif"><option value="">Tous tarifs</option>{PRICING_MODELS.map(p => <option>{p}</option>)}</select>
+  </form>
+  <p class="muted" id="count">{tools.length} outil{tools.length > 1 ? 's' : ''}</p>
+
+  {tools.length === 0
+    ? <div class="card"><strong>L'annuaire ouvre bientôt.</strong> Soyez le premier : <a href="/soumettre/">ajoutez votre SaaS</a>.</div>
+    : <div class="grid" id="list">{tools.map(t => <ToolCard tool={t} />)}</div>}
+</Base>
+<style>
+  .filters { display: grid; gap: .7rem; grid-template-columns: 2fr 1.5fr 1.2fr 1fr; margin: 1rem 0; }
+  @media (max-width: 760px) { .filters { grid-template-columns: 1fr; } }
+</style>
+<script is:inline>
+  const $ = id => document.getElementById(id);
+  const cards = [...document.querySelectorAll('#list .tcard')];
+  function apply() {
+    const q = $('q').value.trim().toLowerCase(), cat = $('cat').value, aud = $('aud').value, price = $('price').value;
+    let n = 0;
+    for (const c of cards) {
+      const ok = (!q || c.dataset.name.includes(q) || c.dataset.text.includes(q))
+        && (!cat || c.dataset.cat === cat) && (!price || c.dataset.price === price)
+        && (!aud || c.dataset.aud.split('|').includes(aud));
+      c.style.display = ok ? '' : 'none'; if (ok) n++;
+    }
+    $('count').textContent = n + ' outil' + (n > 1 ? 's' : '');
+  }
+  ['q', 'cat', 'aud', 'price'].forEach(id => $(id).addEventListener('input', apply));
+</script>

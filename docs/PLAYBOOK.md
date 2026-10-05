@@ -8,7 +8,7 @@ visible. **L'IA rédige le brouillon, vous apportez la preuve.**
 
 1. **Choisir l'outil** dans `docs/BACKLOG.md`. Privilégier : programme d'affiliation, volume de recherche
    sur « avis <outil> / prix / alternative », concurrence faible en autorité.
-2. `npm run new -- "Nom de l'outil"` crée le brouillon.
+2. `npm run new -- "Nom de l'outil" --layout=verdict` crée le brouillon (voir « Varier les pages » plus bas).
 3. **Recherche (10 min)** : ouvrez l'outil, créez un compte gratuit/essai, faites 3+ captures d'écran
    personnelles, copiez la page tarifs *du jour*, notez un point agaçant et un point convaincant.
 4. **Brouillon IA (10 min)** : donnez à Claude le modèle + vos notes + les tarifs. Consigne : n'utiliser
@@ -55,3 +55,22 @@ Blog du Dirigeant (conseils concrets entre pairs), avec une lecture « outil » 
   Le recul de consultant (conseil aux affaires) est l'atout E-E-A-T : montrez-le (cas d'usage clients, chiffres réels).
 - **Priorité aux outils pratiques en France :** Qonto, Pennylane, Indy, Tiime, Brevo, Malt-adjacents, etc.
   (à vérifier outil par outil : programme d'affiliation et tarifs du jour).
+
+## Varier les pages (anti contenu dupliqué)
+Chaque test choisit une mise en page (`--layout=`) avec sa propre structure : `classique`, `verdict` (note géante + barres de scores),
+`story` (récit en première personne), `duel` (tableau face-à-face, champ `versus`), `checklist` (prenez-le si / évitez-le si).
+Règles : jamais deux mises en page identiques d'affilée, titres H2 différents, une accroche (`punchline`) unique,
+captures et chiffres propres à l'article. Ne réutilisez pas de paragraphes d'un test à l'autre.
+
+## Annuaire : modération des fiches
+1. Un éditeur remplit `/soumettre/`. La fonction `api/submit.js` crée une issue GitHub (dépôt **privé**, car elle contient l'e-mail du contact).
+   Variables Vercel : `GITHUB_TOKEN` (droit Issues), `SUBMISSIONS_REPO` (`owner/repo`).
+2. L'issue contient le fichier prêt à coller dans `src/content/annuaire/<slug>.md` et une checklist de modération.
+3. Vérifiez le site, réécrivez la description (jamais de copier-coller), passez `status: published`.
+4. Fiche non enrichie = `noindex` automatique. Passez `editorial: true` après avoir ajouté votre contenu (test lié, avis, comparaison) pour l'indexer.
+5. Pages de facettes (catégorie/profil/prix) avec moins de 3 éléments : `noindex` et absentes du sitemap, automatiquement.
+
+## Blog
+`npm run post -- "Titre"` crée un article depuis `src/content/blog/_modele-article.md`. Design sombre éditorial distinct de l'annuaire
+(layout `BlogShell`), sommaire, temps de lecture, encadré « l'essentiel en 30 s ». Rubriques : Guides, Comparatifs, Retours d'expérience, Stack et méthode, Actus.
+Le blog vit sous `/blog/` ; son layout est autonome, il peut être déplacé sur un sous-domaine plus tard.

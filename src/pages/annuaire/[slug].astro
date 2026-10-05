@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import AffiliateCTA from '../../components/AffiliateCTA.astro';
+import { groupOf, GROUP_COLORS, catSlug } from '../../config';
+import { getReviews } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('annuaire', t => t.data.status === 'published');
+  return tools.map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const reviews = (await getReviews()).filter(r => r.data.tool.name.toLowerCase() === d.name.toLowerCase());
+const url = d.affiliateUrl ?? d.website;
+const rel = d.affiliateUrl ? 'sponsored nofollow noopener' : (d.editorial ? 'noopener' : 'nofollow noopener');
+// Fiches non enrichies par l'éditeur : noindex pour éviter le contenu mince/dupliqué.
+const indexable = d.editorial || reviews.length > 0;
+const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: d.name, url: d.website, applicationCategory: 'BusinessApplication', description: d.tagline,
+  offers: { '@type': 'Offer', price: d.pricingModel === 'Gratuit' ? '0' : undefined, priceCurrency: 'EUR' } };
+---
+<Base title={`${d.name} : avis, prix et alternatives`} description={`${d.name} : ${d.tagline}. Fonctionnalités, tarifs, intégrations et conformité RGPD.`} accent={GROUP_COLORS[groupOf(d.category)]} noindex={!indexable} jsonLd={jsonLd}>
+  <article>
+    <p class="stack"><a class="chip accent" href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a>
+      {d.sponsored && <span class="chip lime">Sponsorisé</span>}</p>
+    <h1>{d.name}</h1>
+    <p class="lead muted">{d.tagline}</p>
+    <p><a class="btn lime" href={url} rel={rel} target="_blank">Visiter {d.name} →</a>
+       {d.demoUrl && <a class="btn ghost" href={d.demoUrl} rel="nofollow noopener" target="_blank">Voir la démo</a>}</p>
+
+    <div class="prose"><Content /></div>
+
+    <h2>En un coup d'œil</h2>
+    <table><tbody>
+      <tr><th>Tarif</th><td>{d.pricingModel}{d.startingPrice && ` — ${d.startingPrice}`}{d.freeTrialDays && ` · essai ${d.freeTrialDays} j`}</td></tr>
+      <tr><th>Pour</th><td>{d.audiences.join(', ')}</td></tr>
+      <tr><th>Langues</th><td>{d.languages.join(', ')}{d.frenchSupport && ' · support en français'}</td></tr>
+      <tr><th>Plateformes</th><td>{d.apps.join(', ')}{d.api && ' · API disponible'}</td></tr>
+      {d.supportChannels.length > 0 && <tr><th>Support</th><td>{d.supportChannels.join(', ')}</td></tr>}
+    </tbody></table>
+
+    <h2>Fonctionnalités</h2>
+    <ul>{d.features.map(f => <li>{f}</li>)}</ul>
+    {d.integrations.length > 0 && <><h2>Intégrations</h2><p class="stack">{d.integrations.map(i => <span class="chip">{i}</span>)}</p></>}
+
+    <h2>Éditeur et conformité</h2>
+    <table><tbody>
+      <tr><th>Société</th><td>{d.company.name} ({d.company.country}){d.company.founded && `, fondée en ${d.company.founded}`}{d.company.teamSize && ` · équipe ${d.company.teamSize}`}</td></tr>
+      {d.compliance.hosting && <tr><th>Hébergement</th><td>{d.compliance.hosting}</td></tr>}
+      <tr><th>RGPD</th><td>{d.compliance.gdpr ? 'Déclaré conforme' : 'Non précisé'}{d.compliance.dpa && ' · DPA disponible'}</td></tr>
+      {d.compliance.certifications.length > 0 && <tr><th>Certifications</th><td>{d.compliance.certifications.join(', ')}</td></tr>}
+    </tbody></table>
+    <p class="muted"><small>Informations déclarées par l'éditeur{d.editorial ? ' et vérifiées par notre rédaction' : ', non vérifiées à ce stade'}.</small></p>
+
+    {reviews.length > 0 && <><h2>Notre test</h2><ul>{reviews.map(r => <li><a href={`/tests/${r.id}/`}>{r.data.title}</a></li>)}</ul></>}
+    <AffiliateCTA name={d.name} url={url} pricing={d.startingPrice ?? d.pricingModel} trial={d.freeTrialDays != null} sponsored={!!d.affiliateUrl} />
+  </article>
+</Base>

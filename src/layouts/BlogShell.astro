@@ -1,0 +1,43 @@
+---
+import Head from '../components/Head.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config';
+interface Props { title: string; description: string; ogType?: string; jsonLd?: object | object[] }
+---
+<!doctype html>
+<html lang={SITE.lang}>
+<head><Head {...Astro.props} /></head>
+<body class="blog">
+  <header class="bhead">
+    <div class="wrap">
+      <a class="bbrand" href="/blog/">SaaS<em>brief</em> <span>/ le blog</span></a>
+      <nav>
+        <a href="/blog/">Articles</a>
+        <a href="/annuaire/">Annuaire</a>
+        <a href="/tests/">Tests</a>
+        <a class="bcta" href="/soumettre/">Ajouter un SaaS →</a>
+      </nav>
+    </div>
+  </header>
+  <slot />
+  <Footer />
+</body>
+</html>
+<style is:global>
+  /* Thème blog : sombre, éditorial, néon. Volontairement différent de l'annuaire (clair, aplats). */
+  body.blog { --b-bg:#0a0a14; --b-fg:#ecebff; --b-mut:#9c9ab8; --b-line:#26253b; --b-a:#7c5cff; --b-b:#22e4b5; --b-c:#ff5c9d;
+    background: var(--b-bg); color: var(--b-fg); font-family: ui-serif, Georgia, 'Times New Roman', serif; }
+  body.blog a { color: var(--b-b); }
+  body.blog .bhead { border-bottom: 1px solid var(--b-line); position: sticky; top: 0; z-index: 10; background: rgba(10,10,20,.88); backdrop-filter: blur(10px); }
+  body.blog .bhead .wrap { display:flex; justify-content:space-between; align-items:center; padding:.9rem 1.25rem; flex-wrap:wrap; gap:.8rem; font-family: ui-sans-serif, system-ui, sans-serif; }
+  body.blog .bbrand { color: var(--b-fg); text-decoration:none; font-weight:900; font-size:1.2rem; letter-spacing:-.04em; }
+  body.blog .bbrand em { font-style:normal; background: linear-gradient(90deg,var(--b-a),var(--b-b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  body.blog .bbrand span { color: var(--b-mut); font-weight:500; font-size:.9rem; letter-spacing:0; }
+  body.blog .bhead nav { display:flex; gap:1.1rem; align-items:center; flex-wrap:wrap; }
+  body.blog .bhead nav a { color: var(--b-mut); text-decoration:none; font-size:.92rem; font-weight:600; }
+  body.blog .bhead nav a:hover { color: var(--b-fg); }
+  body.blog .bhead .bcta { color:#0a0a14; background: var(--b-b); padding:.4rem .8rem; border-radius:999px; }
+  body.blog .bhead .bcta:hover { color:#0a0a14; filter:brightness(1.1); }
+  body.blog .site-footer { background: transparent; border-top:1px solid var(--b-line); color: var(--b-mut); }
+  body.blog .site-footer a { color: var(--b-fg); }
+</style>

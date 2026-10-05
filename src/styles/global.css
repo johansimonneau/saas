@@ -1,0 +1,54 @@
+/* Design « SaaS punchy » : aplats francs, bordures noires, ombres dures, accent fluo. */
+:root {
+  --ink: #0d0b1f;
+  --paper: #fbfaff;
+  --card: #ffffff;
+  --muted: #5d5a73;
+  --brand: #5b3df5;
+  --lime: #c8ff3d;
+  --accent: var(--brand);
+  --line: var(--ink);
+  --radius: 14px;
+  --shadow: 4px 4px 0 var(--ink);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink);
+  font: 17px/1.65 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+a { color: var(--brand); text-underline-offset: 3px; }
+h1, h2, h3 { line-height: 1.12; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: .3em 0; }
+h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 1.8em 0 .5em; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
+.prose { max-width: 720px; }
+.site-header { border-bottom: 2px solid var(--ink); background: var(--card); position: sticky; top: 0; z-index: 10; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: .8rem; padding-bottom: .8rem; flex-wrap: wrap; }
+.brand { font-weight: 900; font-size: 1.4rem; text-decoration: none; color: var(--ink); letter-spacing: -.04em; }
+.brand b { background: var(--lime); padding: 0 .25em; border: 2px solid var(--ink); border-radius: 8px; margin-left: 2px; }
+.nav { display: flex; gap: 1.1rem; align-items: center; flex-wrap: wrap; }
+.nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: .95rem; }
+.nav a:hover { text-decoration: underline; }
+.btn { display: inline-block; background: var(--brand); color: #fff !important; font-weight: 800; text-decoration: none !important;
+  padding: .65rem 1.1rem; border: 2px solid var(--ink); border-radius: 10px; box-shadow: var(--shadow); transition: transform .08s, box-shadow .08s; cursor: pointer; font-size: 1rem; }
+.btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.btn.lime { background: var(--lime); color: var(--ink) !important; }
+.btn.ghost { background: var(--card); color: var(--ink) !important; }
+.chip { display: inline-block; font-size: .78rem; font-weight: 700; padding: .15rem .6rem; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); text-decoration: none; color: var(--ink); }
+.chip.accent { background: var(--accent); color: #fff; }
+.chip.lime { background: var(--lime); }
+.card { background: var(--card); border: 2px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.1rem 1.2rem; }
+.grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.hero { padding: 3rem 0 1.5rem; }
+.hero .lead { font-size: 1.2rem; color: var(--muted); max-width: 640px; }
+.hl { background: linear-gradient(transparent 55%, var(--lime) 55%); }
+table { border-collapse: collapse; width: 100%; background: var(--card); border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; }
+th, td { border: 1px solid #d9d6ee; padding: .55rem .75rem; text-align: left; vertical-align: top; }
+th { background: #f0edff; }
+.site-footer { border-top: 2px solid var(--ink); margin-top: 4rem; padding: 2rem 0; font-size: .88rem; color: var(--muted); background: var(--card); }
+.site-footer a { color: var(--ink); }
+.muted { color: var(--muted); }
+.stack { display: flex; flex-wrap: wrap; gap: .4rem; }
+input, select, textarea { font: inherit; width: 100%; padding: .6rem .7rem; border: 2px solid var(--ink); border-radius: 10px; background: #fff; }
+input:focus, select:focus, textarea:focus { outline: 3px solid var(--lime); }
+label { font-weight: 700; font-size: .92rem; display: block; margin-bottom: .25rem; }
+@media (max-width: 640px) { .nav { gap: .7rem; } }

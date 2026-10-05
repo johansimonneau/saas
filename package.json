@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/prune-sitemap.mjs",
     "preview": "astro preview",
     "new": "node scripts/new-review.mjs",
+    "post": "node scripts/new-post.mjs",
     "check:legal": "node scripts/check-legal.mjs"
   },
   "dependencies": {

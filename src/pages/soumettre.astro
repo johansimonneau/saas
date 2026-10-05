@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import Checks from '../components/Checks.astro';
+import { CATEGORY_GROUPS, AUDIENCES, PRICING_MODELS, TEAM_SIZES } from '../config';
+---
+<Base title="Ajouter votre SaaS à l'annuaire" description="Soumettez gratuitement votre outil SaaS à l'annuaire : une fiche complète (fonctionnalités, tarifs, conformité), relue avant publication.">
+  <section class="hero">
+    <span class="chip lime">Gratuit · relu avant publication</span>
+    <h1>Ajoutez votre <span class="hl">SaaS</span> à l'annuaire.</h1>
+    <p class="lead">Plus la fiche est complète, plus elle est utile aux lecteurs, et mieux elle se classe. Les champs marqués * sont obligatoires.</p>
+  </section>
+
+  <form id="f" class="card form" novalidate>
+    <h2>1. L'outil</h2>
+    <div class="row"><div><label for="name">Nom de l'outil *</label><input id="name" name="name" required maxlength="60" /></div>
+      <div><label for="website">Site web (https) *</label><input id="website" name="website" type="url" required placeholder="https://" /></div></div>
+    <label for="tagline">Slogan, 90 caractères max *</label><input id="tagline" name="tagline" required maxlength="90" />
+    <label for="description">Description (300 à 1500 caractères) *</label><textarea id="description" name="description" rows="6" required minlength="300" maxlength="1500" placeholder="À quoi sert l'outil, pour qui, ce qui le différencie. Factuel, sans superlatifs creux."></textarea>
+    <div class="row"><div><label for="category">Catégorie *</label>
+      <select id="category" name="category" required><option value="">Choisir…</option>
+        {Object.entries(CATEGORY_GROUPS).map(([g, cs]) => <optgroup label={g}>{cs.map(c => <option>{c}</option>)}</optgroup>)}</select></div>
+      <div><label for="tags">Mots-clés (séparés par des virgules, 8 max)</label><input id="tags" name="tags" placeholder="devis, e-facture, TVA" /></div></div>
+    <label>Profils visés * (au moins un)</label><div class="stack"><Checks name="audiences" items={AUDIENCES} /></div>
+    <label for="logo">URL du logo (carré, https)</label><input id="logo" name="logo" type="url" />
+    <label for="demoUrl">Lien démo ou vidéo</label><input id="demoUrl" name="demoUrl" type="url" />
+
+    <h2>2. Offre et tarifs</h2>
+    <div class="row"><div><label for="pricingModel">Modèle tarifaire *</label><select id="pricingModel" name="pricingModel" required><option value="">Choisir…</option>{PRICING_MODELS.map(p => <option>{p}</option>)}</select></div>
+      <div><label for="startingPrice">Prix d'entrée</label><input id="startingPrice" name="startingPrice" placeholder="9 €/mois/utilisateur" /></div>
+      <div><label for="freeTrialDays">Essai gratuit (jours)</label><input id="freeTrialDays" name="freeTrialDays" type="number" min="0" max="365" /></div></div>
+
+    <h2>3. Fonctionnalités et intégrations</h2>
+    <label for="features">Fonctionnalités clés, une par ligne (3 à 12) *</label><textarea id="features" name="features" rows="6" required></textarea>
+    <label for="integrations">Intégrations, une par ligne</label><textarea id="integrations" name="integrations" rows="3"></textarea>
+    <div class="row"><div><label for="languages">Langues de l'interface</label><input id="languages" name="languages" value="Français, Anglais" /></div>
+      <div><label for="supportChannels">Canaux de support</label><input id="supportChannels" name="supportChannels" placeholder="Chat, e-mail, téléphone" /></div></div>
+    <label>Plateformes</label><div class="stack"><Checks name="apps" items={['Web', 'iOS', 'Android', 'Desktop']} /></div>
+    <div class="stack"><label class="ck"><input type="checkbox" name="frenchSupport" /> Support en français</label>
+      <label class="ck"><input type="checkbox" name="api" /> API publique</label></div>
+
+    <h2>4. Société et conformité</h2>
+    <div class="row"><div><label for="companyName">Raison sociale *</label><input id="companyName" name="companyName" required /></div>
+      <div><label for="companyCountry">Pays *</label><input id="companyCountry" name="companyCountry" required value="France" /></div></div>
+    <div class="row"><div><label for="founded">Année de création</label><input id="founded" name="founded" type="number" min="1990" max="2030" /></div>
+      <div><label for="teamSize">Taille de l'équipe</label><select id="teamSize" name="teamSize"><option value="">—</option>{TEAM_SIZES.map(t => <option>{t}</option>)}</select></div>
+      <div><label for="linkedin">LinkedIn de l'entreprise</label><input id="linkedin" name="linkedin" type="url" /></div></div>
+    <div class="row"><div><label for="hosting">Pays d'hébergement des données</label><input id="hosting" name="hosting" placeholder="France, UE…" /></div>
+      <div><label for="certifications">Certifications</label><input id="certifications" name="certifications" placeholder="ISO 27001, SOC 2" /></div></div>
+    <div class="stack"><label class="ck"><input type="checkbox" name="gdpr" /> Conforme RGPD</label><label class="ck"><input type="checkbox" name="dpa" /> DPA (accord de sous-traitance) disponible</label></div>
+
+    <h2>5. Contact et partenariat</h2>
+    <p class="muted">Ces informations ne sont jamais publiées.</p>
+    <div class="row"><div><label for="contactName">Votre nom *</label><input id="contactName" name="contactName" required /></div>
+      <div><label for="contactEmail">E-mail professionnel *</label><input id="contactEmail" name="contactEmail" type="email" required /></div></div>
+    <label for="affiliateProgram">Programme d'affiliation (URL, commission)</label><input id="affiliateProgram" name="affiliateProgram" placeholder="Si vous en avez un : nous le proposons à nos lecteurs" />
+
+    <input type="text" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+    <label class="ck"><input type="checkbox" name="consent" required /> Je certifie que ces informations sont exactes et j'accepte les <a href="/cgu/" target="_blank">CGU</a> et la <a href="/confidentialite/" target="_blank">politique de confidentialité</a>. *</label>
+    <p><button class="btn" type="submit" id="go">Envoyer ma fiche</button></p>
+    <p id="msg" role="status"></p>
+  </form>
+</Base>
+<style>
+  .form { margin-bottom: 2rem; } .form h2 { margin-top: 1.6rem; border-bottom: 2px solid var(--ink); padding-bottom: .3rem; }
+  .row { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .form label { margin-top: .8rem; } .form label.ck { display: inline-flex; gap: .4rem; align-items: center; font-weight: 600; margin: .3rem .8rem .3rem 0; }
+  .ck input { width: auto; }
+  #msg { font-weight: 700; }
+</style>
+<script is:inline>
+  const f = document.getElementById('f'), msg = document.getElementById('msg'), go = document.getElementById('go');
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!f.reportValidity()) return;
+    const fd = new FormData(f), data = {};
+    for (const k of new Set(fd.keys())) { const all = fd.getAll(k); data[k] = all.length > 1 || ['audiences', 'apps'].includes(k) ? all : all[0]; }
+    for (const k of ['frenchSupport', 'api', 'gdpr', 'dpa', 'consent']) data[k] = fd.has(k);
+    go.disabled = true; msg.textContent = 'Envoi…';
+    try {
+      const r = await fetch('/api/submit', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok) { f.reset(); msg.textContent = '✅ Merci ! Votre fiche est reçue, elle sera relue sous quelques jours.'; }
+      else { msg.textContent = '⚠️ ' + (j.error || 'Erreur, réessayez plus tard.'); go.disabled = false; }
+    } catch { msg.textContent = '⚠️ Réseau indisponible, réessayez.'; go.disabled = false; }
+  });
+</script>
