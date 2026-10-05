@@ -81,7 +81,8 @@ export default async function handler(req, res) {
   if (b.company_site) return res.status(200).json({ ok: true }); // honeypot : on fait semblant
   const { d, errors } = validate(b);
   if (errors.length) return res.status(400).json({ error: errors.join(' · ') });
-  const token = process.env.GITHUB_TOKEN, repo = process.env.SUBMISSIONS_REPO;
+  // trim : un retour à la ligne ou un espace collé avec la valeur provoque un refus 401/404.
+  const token = (process.env.GITHUB_TOKEN || '').trim(), repo = (process.env.SUBMISSIONS_REPO || '').trim();
   if (!token || !repo) return res.status(500).json({ error: 'Service de soumission non configuré.' });
   const { slug, body } = toIssueBody(d);
   const r = await fetch(`https://api.github.com/repos/${repo}/issues`, {
@@ -89,6 +90,16 @@ export default async function handler(req, res) {
     headers: { authorization: `Bearer ${token}`, accept: 'application/vnd.github+json', 'content-type': 'application/json', 'user-agent': 'saasbrief-submit' },
     body: JSON.stringify({ title: `Soumission annuaire : ${d.name}`, body, labels: ['soumission'] }),
   });
-  if (!r.ok) return res.status(502).json({ error: 'Envoi impossible pour le moment, réessayez plus tard.' });
+  if (!r.ok) {
+    const detail = await r.text().catch(() => '');
+    console.error(`GitHub a refusé la création de l'issue : ${r.status} (dépôt ${repo})`, detail.slice(0, 300));
+    const HINTS = {
+      401: 'jeton invalide ou expiré',
+      403: 'le jeton n\'a pas la permission Issues (lecture et écriture)',
+      404: 'dépôt introuvable ou non autorisé pour ce jeton (vérifiez SUBMISSIONS_REPO et l\'accès du jeton à ce dépôt)',
+      410: 'les issues sont désactivées sur ce dépôt',
+    };
+    return res.status(502).json({ error: `Envoi impossible (GitHub ${r.status}${HINTS[r.status] ? ' : ' + HINTS[r.status] : ''}).` });
+  }
   return res.status(200).json({ ok: true, slug });
 }
