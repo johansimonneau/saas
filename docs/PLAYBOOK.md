@@ -71,6 +71,6 @@ captures et chiffres propres à l'article. Ne réutilisez pas de paragraphes d'u
 5. Pages de facettes (catégorie/profil/prix) avec moins de 3 éléments : `noindex` et absentes du sitemap, automatiquement.
 
 ## Blog
-`npm run post -- "Titre"` crée un article depuis `src/content/blog/_modele-article.md`. Design sombre éditorial distinct de l'annuaire
-(layout `BlogShell`), sommaire, temps de lecture, encadré « l'essentiel en 30 s ». Rubriques : Guides, Comparatifs, Retours d'expérience, Stack et méthode, Actus.
+`npm run post -- "Titre"` crée un article depuis `src/content/blog/_modele-article.md`. Même charte graphique que le reste du site, avec une mise en page de lecture dédiée
+(layout `blog/[...slug].astro`), sommaire, temps de lecture, encadré « l'essentiel en 30 s ». Rubriques : Guides, Comparatifs, Retours d'expérience, Stack et méthode, Actus.
 Le blog vit sous `/blog/` ; son layout est autonome, il peut être déplacé sur un sous-domaine plus tard.

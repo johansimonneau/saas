@@ -1,56 +1,46 @@
 ---
-import BlogShell from '../../layouts/BlogShell.astro';
+import Base from '../../layouts/Base.astro';
 import { BLOG_CATEGORIES } from '../../config';
 import { getPosts, fmtDate } from '../../lib/content';
 const posts = await getPosts();
 const featured = posts.find(p => p.data.featured) ?? posts[0];
 const rest = posts.filter(p => p !== featured);
 ---
-<BlogShell title="Le blog" description="Guides, comparatifs et retours d'expérience pour choisir et bien utiliser ses outils SaaS quand on est indépendant ou dirigeant de TPE.">
-  <section class="bhero wrap">
-    <p class="kick">// le blog</p>
-    <h1>Moins de <em>tabs ouverts</em>.<br />Plus d'outils <em>qui servent</em>.</h1>
-    <p class="sub">Guides, comparatifs et retours d'expérience d'un indépendant qui teste vraiment les SaaS.</p>
+<Base title="Le blog" description="Guides, comparatifs et retours d'expérience pour choisir et bien utiliser ses outils SaaS quand on est indépendant ou dirigeant de TPE.">
+  <section class="hero">
+    <span class="chip lime">Le blog</span>
+    <h1>Guides, comparatifs et <span class="hl">retours d'expérience</span>.</h1>
+    <p class="lead">Les outils SaaS vus par un indépendant qui les utilise vraiment : ce qui marche, ce qui coûte, et quand passer son chemin.</p>
+    <p class="stack">{BLOG_CATEGORIES.map(c => <span class="chip">{c}</span>)}</p>
   </section>
 
-  {!featured ? <div class="wrap"><p class="sub">Les premiers articles arrivent.</p></div> : (
-    <section class="wrap">
-      <a class="feat" href={`/blog/${featured.id}/`}>
-        <span class="tag">À la une · {featured.data.category}</span>
+  {!featured ? <p class="muted">Les premiers articles arrivent.</p> : (
+    <>
+      <a class="card feat" href={`/blog/${featured.id}/`}>
+        <span class="chip accent">À la une · {featured.data.category}</span>
         <h2>{featured.data.title}</h2>
         <p>{featured.data.description}</p>
-        <span class="meta">{fmtDate(featured.data.pubDate)} · {featured.data.author}</span>
+        <p class="meta">{fmtDate(featured.data.pubDate)} · {featured.data.author}</p>
       </a>
-      <ol class="list">{rest.map((p, i) => (
-        <li><a href={`/blog/${p.id}/`}>
-          <span class="num">{String(i + 1).padStart(2, '0')}</span>
-          <span><span class="tag">{p.data.category}</span><strong>{p.data.title}</strong><small>{p.data.description}</small></span>
-          <span class="meta">{fmtDate(p.data.pubDate)}</span>
-        </a></li>))}</ol>
-    </section>
+      {rest.length > 0 && (
+        <div class="grid">{rest.map(p => (
+          <a class="card post" href={`/blog/${p.id}/`}>
+            <span class="chip">{p.data.category}</span>
+            <h3>{p.data.title}</h3>
+            <p class="muted">{p.data.description}</p>
+            <p class="meta">{fmtDate(p.data.pubDate)}</p>
+          </a>))}</div>
+      )}
+    </>
   )}
-  <p class="wrap cats">{BLOG_CATEGORIES.map(c => <span>{c}</span>)}</p>
-</BlogShell>
+</Base>
 <style>
-  .bhero { padding: 4.5rem 1.25rem 2rem; }
-  .kick { font: 600 .9rem ui-monospace, monospace; color: var(--b-b); }
-  .bhero h1 { font: 900 clamp(2.4rem, 7vw, 4.6rem)/1.02 ui-sans-serif, system-ui, sans-serif; letter-spacing: -.045em; margin: .2em 0; }
-  .bhero em { font-style: normal; background: linear-gradient(90deg, var(--b-a), var(--b-c)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .sub { color: var(--b-mut); font-size: 1.2rem; max-width: 620px; }
-  .tag { font: 700 .72rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--b-b); display: block; }
-  .feat { display: block; text-decoration: none; color: var(--b-fg); border: 1px solid var(--b-line); border-radius: 22px; padding: 2.2rem; margin: 2rem 0;
-    background: radial-gradient(900px 300px at 0% 0%, rgba(124,92,255,.28), transparent 60%), radial-gradient(700px 300px at 100% 100%, rgba(34,228,181,.16), transparent 60%), #10101e; }
-  .feat:hover { border-color: var(--b-a); }
-  .feat h2 { font: 900 clamp(1.7rem, 4vw, 2.6rem)/1.1 ui-sans-serif, system-ui, sans-serif; letter-spacing: -.03em; margin: .4em 0; }
-  .feat p { color: var(--b-mut); font-size: 1.15rem; max-width: 640px; }
-  .meta { color: var(--b-mut); font: .85rem ui-sans-serif, system-ui, sans-serif; }
-  .list { list-style: none; padding: 0; margin: 0; }
-  .list a { display: grid; grid-template-columns: 56px 1fr auto; gap: 1rem; align-items: baseline; padding: 1.2rem 0; border-top: 1px solid var(--b-line); color: var(--b-fg); text-decoration: none; }
-  .list a:hover strong { color: var(--b-b); }
-  .num { font: 800 1.6rem ui-monospace, monospace; color: var(--b-a); }
-  .list strong { display: block; font: 800 1.25rem ui-sans-serif, system-ui, sans-serif; letter-spacing: -.02em; }
-  .list small { color: var(--b-mut); }
-  .cats { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 2rem; }
-  .cats span { border: 1px solid var(--b-line); border-radius: 99px; padding: .2rem .8rem; font: .8rem ui-sans-serif, system-ui, sans-serif; color: var(--b-mut); }
-  @media (max-width: 640px) { .list a { grid-template-columns: 40px 1fr; } .list .meta { display: none; } }
+  .feat { display: block; text-decoration: none; color: var(--ink); background: var(--lime); margin: 1rem 0 2rem; transition: transform .08s, box-shadow .08s; }
+  .feat:hover, .post:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .feat h2 { margin: .5rem 0; font-size: clamp(1.6rem, 4vw, 2.3rem); }
+  .feat p { margin: .4rem 0; max-width: 680px; }
+  .post { display: block; text-decoration: none; color: var(--ink); transition: transform .08s, box-shadow .08s; }
+  .post h3 { margin: .5rem 0; }
+  .post p { margin: .3rem 0; }
+  .meta { font-size: .85rem; color: var(--muted); }
 </style>
