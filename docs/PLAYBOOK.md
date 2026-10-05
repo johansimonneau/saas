@@ -4,7 +4,7 @@ Objectif : 1 page publiée par jour, chacune avec une vraie contribution personn
 Google (contenu utile) déclassent le texte IA générique produit en masse et récompensent l'expérience
 visible. **L'IA rédige le brouillon, vous apportez la preuve.**
 
-## Boucle quotidienne (45 à 60 min par article)
+## Boucle quotidienne (45 à 60 min : 1 test + 1 fiche annuaire)
 
 1. **Choisir l'outil** dans `docs/BACKLOG.md`. Privilégier : programme d'affiliation, volume de recherche
    sur « avis <outil> / prix / alternative », concurrence faible en autorité.
@@ -74,3 +74,16 @@ captures et chiffres propres à l'article. Ne réutilisez pas de paragraphes d'u
 `npm run post -- "Titre"` crée un article depuis `src/content/blog/_modele-article.md`. Même charte graphique que le reste du site, avec une mise en page de lecture dédiée
 (layout `blog/[...slug].astro`), sommaire, temps de lecture, encadré « l'essentiel en 30 s ». Rubriques : Guides, Comparatifs, Retours d'expérience, Stack et méthode, Actus.
 Le blog vit sous `/blog/` ; son layout est autonome, il peut être déplacé sur un sous-domaine plus tard.
+
+## Rubriques : ce qui va où
+- **Tests** : avis sur un seul outil **et** comparatifs face à face (mise en page `duel`). C'est la rubrique principale, un contenu par jour.
+- **Annuaire** : **une nouvelle fiche chaque jour** (`npm run tool -- "Nom" --category=Facturation`). Complétez avec les faits de la page officielle, ajoutez un lien vers votre test, puis `status: published`. Une fiche `editorial: true` est indexée.
+- **Blog** : guides et retours d'expérience, hors tests d'outils (même charte que le site).
+
+## Outils populaires (pied de page)
+Le pied de page affiche 6 outils de l'annuaire. Tant qu'aucune fiche n'a de champ `popularity`, l'ordre est tiré au sort et change chaque jour au rebuild.
+Quand vous aurez des statistiques (clics, pages vues), renseignez `popularity: 10` (plus haut = plus populaire) sur les fiches qui marchent : elles passent en tête.
+
+## Anonymat de l'éditeur
+Le nom propre n'apparaît que là où la loi l'impose : mentions légales et politique de confidentialité (bloc `LEGAL` de `src/config.ts`) et, pour le contact, les CGU.
+Partout ailleurs la signature est `SITE.author` (« La rédaction SaaSbrief »). Ne tapez pas votre nom dans les articles.

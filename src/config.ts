@@ -4,7 +4,7 @@ export const SITE = {
   tagline: 'Les outils SaaS des indépendants et dirigeants de TPE, testés un par un.',
   url: 'https://saasbrief.fr',
   lang: 'fr',
-  author: 'Johan Simonneau',
+  author: 'La rédaction SaaSbrief',  // affiché publiquement : pas de nom propre
   // Publicité : renseignez votre identifiant éditeur AdSense (ca-pub-XXXXXXXXXXXXXXXX) une fois approuvé.
   adsensePublisherId: '',
   // Statistiques : domaine Plausible, par exemple. Vide = désactivé.
@@ -42,7 +42,8 @@ export const catSlug = (c: string) =>
   c.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 // Identité légale : source unique pour mentions légales, confidentialité, CGU.
-// Reprenez ici les infos de johan.simonneau.fr. `npm run check:legal` liste ce qui manque.
+// Identité légale (obligatoire sur les mentions légales et la politique de confidentialité uniquement).
+// `npm run check:legal` liste ce qui manque.
 const TODO = '[À COMPLÉTER]';
 export const LEGAL = {
   editorName: 'Johan Simonneau',            // éditeur (personne physique ou raison sociale)

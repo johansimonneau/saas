@@ -14,7 +14,7 @@ const minutes = Math.max(1, Math.round((entry.body ?? '').split(/\s+/).length / 
 const toc = headings.filter(h => h.depth === 2);
 const jsonLd = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: d.title, description: d.description,
   datePublished: d.pubDate.toISOString(), dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
-  author: { '@type': 'Person', name: d.author }, publisher: { '@type': 'Organization', name: SITE.name } };
+  author: { '@type': 'Organization', name: d.author }, publisher: { '@type': 'Organization', name: SITE.name } };
 ---
 <Base title={d.title} description={d.description} ogType="article" jsonLd={jsonLd}>
   <div id="progress"></div>
@@ -28,7 +28,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'BlogPosting', headl
   <div class="layout">
     <article class="body">
       <Content />
-      <div class="card author"><strong>{d.author}</strong><br />Consultant indépendant, je teste les outils dont je parle. <a href="/about/">En savoir plus</a>.</div>
+      <div class="card author"><strong>{d.author}</strong><br />Des outils testés en conditions réelles, par un indépendant. <a href="/about/">Notre méthode</a>.</div>
       <div class="card more"><strong>Un outil testé par jour.</strong> <a href="/tests/">Voir les tests →</a> · <a href="/annuaire/">Parcourir l'annuaire →</a></div>
     </article>
     <aside class="side">

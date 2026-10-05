@@ -1,34 +1,48 @@
 ---
 title: "Indy vs Tiime 2026 : lequel choisir en micro-entreprise ?"
 description: "Indy ou Tiime en micro-entreprise ? Tarifs relevés le 5 octobre 2026, facture électronique, déclarations et verdict après usage des deux outils."
-kicker: "Comparatif"
+punchline: "Besoin d'un comptable : Tiime. Micro autonome : Indy. Voici pourquoi."
 pubDate: 2026-10-05
 draft: false
-featured: true
-category: Comparatifs
-tags: ["comptabilité", "micro-entrepreneur", "facture électronique"]
-takeaways:
-  - "Besoin d'un comptable : Tiime."
-  - "Micro-entrepreneur qui gère tout seul : Indy."
-  - "Les deux ont une offre gratuite avec facture électronique via une plateforme agréée."
-  - "Chez Indy, les déclarations fiscales automatisées commencent à Premium (dès 22 € HT/mois)."
+layout: duel
+category: Comptabilité
+audiences: ["Freelance", "Micro-entrepreneur"]
+pricingModel: Freemium
+tags: ["comparatif", "comptabilité", "facture électronique", "micro-entrepreneur"]
+tool:
+  name: "Indy"
+  website: "https://www.indy.fr"
+  # affiliateUrl: "https://..."   # à ajouter une fois le programme validé
+  pricing: "Essentiel gratuit ; Plus dès 9 € HT/mois en annuel ; Premium dès 22 € HT/mois (tarifs relevés le 5 octobre 2026)"
+  bestFor: "Micro-entrepreneurs qui gèrent leur compta seuls (Indy) ; ceux qui travaillent avec un comptable (Tiime)"
+  freeTrial: false
+pros:
+  - "Indy : complet, gratuit pour démarrer, intuitif en micro"
+  - "Tiime : justificatifs très précis, accès gratuit pour votre comptable"
+cons:
+  - "Indy : les déclarations fiscales automatisées ne sont pas dans Essentiel et Plus (dès Premium, 22 € HT/mois)"
+  - "Tiime : l'offre Initial impose le compte pro Tiime"
+versus:
+  name: "Tiime"
+  rows:
+    - { label: "Offre gratuite", tool: "Essentiel à 0 € : facturation électronique, devis et factures illimités, comptabilité automatisée", other: "Free à 0 € : facturation électronique, devis et factures illimités, suivi du CA, relances" }
+    - { label: "Premier palier payant", tool: "Plus dès 9 € HT/mois (108 € HT/an, 12 € en mensuel)", other: "Initial à 9,99 € HT/mois (119,88 € HT/an), compte pro Tiime obligatoire" }
+    - { label: "Facture électronique", tool: "Plateforme agréée par la DGFiP, incluse dès l'offre gratuite", other: "Plateforme agréée incluse dès l'offre Free" }
+    - { label: "Déclarations fiscales", tool: "Automatisées dès Premium : 2035, TVA, DAS2, télétransmission aux impôts et à l'AGA", other: "Collaboration complète avec votre expert-comptable dès Smart (17,99 € HT/mois)" }
+    - { label: "Expert-comptable", tool: "Option Expert-Comptable dès 71 € HT/mois", other: "Accès gratuit aux données de facturation pour votre comptable dès l'offre Free" }
+    - { label: "Essai", tool: "30 jours satisfait ou remboursé (Plus et Premium)", other: "60 jours gratuits sur les offres payantes" }
+    - { label: "Mon ressenti", tool: "Complet et intuitif pour une micro", other: "Justificatifs très précis" }
+handsOn:
+  testedFor: "Utilisation des deux outils en micro-entreprise"
+  verdict: "Si vous avez besoin d'un comptable, je pars sur Tiime. Sinon, en micro, je pars sur Indy."
+alternatives: ["Pennylane"]
 ---
+
+## Pourquoi comparer Indy et Tiime
 
 J'ai utilisé les deux outils en micro-entreprise, et ce sont deux des solutions que je croise le plus chez les indépendants français. Point commun : chacun propose une offre gratuite avec la **facture électronique** (via une plateforme agréée), des devis et des factures illimités. La vraie différence se joue ailleurs : ce que vous voulez faire vous-même, et ce que vous voulez confier à un comptable.
 
-Mon retour porte sur l'usage en **micro-entreprise**. Les tarifs ci-dessous ont été relevés sur les pages officielles le 5 octobre 2026 ; vérifiez-les avant de vous engager, ils bougent. Pour mon avis complet sur l'un des deux : [avis Indy](/tests/indy-avis/).
-
-## Le face-à-face
-
-| | Indy | Tiime |
-|---|---|---|
-| Offre gratuite | Essentiel à 0 € : facturation électronique, devis et factures illimités, comptabilité automatisée | Free à 0 € : facturation électronique, devis et factures illimités, suivi du CA, relances |
-| Premier palier payant | Plus dès 9 € HT/mois (108 € HT/an, 12 € en mensuel) | Initial à 9,99 € HT/mois (119,88 € HT/an), compte pro Tiime obligatoire |
-| Facture électronique | Plateforme agréée par la DGFiP, incluse dès l'offre gratuite | Plateforme agréée incluse dès l'offre Free |
-| Déclarations fiscales | Automatisées dès Premium : 2035, TVA, DAS2, télétransmission aux impôts et à l'AGA | Collaboration complète avec votre expert-comptable dès Smart (17,99 € HT/mois) |
-| Expert-comptable | Option Expert-Comptable dès 71 € HT/mois | Accès gratuit aux données de facturation pour votre comptable dès l'offre Free |
-| Essai | 30 jours satisfait ou remboursé (Plus et Premium) | 60 jours gratuits sur les offres payantes |
-| Mon ressenti | Complet et intuitif pour une micro | Justificatifs très précis |
+Mon retour porte sur l'usage en **micro-entreprise**. Les tarifs ont été relevés sur les pages officielles le 5 octobre 2026 ; vérifiez-les avant de vous engager, ils bougent. Pour l'avis détaillé sur l'un des deux : [avis Indy](/tests/indy-avis/).
 
 ## Les offres en détail
 

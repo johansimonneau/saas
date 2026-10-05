@@ -57,4 +57,4 @@ Les déclarations fiscales automatisées ne sont **pas** dans les offres Essenti
 
 ## Indy ou Tiime ?
 
-Si vous avez besoin d'un comptable, je vous conseille Tiime. Si vous êtes en micro et que vous gérez tout seul, je pars sur Indy. J'ai détaillé les offres, les prix et mon retour sur les deux dans le comparatif : [Indy vs Tiime, lequel choisir en micro-entreprise ?](/blog/indy-vs-tiime/)
+Si vous avez besoin d'un comptable, je vous conseille Tiime. Si vous êtes en micro et que vous gérez tout seul, je pars sur Indy. J'ai détaillé les offres, les prix et mon retour sur les deux dans le comparatif : [Indy vs Tiime, lequel choisir en micro-entreprise ?](/tests/indy-vs-tiime/)
