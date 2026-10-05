@@ -14,7 +14,7 @@ const reviews = defineCollection({
       name: z.string(),
       website: z.string().url(),
       affiliateUrl: z.string().url().optional(),
-      pricing: z.string(),            // e.g. "Free plan; paid from $12/user/mo"
+      pricing: z.string(),            // ex. "Offre gratuite ; payant dès 12 €/utilisateur/mois"
       bestFor: z.string(),
       freeTrial: z.boolean().default(false),
     }),
@@ -22,10 +22,10 @@ const reviews = defineCollection({
     rating: z.number().min(1).max(5).optional(),
     pros: z.array(z.string()).default([]),
     cons: z.array(z.string()).default([]),
-    // Proof of first-hand experience (E-E-A-T). Required to publish.
+    // Preuve d'expérience directe (E-E-A-T). Obligatoire pour publier.
     handsOn: z.object({
-      testedFor: z.string(),          // "2 weeks on a real client account"
-      verdict: z.string(),            // your own take, 1-2 sentences
+      testedFor: z.string(),          // "2 semaines sur un vrai compte client"
+      verdict: z.string(),            // votre avis, 1-2 phrases
     }),
     alternatives: z.array(z.string()).default([]),
   }),

@@ -28,34 +28,34 @@ const jsonLd = {
 <Base title={data.title} description={data.description} ogType="article" jsonLd={jsonLd}>
   <article>
     <h1>{data.title}</h1>
-    <p><small>By {SITE.author} · {data.pubDate.toISOString().slice(0, 10)}{data.updatedDate && ` · updated ${data.updatedDate.toISOString().slice(0, 10)}`}</small></p>
-    <p><small>Disclosure: some links are affiliate links; they never influence our verdict. <a href="/disclosure/">Details</a></small></p>
+    <p><small>Par {SITE.author} · {data.pubDate.toISOString().slice(0, 10)}{data.updatedDate && ` · mis à jour le ${data.updatedDate.toISOString().slice(0, 10)}`}</small></p>
+    <p><small>Transparence : certains liens sont affiliés, sans jamais influencer notre avis. <a href="/disclosure/">Détails</a></small></p>
 
     <table>
       <tbody>
-        <tr><th>Best for</th><td>{data.tool.bestFor}</td></tr>
-        <tr><th>Pricing</th><td>{data.tool.pricing}</td></tr>
-        <tr><th>Category</th><td>{data.category}</td></tr>
-        {data.rating && <tr><th>Our rating</th><td>{data.rating} / 5</td></tr>}
-        <tr><th>How we tested</th><td>{data.handsOn.testedFor}</td></tr>
+        <tr><th>Idéal pour</th><td>{data.tool.bestFor}</td></tr>
+        <tr><th>Tarifs</th><td>{data.tool.pricing}</td></tr>
+        <tr><th>Catégorie</th><td>{data.category}</td></tr>
+        {data.rating && <tr><th>Notre note</th><td>{data.rating} / 5</td></tr>}
+        <tr><th>Comment nous avons testé</th><td>{data.handsOn.testedFor}</td></tr>
       </tbody>
     </table>
 
     <AffiliateCTA name={data.tool.name} url={ctaUrl} trial={data.tool.freeTrial} pricing={data.tool.pricing} />
-    <p><strong>Our verdict:</strong> {data.handsOn.verdict}</p>
-    <AdSlot slot="" label="Advertisement" />
+    <p><strong>Notre verdict :</strong> {data.handsOn.verdict}</p>
+    <AdSlot slot="" label="Publicité" />
 
     <Content />
 
     {(data.pros.length > 0 || data.cons.length > 0) && (
       <>
-        <h2>Pros and cons</h2>
+        <h2>Avantages et limites</h2>
         <ul>{data.pros.map(p => <li>👍 {p}</li>)}{data.cons.map(c => <li>👎 {c}</li>)}</ul>
       </>
     )}
-    {data.alternatives.length > 0 && <p><strong>Alternatives:</strong> {data.alternatives.join(', ')}</p>}
+    {data.alternatives.length > 0 && <p><strong>Alternatives :</strong> {data.alternatives.join(', ')}</p>}
 
-    <AdSlot slot="" label="Advertisement" />
+    <AdSlot slot="" label="Publicité" />
     <AffiliateCTA name={data.tool.name} url={ctaUrl} trial={data.tool.freeTrial} pricing={data.tool.pricing} />
   </article>
 </Base>

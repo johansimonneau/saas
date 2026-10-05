@@ -1,0 +1,28 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { SITE, LEGAL as L } from '../config';
+---
+<LegalPage title="Conditions générales d'utilisation" description={`Conditions d'utilisation du site ${SITE.name} (conditions générales).`}>
+  <p>{SITE.name} est un site d'information gratuit : il ne vend aucun produit ni service, il n'y a donc pas de conditions générales de vente. Si une offre payante est lancée (guide, newsletter premium...), des CGV spécifiques seront publiées avant toute vente.</p>
+
+  <h2>1. Objet</h2>
+  <p>Les présentes conditions encadrent l'accès au site {SITE.url} et son utilisation. En naviguant, vous les acceptez.</p>
+
+  <h2>2. Nature des contenus</h2>
+  <p>Les articles sont des avis éditoriaux fondés sur des tests de l'auteur. Ils ont une valeur informative et ne constituent ni un conseil juridique, financier ou professionnel, ni une offre commerciale.</p>
+
+  <h2>3. Liens affiliés</h2>
+  <p>Certains liens sont affiliés : un achat via ces liens peut nous rapporter une commission, sans surcoût pour vous. Le contrat est conclu directement entre vous et l'éditeur de l'outil, selon ses propres conditions, dont nous ne sommes pas partie.</p>
+
+  <h2>4. Propriété intellectuelle</h2>
+  <p>Voir les <a href="/mentions-legales/">mentions légales</a>.</p>
+
+  <h2>5. Responsabilité</h2>
+  <p>Nous nous efforçons de fournir des informations exactes et à jour, sans garantie d'exhaustivité. L'accès au site peut être interrompu pour maintenance. Notre responsabilité ne peut être engagée pour les dommages indirects liés à l'usage du site ou des sites tiers.</p>
+
+  <h2>6. Données personnelles</h2>
+  <p>Voir la <a href="/confidentialite/">politique de confidentialité</a>.</p>
+
+  <h2>7. Droit applicable et litiges</h2>
+  <p>Droit français. En cas de litige, contactez-nous d'abord à {L.email}. Le consommateur peut recourir gratuitement à un médiateur de la consommation.</p>
+</LegalPage>

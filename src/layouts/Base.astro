@@ -28,11 +28,12 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
 <body>
   <header>
     <a class="brand" href="/">{SITE.name}</a>
-    <nav><a href="/reviews/">All reviews</a><a href="/about/">About</a></nav>
+    <nav><a href="/reviews/">Tous les tests</a><a href="/about/">À propos</a></nav>
   </header>
   <main><slot /></main>
   <footer>
-    <p>© {new Date().getFullYear()} {SITE.name}. Some links are affiliate links — see our <a href="/disclosure/">disclosure</a>.</p>
+    <p>© {new Date().getFullYear()} {SITE.name}. Certains liens sont affiliés — voir notre <a href="/disclosure/">transparence</a>.</p>
+    <p><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="/cookies/">Cookies</a> · <a href="/cgu/">CGU</a></p>
   </footer>
 </body>
 </html>

@@ -1,7 +1,7 @@
 ---
 import { SITE } from '../config';
 interface Props { slot?: string; label?: string }
-const { slot = '', label = 'Advertisement' } = Astro.props;
+const { slot = '', label = 'Publicité' } = Astro.props;
 ---
 {SITE.adsensePublisherId && slot && (
   <aside class="ad" aria-label={label}>

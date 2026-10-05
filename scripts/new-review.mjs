@@ -1,71 +1,71 @@
 #!/usr/bin/env node
-// Usage: npm run new -- "Notion" [YYYY-MM-DD]
-// Creates a draft review from the template. Fill in the TODOs, set draft: false, commit.
+// Usage : npm run new -- "Notion" [AAAA-MM-JJ]
+// Crée un brouillon à partir du modèle. Remplissez les TODO, passez draft à false, commit.
 import { writeFileSync, existsSync } from 'node:fs';
 
 const [name, date = new Date().toISOString().slice(0, 10)] = process.argv.slice(2);
-if (!name) { console.error('Usage: npm run new -- "Tool name" [YYYY-MM-DD]'); process.exit(1); }
+if (!name) { console.error('Usage : npm run new -- "Nom de l\'outil" [AAAA-MM-JJ]'); process.exit(1); }
 
-const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const file = `src/content/reviews/${slug}-review.md`;
-if (existsSync(file)) { console.error(`${file} already exists`); process.exit(1); }
+const slug = name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const file = `src/content/reviews/${slug}-avis.md`;
+if (existsSync(file)) { console.error(`${file} existe déjà`); process.exit(1); }
 
 writeFileSync(file, `---
-title: "${name} Review ${new Date(date).getFullYear()}: Pricing, Pros & Cons"
-description: "TODO (80-160 chars): who ${name} is for, its key strength, its key limitation, and what it costs."
+title: "Avis ${name} ${new Date(date).getFullYear()} : tarifs, avantages et limites"
+description: "TODO (80-160 car.) : pour qui est ${name}, sa principale force, sa principale limite et son prix."
 pubDate: ${date}
 draft: true
-category: Other
+category: Autre
 tool:
   name: "${name}"
   website: "https://TODO.com"
-  # affiliateUrl: "https://..."   # add once you're in the program
-  pricing: "TODO verify on the pricing page today"
+  # affiliateUrl: "https://..."   # à ajouter une fois inscrit au programme
+  pricing: "TODO à vérifier sur la page tarifs le jour même"
   bestFor: "TODO"
   freeTrial: false
 rating: 4
 pros: ["TODO"]
 cons: ["TODO"]
 handsOn:
-  testedFor: "TODO what you actually did, how long"
-  verdict: "TODO your own opinion in 1-2 sentences"
+  testedFor: "TODO ce que vous avez réellement fait, pendant combien de temps"
+  verdict: "TODO votre avis personnel en 1-2 phrases"
 alternatives: []
 ---
 
-## What is ${name}?
+## Qu'est-ce que ${name} ?
 
-TODO: one paragraph. What problem, for whom.
+TODO : un paragraphe. Quel problème, pour qui.
 
-## Who should use it
+## Pour qui ?
 
 TODO
 
-## Who should skip it
+## Qui devrait passer son chemin ?
 
-TODO (this section builds trust and converts better than hype)
+TODO (cette section crée la confiance et convertit mieux que l'enthousiasme)
 
-## Key features
+## Fonctionnalités clés
 
-TODO: 3-5 features you actually used, with a concrete example each.
+TODO : 3 à 5 fonctionnalités réellement utilisées, avec un exemple concret chacune.
 
-## Pricing
+## Tarifs
 
-TODO: plans, what's gated, hidden costs. Date-stamp: "Checked ${date}".
+TODO : offres, ce qui est limité, coûts cachés. Datez : « Vérifié le ${date} ».
 
-## ${name} vs alternatives
+## ${name} face aux alternatives
 
-TODO: short comparison with the alternatives listed in the frontmatter.
+TODO : comparaison courte avec les alternatives listées dans l'en-tête.
 
 ## FAQ
 
-### Is ${name} free?
+### ${name} est-il gratuit ?
 TODO
 
-### Does ${name} integrate with TODO?
+### ${name} s'intègre-t-il avec TODO ?
 TODO
 
-## Final verdict
+## Verdict final
 
 TODO
 `);
-console.log(`Created ${file}`);
+console.log(`Créé : ${file}`);

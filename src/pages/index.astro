@@ -8,8 +8,8 @@ const reviews = (await getCollection('reviews', r => !r.data.draft && r.data.pub
 ---
 <Base title={SITE.name} description={SITE.tagline}>
   <h1>{SITE.tagline}</h1>
-  <p>Honest, hands-on SaaS presentations for small teams: what it does, who it's for, what it costs, and when to skip it.</p>
-  <h2>Latest</h2>
+  <p>Des présentations SaaS honnêtes et testées pour les petites équipes : ce que fait l'outil, pour qui, combien il coûte, et quand l'éviter.</p>
+  <h2>Derniers articles</h2>
   <ul>
     {reviews.slice(0, 20).map(r => (
       <li>
@@ -18,5 +18,5 @@ const reviews = (await getCollection('reviews', r => !r.data.draft && r.data.pub
       </li>
     ))}
   </ul>
-  <p><a href="/reviews/">Browse all →</a></p>
+  <p><a href="/reviews/">Tout parcourir →</a></p>
 </Base>

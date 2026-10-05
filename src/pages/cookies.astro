@@ -1,0 +1,19 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { SITE } from '../config';
+---
+<LegalPage title="Politique de cookies" description={`Les cookies utilisés sur ${SITE.name} et comment les gérer.`}>
+  <p>Un cookie est un petit fichier enregistré sur votre appareil. Hors cookies strictement nécessaires, nous ne les déposons qu'avec votre accord.</p>
+  <table>
+    <thead><tr><th>Catégorie</th><th>Exemple</th><th>Consentement</th></tr></thead>
+    <tbody>
+      <tr><td>Strictement nécessaires</td><td>Mémorisation de votre choix de consentement</td><td>Non requis</td></tr>
+      <tr><td>Mesure d'audience</td><td>Outil de statistiques (à préciser)</td><td>Requis, sauf outil exempté par la CNIL</td></tr>
+      <tr><td>Publicité</td><td>Google AdSense</td><td>Requis</td></tr>
+      <tr><td>Affiliation</td><td>Cookies des plateformes partenaires après clic</td><td>Gérés par le partenaire</td></tr>
+    </tbody>
+  </table>
+  <h2>Gérer vos choix</h2>
+  <p>Vous pouvez modifier votre choix à tout moment via le module de consentement du site, ou bloquer les cookies dans les réglages de votre navigateur. Refuser est aussi simple qu'accepter.</p>
+  <p><strong>Note éditeur :</strong> avant d'activer AdSense, installez une plateforme de gestion du consentement certifiée Google (CMP conforme TCF), obligatoire dans l'Espace économique européen.</p>
+</LegalPage>

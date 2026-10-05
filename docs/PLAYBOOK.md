@@ -1,38 +1,46 @@
-# Daily SaaS presentation playbook
+# Routine quotidienne : une présentation SaaS par jour
 
-Goal: 1 published page/day, each with real first-hand input. Google's helpful-content systems
-demote scaled, generic AI text; they reward visible experience. So the AI drafts, **you add the proof**.
+Objectif : 1 page publiée par jour, chacune avec une vraie contribution personnelle. Les systèmes de
+Google (contenu utile) déclassent le texte IA générique produit en masse et récompensent l'expérience
+visible. **L'IA rédige le brouillon, vous apportez la preuve.**
 
-## Daily loop (~45-60 min per article)
+## Boucle quotidienne (45 à 60 min par article)
 
-1. **Pick the tool** from the backlog (`docs/BACKLOG.md`). Prefer tools with: an affiliate program,
-   search volume for "<tool> review / pricing / alternatives", and low-authority competing pages.
-2. `npm run new -- "Tool Name"` creates the draft.
-3. **Research (10 min):** open the tool, sign up for the free plan/trial, take 3+ own screenshots,
-   copy the pricing page *today*, note one thing that annoyed you and one that impressed you.
-4. **AI draft (10 min):** give Claude the template + your notes + the pricing facts. Instruct it to use
-   *only* your supplied facts and mark anything unverified as TODO. Never let it invent features, prices, stats.
-5. **Add your expertise (15 min):** fill `handsOn`, the "Who should skip it" section, your verdict, screenshots.
-6. **Check:** every price/feature verified, affiliate link added, meta description 80-160 chars,
-   `draft: false`, `npm run build` passes.
-7. **Commit and push** — the host (Vercel) deploys. Use a future `pubDate` to schedule (rebuild daily via cron).
+1. **Choisir l'outil** dans `docs/BACKLOG.md`. Privilégier : programme d'affiliation, volume de recherche
+   sur « avis <outil> / prix / alternative », concurrence faible en autorité.
+2. `npm run new -- "Nom de l'outil"` crée le brouillon.
+3. **Recherche (10 min)** : ouvrez l'outil, créez un compte gratuit/essai, faites 3+ captures d'écran
+   personnelles, copiez la page tarifs *du jour*, notez un point agaçant et un point convaincant.
+4. **Brouillon IA (10 min)** : donnez à Claude le modèle + vos notes + les tarifs. Consigne : n'utiliser
+   *que* vos faits, marquer TODO tout ce qui n'est pas vérifié. Jamais de fonctionnalité, prix ou
+   statistique inventés.
+5. **Votre expertise (15 min)** : remplissez `handsOn`, la section « Qui devrait passer son chemin »,
+   votre verdict, les captures.
+6. **Contrôle** : prix et fonctionnalités vérifiés, lien affilié ajouté, meta description 80-160
+   caractères, `draft: false`, `npm run build` passe.
+7. **Commit et push** : l'hébergeur (Vercel) déploie. Une `pubDate` future permet de programmer
+   (rebuild quotidien par cron).
 
-## Quality bars (non-negotiable)
-- Never publish a tool you did not open. Say plainly what you did not test.
-- Include at least one negative point and a "skip it if" section.
-- Re-check pricing of top pages every 90 days; set `updatedDate`.
-- Affiliate links: `rel="sponsored"` (built in) and the disclosure near the top (built in).
+## Exigences qualité (non négociables)
+- Ne jamais publier un outil que vous n'avez pas ouvert. Dites clairement ce que vous n'avez pas testé.
+- Toujours au moins un point négatif et une section « à éviter si ».
+- Revérifier les tarifs des pages principales tous les 90 jours ; renseigner `updatedDate`.
+- Liens affiliés : `rel="sponsored"` (intégré) et mention de transparence en haut (intégrée).
+  En France, la mention claire de l'affiliation est une obligation légale.
 
-## Content mix (avoid 100% single-tool reviews)
-- Days 1-5 of the week: single tool presentations (long tail: "<tool> review", "<tool> pricing").
-- Weekly: 1 hub/roundup ("Best X tools for Y") linking to the individual reviews — these earn the money terms.
-- Monthly: 1 comparison ("A vs B") from pairs you already reviewed.
+## Mix de contenus (pas 100 % d'avis sur un seul outil)
+- 5 jours par semaine : présentation d'un outil (longue traîne : « avis <outil> », « prix <outil> »).
+- Chaque semaine : 1 page « Meilleurs outils X pour Y » qui renvoie vers les avis. Ce sont elles qui rapportent.
+- Chaque mois : 1 comparatif « A vs B » à partir de paires déjà testées.
 
-## Monetisation order
-1. Affiliate (PartnerStack, Impact, direct programs — Many SaaS pay 20-40% recurring). Earns long before ads do.
-2. Display ads: AdSense needs real traffic and an About/Disclosure/Privacy site; move to Mediavine/Raptive at their traffic thresholds.
-3. Email capture later.
+## Ordre de monétisation
+1. Affiliation (PartnerStack, Impact, Awin, programmes directs). Beaucoup de SaaS versent 20-40 % récurrents.
+   Cela rapporte bien avant la publicité.
+2. Publicité display : AdSense exige un vrai trafic et un site complet (À propos, transparence,
+   politique de confidentialité, mentions légales, bandeau cookies/CMP en UE). Passage à Mediavine/Raptive
+   aux seuils de trafic.
+3. Capture d'emails plus tard.
 
-## Rebuild daily for scheduled posts
-Articles with a future `pubDate` are hidden until the date passes. Add a Vercel Deploy Hook + a daily cron
-(GitHub Actions `schedule`) to rebuild each morning, so you can batch-write ahead.
+## Publication programmée
+Un article avec `pubDate` future reste masqué jusqu'à cette date. Ajoutez un Deploy Hook Vercel et un cron
+quotidien (GitHub Actions `schedule`) pour reconstruire chaque matin : vous pouvez ainsi écrire en avance.

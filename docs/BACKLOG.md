@@ -1,7 +1,5 @@
-# Backlog (tool | category | affiliate program? | target keyword | status)
+# Backlog (outil | catégorie | affiliation ? | mot-clé cible | statut)
 
-Seed ideas — verify program terms before you commit time:
-
-| Tool | Category | Affiliate? | Keyword | Status |
+| Outil | Catégorie | Affiliation ? | Mot-clé | Statut |
 |---|---|---|---|---|
-| (add) | | | "<tool> review" | todo |
+| (à ajouter) | | | « avis <outil> » | à faire |

@@ -1,0 +1,33 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { SITE, LEGAL as L } from '../config';
+---
+<LegalPage title="Mentions légales" description={`Mentions légales du site ${SITE.name} : éditeur, hébergeur et contact.`}>
+  <h2>Éditeur du site</h2>
+  <p>
+    {SITE.name} ({SITE.url}) est édité par <strong>{L.editorName}</strong>, {L.legalForm}.<br />
+    SIRET : {L.siret}<br />
+    TVA : {L.vatNumber}<br />
+    Adresse : {L.address}<br />
+    E-mail : {L.email}{L.phone && <> · Téléphone : {L.phone}</>}
+  </p>
+  <p>Directeur de la publication : {L.publicationDirector}.</p>
+
+  <h2>Hébergeur</h2>
+  <p>{L.hostName}, {L.hostAddress} — <a href={L.hostUrl} rel="noopener">{L.hostUrl}</a>.</p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>Les textes, images et la structure du site sont protégés par le droit d'auteur. Toute reproduction sans autorisation écrite est interdite, hors courte citation avec lien vers la source. Les marques et logos des outils présentés appartiennent à leurs propriétaires respectifs.</p>
+
+  <h2>Responsabilité</h2>
+  <p>Les informations (tarifs, fonctionnalités) sont vérifiées à la date indiquée dans chaque article mais peuvent évoluer : vérifiez-les sur le site de l'éditeur de l'outil avant tout achat. {SITE.name} ne saurait être tenu responsable d'une décision prise sur la base de ces contenus. Les sites tiers vers lesquels nous renvoyons ne sont pas sous notre contrôle.</p>
+
+  <h2>Liens affiliés et publicité</h2>
+  <p>Le site perçoit des commissions via des liens affiliés et des revenus publicitaires. Voir la page <a href="/disclosure/">Transparence et affiliation</a>.</p>
+
+  <h2>Données personnelles</h2>
+  <p>Voir la <a href="/confidentialite/">politique de confidentialité</a> et la <a href="/cookies/">politique de cookies</a>.</p>
+
+  <h2>Droit applicable</h2>
+  <p>Le site est soumis au droit français. Les tribunaux français sont compétents, sous réserve des règles impératives applicables aux consommateurs.</p>
+</LegalPage>

@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "new": "node scripts/new-review.mjs"
+    "new": "node scripts/new-review.mjs",
+    "check:legal": "node scripts/check-legal.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.0",
