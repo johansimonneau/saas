@@ -1,0 +1,26 @@
+---
+import Head from '../components/Head.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config';
+interface Props { title: string; description: string; ogType?: string; jsonLd?: object | object[]; noindex?: boolean; accent?: string }
+const { accent, ...rest } = Astro.props;
+---
+<!doctype html>
+<html lang={SITE.lang}>
+<head><Head {...rest} /></head>
+<body style={accent ? `--accent:${accent}` : undefined}>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">SaaS<b>brief</b></a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="/annuaire/">Annuaire</a>
+        <a href="/tests/">Tests</a>
+        <a href="/blog/">Blog</a>
+        <a class="btn lime" href="/soumettre/">+ Ajouter un SaaS</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap"><slot /></main>
+  <Footer />
+</body>
+</html>

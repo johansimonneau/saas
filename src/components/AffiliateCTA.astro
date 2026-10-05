@@ -1,0 +1,19 @@
+---
+interface Props { name: string; url: string; trial?: boolean; pricing: string; sponsored?: boolean }
+const { name, url, trial = false, pricing, sponsored = true } = Astro.props;
+---
+<div class="cta card">
+  <div>
+    <strong>{name}</strong><br /><span class="muted">{pricing}</span>
+  </div>
+  <div>
+    <a class="btn lime" href={url} rel={sponsored ? 'sponsored nofollow noopener' : 'nofollow noopener'} target="_blank">
+      {trial ? `Essayer ${name} gratuitement` : `Découvrir ${name}`} →
+    </a>
+    {sponsored && <small class="muted">Lien affilié : commission possible, sans surcoût pour vous.</small>}
+  </div>
+</div>
+<style>
+  .cta { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; background: #f4f0ff; }
+  .cta small { display: block; margin-top: .5rem; font-size: .78rem; }
+</style>

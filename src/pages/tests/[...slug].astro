@@ -1,0 +1,144 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import AffiliateCTA from '../../components/AffiliateCTA.astro';
+import { SITE, groupOf, GROUP_COLORS, catSlug } from '../../config';
+import { getReviews, fmtDate } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return (await getReviews()).map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const url = d.tool.affiliateUrl ?? d.tool.website;
+const accent = GROUP_COLORS[groupOf(d.category)];
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'Review', headline: d.title,
+  datePublished: d.pubDate.toISOString(), dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+  author: { '@type': 'Person', name: SITE.author },
+  itemReviewed: { '@type': 'SoftwareApplication', name: d.tool.name, applicationCategory: 'BusinessApplication', url: d.tool.website },
+  ...(d.rating && { reviewRating: { '@type': 'Rating', ratingValue: d.rating, bestRating: 5 } }),
+};
+const L = d.layout;
+const stars = (n: number) => '★'.repeat(Math.round(n)) + '☆'.repeat(5 - Math.round(n));
+const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis à jour le ${fmtDate(d.updatedDate)}` : ''}`;
+---
+<Base title={d.title} description={d.description} ogType="article" jsonLd={jsonLd} accent={accent}>
+  <article class={`t t-${L}`}>
+
+    {/* ── HERO : change selon la mise en page ── */}
+    {L === 'verdict' && (
+      <header class="hero v-hero card">
+        <div>
+          <a class="chip accent" href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a>
+          <h1>{d.title}</h1>
+          <p class="lead">{d.punchline ?? d.handsOn.verdict}</p>
+          <p class="muted small">{meta}</p>
+        </div>
+        {d.rating && <div class="big-score"><b>{d.rating}</b><span>/5</span><small>{stars(d.rating)}</small></div>}
+      </header>
+    )}
+    {L === 'story' && (
+      <header class="hero s-hero">
+        <p class="stack"><a class="chip accent" href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a><span class="chip">Retour d'expérience</span></p>
+        <h1>{d.title}</h1>
+        <blockquote>{d.punchline ?? d.handsOn.verdict}</blockquote>
+        <p class="muted small">{meta} · testé : {d.handsOn.testedFor}</p>
+      </header>
+    )}
+    {L === 'duel' && (
+      <header class="hero d-hero">
+        <p class="stack"><a class="chip accent" href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a><span class="chip lime">Duel</span></p>
+        <h1>{d.title}</h1>
+        <div class="vs"><span>{d.tool.name}</span><i>VS</i><span>{d.versus?.name ?? 'Les alternatives'}</span></div>
+        <p class="muted small">{meta}</p>
+      </header>
+    )}
+    {L === 'checklist' && (
+      <header class="hero c-hero">
+        <p class="stack"><a class="chip accent" href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a><span class="chip lime">Go / No-go</span></p>
+        <h1>{d.title}</h1>
+        <p class="lead">{d.punchline ?? d.description}</p>
+        <p class="muted small">{meta}</p>
+      </header>
+    )}
+    {L === 'classique' && (
+      <header class="hero">
+        <p class="stack"><a class="chip accent" href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a>
+          {d.audiences.map(a => <a class="chip" href={`/annuaire/profil/${catSlug(a)}/`}>{a}</a>)}</p>
+        <h1>{d.title}</h1>
+        {d.punchline && <p class="lead">{d.punchline}</p>}
+        <p class="muted small">{meta}</p>
+      </header>
+    )}
+
+    <p class="muted small">Transparence : certains liens sont affiliés, sans jamais influencer notre avis. <a href="/disclosure/">Détails</a></p>
+
+    {/* ── BLOCS SPÉCIFIQUES AVANT LE CORPS ── */}
+    {L === 'checklist' && (d.goIf.length > 0 || d.skipIf.length > 0) && (
+      <div class="two">
+        <div class="card go"><h3>✅ Prenez-le si…</h3><ul>{d.goIf.map(x => <li>{x}</li>)}</ul></div>
+        <div class="card nogo"><h3>⛔ Passez votre chemin si…</h3><ul>{d.skipIf.map(x => <li>{x}</li>)}</ul></div>
+      </div>
+    )}
+    {L === 'duel' && d.versus && (
+      <table class="duel"><thead><tr><th></th><th>{d.tool.name}</th><th>{d.versus.name}</th></tr></thead>
+        <tbody>{d.versus.rows.map(r => <tr><th>{r.label}</th><td>{r.tool}</td><td>{r.other}</td></tr>)}</tbody></table>
+    )}
+    {L === 'verdict' && (
+      <div class="card verdict"><strong>Notre verdict</strong><p>{d.handsOn.verdict}</p><p class="muted small">Testé : {d.handsOn.testedFor}</p></div>
+    )}
+    {(L === 'classique' || L === 'checklist' || L === 'duel') && (
+      <table><tbody>
+        <tr><th>Idéal pour</th><td>{d.tool.bestFor}</td></tr>
+        <tr><th>Tarifs</th><td>{d.tool.pricing}</td></tr>
+        {d.rating && L !== 'verdict' && <tr><th>Note</th><td>{stars(d.rating)} {d.rating}/5</td></tr>}
+        {L !== 'story' && <tr><th>Testé</th><td>{d.handsOn.testedFor}</td></tr>}
+      </tbody></table>
+    )}
+
+    <AffiliateCTA name={d.tool.name} url={url} trial={d.tool.freeTrial} pricing={d.tool.pricing} />
+    {L === 'classique' && <p><strong>Notre verdict :</strong> {d.handsOn.verdict}</p>}
+    <AdSlot slot="" label="Publicité" />
+
+    {L === 'verdict' && d.scores && (
+      <div class="scores">{Object.entries(d.scores).map(([k, v]) => (
+        <div class="sc"><span>{k}</span><div class="bar"><i style={`width:${v * 20}%`}></i></div><b>{v}/5</b></div>))}</div>
+    )}
+
+    <div class="prose"><Content /></div>
+
+    {L !== 'checklist' && (d.pros.length > 0 || d.cons.length > 0) && (
+      <div class="two">
+        {d.pros.length > 0 && <div class="card go"><h3>Ce qu'on aime</h3><ul>{d.pros.map(p => <li>{p}</li>)}</ul></div>}
+        {d.cons.length > 0 && <div class="card nogo"><h3>Ce qui coince</h3><ul>{d.cons.map(c => <li>{c}</li>)}</ul></div>}
+      </div>
+    )}
+    {d.alternatives.length > 0 && <p><strong>Alternatives :</strong> {d.alternatives.join(', ')}</p>}
+    <AdSlot slot="" label="Publicité" />
+    <AffiliateCTA name={d.tool.name} url={url} trial={d.tool.freeTrial} pricing={d.tool.pricing} />
+  </article>
+</Base>
+<style>
+  .small { font-size: .85rem; }
+  .prose { max-width: 720px; }
+  .two { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; margin: 1.5rem 0; }
+  @media (max-width: 700px) { .two { grid-template-columns: 1fr; } }
+  .go { background: #ecfdf0; } .nogo { background: #fff1ee; }
+  .card h3 { margin-top: 0; } .card ul { margin: 0; padding-left: 1.1rem; }
+  .v-hero { padding: 2rem; display: flex; justify-content: space-between; gap: 1.5rem; align-items: center; margin-top: 2rem; background: var(--lime); }
+  .big-score { text-align: center; background: var(--ink); color: #fff; border-radius: 16px; padding: 1rem 1.4rem; min-width: 120px; }
+  .big-score b { font-size: 3.4rem; line-height: 1; } .big-score span { font-size: 1.2rem; opacity: .7; } .big-score small { display: block; color: var(--lime); letter-spacing: 2px; }
+  .verdict { font-size: 1.15rem; background: #f4f0ff; }
+  .scores { margin: 1.5rem 0; display: grid; gap: .5rem; }
+  .sc { display: grid; grid-template-columns: 160px 1fr 44px; gap: .7rem; align-items: center; }
+  .bar { height: 14px; border: 2px solid var(--ink); border-radius: 99px; overflow: hidden; background: #fff; } .bar i { display: block; height: 100%; background: var(--accent); }
+  .s-hero blockquote { font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 800; letter-spacing: -.02em; border-left: 8px solid var(--lime); margin: 1rem 0; padding-left: 1rem; }
+  .t-story .prose { font-size: 1.1rem; }
+  .t-story .prose > p:first-of-type::first-letter { font-size: 3.4em; float: left; line-height: .85; padding-right: .1em; font-weight: 900; color: var(--accent); }
+  .vs { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: clamp(1.2rem, 4vw, 2rem); font-weight: 900; margin: 1rem 0; }
+  .vs i { font-style: normal; background: var(--ink); color: var(--lime); padding: .1em .5em; border-radius: 8px; transform: rotate(-4deg); }
+  .duel td, .duel th { width: 33%; } .duel thead th { background: var(--accent); color: #fff; }
+</style>

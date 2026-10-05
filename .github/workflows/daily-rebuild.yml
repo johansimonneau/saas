@@ -1,0 +1,18 @@
+# Reconstruit le site chaque matin pour publier les articles dont la pubDate est arrivée.
+# Prérequis : créer un Deploy Hook Vercel (Settings > Git > Deploy Hooks, branche de production)
+# puis l'ajouter en secret GitHub sous le nom VERCEL_DEPLOY_HOOK_URL.
+name: Rebuild quotidien
+on:
+  schedule:
+    - cron: '15 5 * * *'   # 05:15 UTC = 06:15/07:15 à Paris
+  workflow_dispatch:
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher le déploiement Vercel
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "Secret VERCEL_DEPLOY_HOOK_URL manquant"; exit 1; fi
+          curl -fsS -X POST "$HOOK"

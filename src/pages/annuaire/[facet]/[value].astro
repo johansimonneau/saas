@@ -1,0 +1,27 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ToolCard from '../../../components/ToolCard.astro';
+import { catSlug, groupOf, GROUP_COLORS } from '../../../config';
+import { FACETS, type Facet } from '../../../lib/facets';
+import { getTools, getReviews } from '../../../lib/content';
+
+export function getStaticPaths() {
+  return (Object.keys(FACETS) as Facet[]).flatMap(facet =>
+    FACETS[facet].values.map(v => ({ params: { facet, value: catSlug(v) }, props: { facet, name: v } })));
+}
+const { facet, name } = Astro.props as { facet: Facet; name: string };
+const [tools, reviews] = await Promise.all([getTools(), getReviews()]);
+const fTools = tools.filter(t => facet === 'categorie' ? t.data.category === name : facet === 'profil' ? t.data.audiences.includes(name as any) : t.data.pricingModel === name);
+const fReviews = reviews.filter(r => facet === 'categorie' ? r.data.category === name : facet === 'profil' ? r.data.audiences.includes(name as any) : r.data.pricingModel === name);
+const thin = fTools.length + fReviews.length < 3;  // page quasi vide : ne pas l'indexer
+const accent = facet === 'categorie' ? GROUP_COLORS[groupOf(name)] : undefined;
+---
+<Base title={FACETS[facet].label(name)} description={`${FACETS[facet].h(name)} : sélection, tarifs et avis. Annuaire classé par catégorie, profil et budget.`} noindex={thin} accent={accent}>
+  <section class="hero">
+    <p><a href="/annuaire/">← Annuaire</a></p>
+    <h1>{FACETS[facet].h(name)}</h1>
+  </section>
+  {fReviews.length > 0 && <><h2>Nos tests</h2><ul>{fReviews.map(r => <li><a href={`/tests/${r.id}/`}>{r.data.title}</a></li>)}</ul></>}
+  <h2>Dans l'annuaire</h2>
+  {fTools.length === 0 ? <p class="muted">Rien ici pour l'instant. <a href="/soumettre/">Ajoutez un outil</a>.</p> : <div class="grid">{fTools.map(t => <ToolCard tool={t} />)}</div>}
+</Base>

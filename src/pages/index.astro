@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import ToolCard from '../components/ToolCard.astro';
+import { SITE, CATEGORY_GROUPS, GROUP_COLORS, catSlug } from '../config';
+import { getReviews, getTools, getPosts, fmtDate } from '../lib/content';
+const [reviews, tools, posts] = await Promise.all([getReviews(), getTools(), getPosts()]);
+---
+<Base title={SITE.name} description={SITE.tagline}>
+  <section class="hero">
+    <span class="chip lime">1 SaaS décortiqué par jour</span>
+    <h1>Le bon outil, <span class="hl">sans perdre une semaine</span> à comparer.</h1>
+    <p class="lead">Facturation, compta, CRM, automatisation : les SaaS testés par un indépendant, pour les indépendants et dirigeants de TPE. Prix réels, avis sans filtre, alternatives.</p>
+    <p class="stack"><a class="btn" href="/annuaire/">Explorer l'annuaire</a> <a class="btn ghost" href="/tests/">Lire les tests</a></p>
+  </section>
+
+  <section>
+    <h2>Rayons</h2>
+    <div class="grid">
+      {Object.entries(CATEGORY_GROUPS).filter(([g]) => g !== 'Autre').map(([group, cats]) => (
+        <div class="card" style={`--accent:${GROUP_COLORS[group]}`}>
+          <h3 style="margin:0 0 .5rem"><span class="dot"></span>{group}</h3>
+          <div class="stack">{cats.map(c => <a class="chip" href={`/annuaire/categorie/${catSlug(c)}/`}>{c}</a>)}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {reviews.length > 0 && (
+    <section>
+      <h2>Derniers tests</h2>
+      <ul class="plain">{reviews.slice(0, 8).map(r => (
+        <li><a href={`/tests/${r.id}/`}><strong>{r.data.title}</strong></a> <span class="muted">· {r.data.category} · {fmtDate(r.data.pubDate)}</span></li>
+      ))}</ul>
+    </section>
+  )}
+
+  {tools.length > 0 && (
+    <section>
+      <h2>Dans l'annuaire</h2>
+      <div class="grid">{tools.slice(0, 6).map(t => <ToolCard tool={t} />)}</div>
+    </section>
+  )}
+
+  {posts.length > 0 && (
+    <section>
+      <h2>Du blog</h2>
+      <ul class="plain">{posts.slice(0, 4).map(p => <li><a href={`/blog/${p.id}/`}>{p.data.title}</a></li>)}</ul>
+    </section>
+  )}
+
+  <section class="card" style="margin-top:3rem;background:var(--lime)">
+    <h2 style="margin-top:0">Vous éditez un SaaS ?</h2>
+    <p>Ajoutez-le gratuitement à l'annuaire : une fiche complète, relue avant publication.</p>
+    <a class="btn" href="/soumettre/">Soumettre mon outil</a>
+  </section>
+</Base>
+<style>
+  .plain { list-style: none; padding: 0; } .plain li { padding: .45rem 0; border-bottom: 1px dashed #cfcbe8; }
+  .dot { display:inline-block; width:.8em; height:.8em; background:var(--accent); border:2px solid var(--ink); border-radius:50%; margin-right:.4rem; }
+</style>

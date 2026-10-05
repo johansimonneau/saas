@@ -1,0 +1,25 @@
+---
+import { SITE } from '../config';
+import '../styles/global.css';
+interface Props { title: string; description: string; ogType?: string; jsonLd?: object | object[]; noindex?: boolean }
+const { title, description, ogType = 'website', jsonLd, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex,follow" />}
+<link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary" />
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+{SITE.adsensePublisherId && (
+  <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsensePublisherId}`} crossorigin="anonymous"></script>
+)}
+{SITE.analyticsDomain && <script defer data-domain={SITE.analyticsDomain} src="https://plausible.io/js/script.js"></script>}

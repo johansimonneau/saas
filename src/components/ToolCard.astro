@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { groupOf, GROUP_COLORS } from '../config';
+interface Props { tool: CollectionEntry<'annuaire'> }
+const { tool } = Astro.props;
+const d = tool.data;
+const color = GROUP_COLORS[groupOf(d.category)];
+---
+<a class="tcard card" href={`/annuaire/${tool.id}/`} style={`--accent:${color}`}
+   data-name={d.name.toLowerCase()} data-cat={d.category} data-price={d.pricingModel}
+   data-aud={d.audiences.join('|')} data-text={`${d.tagline} ${d.tags.join(' ')}`.toLowerCase()}>
+  <div class="top">
+    {d.logo ? <img src={d.logo} alt="" width="40" height="40" loading="lazy" /> : <span class="ph">{d.name.slice(0, 1)}</span>}
+    <div>
+      <strong>{d.name}</strong>
+      {d.sponsored && <span class="chip lime">Sponsorisé</span>}
+      <div class="muted small">{d.category}</div>
+    </div>
+  </div>
+  <p>{d.tagline}</p>
+  <div class="stack">
+    <span class="chip accent">{d.pricingModel}</span>
+    {d.startingPrice && <span class="chip">{d.startingPrice}</span>}
+    {d.company.country === 'France' && <span class="chip">🇫🇷</span>}
+  </div>
+</a>
+<style>
+  .tcard { display: block; text-decoration: none; color: var(--ink); transition: transform .08s, box-shadow .08s; }
+  .tcard:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .top { display: flex; gap: .8rem; align-items: center; }
+  .top img, .ph { width: 40px; height: 40px; border-radius: 10px; border: 2px solid var(--ink); object-fit: cover; }
+  .ph { display: grid; place-items: center; background: var(--accent); color: #fff; font-weight: 900; }
+  .small { font-size: .82rem; }
+  p { margin: .6rem 0; }
+</style>
