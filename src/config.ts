@@ -50,7 +50,7 @@ export const LEGAL = {
   siret: '879 545 564 00020',  // SIREN 879 545 564 · RNE depuis le 01/10/2019 · non inscrit au RCS
   vatNumber: 'FR24879545564',
   address: '7 rue de Ligner, 37520 La Riche, France',
-  email: TODO,                              // contact et exercice des droits RGPD
+  email: 'johansimonneau.pro@gmail.com',   // contact et exercice des droits RGPD
   phone: '',                                // facultatif
   publicationDirector: 'Johan Simonneau',
   hostName: 'Vercel Inc.',                  // à ajuster selon l'hébergeur réel
