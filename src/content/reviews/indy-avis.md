@@ -2,7 +2,7 @@
 title: "Indy vs Tiime 2026 : lequel choisir en micro-entreprise ?"
 description: "Indy ou Tiime en micro-entreprise ? Tarifs relevés le 5 octobre 2026, facture électronique, déclarations et verdict après usage des deux outils."
 punchline: "Besoin d'un comptable : Tiime. Micro autonome : Indy. Voici pourquoi."
-pubDate: 2026-10-06
+pubDate: 2026-10-05
 draft: false
 layout: duel
 category: Comptabilité
