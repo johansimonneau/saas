@@ -65,4 +65,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 
 | Outil | Statut | Lien affilié | Publication |
 |---|---|---|---|
-| Indy (vs Tiime) | rédigé, programmé | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-06 |
+| Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
