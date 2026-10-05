@@ -1,10 +1,10 @@
 ---
-title: "Indy vs Tiime 2026 : lequel choisir en micro-entreprise ?"
-description: "Indy ou Tiime en micro-entreprise ? Tarifs relevés le 5 octobre 2026, facture électronique, déclarations et verdict après usage des deux outils."
-punchline: "Besoin d'un comptable : Tiime. Micro autonome : Indy. Voici pourquoi."
+title: "Avis Indy 2026 : la compta gratuite pour micro-entrepreneur"
+description: "Mon avis sur Indy après usage en micro-entreprise : offre gratuite, tarifs relevés le 5 octobre 2026, déclarations fiscales et pour qui l'utiliser."
+punchline: "Complet, gratuit pour démarrer et intuitif quand on est en micro."
 pubDate: 2026-10-05
 draft: false
-layout: duel
+layout: checklist
 category: Comptabilité
 audiences: ["Freelance", "Micro-entrepreneur"]
 pricingModel: Freemium
@@ -22,81 +22,39 @@ pros:
   - "Service client réactif"
 cons:
   - "Les déclarations fiscales automatisées ne sont pas dans les offres Essentiel et Plus : il faut passer à Premium (dès 22 € HT/mois)"
-versus:
-  name: "Tiime"
-  rows:
-    - { label: "Offre gratuite", tool: "Essentiel à 0 € : facturation électronique, devis et factures illimités, comptabilité automatisée", other: "Free à 0 € : facturation électronique, devis et factures illimités, suivi du CA, relances" }
-    - { label: "Premier palier payant", tool: "Plus dès 9 € HT/mois (108 € HT/an, 12 € en mensuel)", other: "Initial à 9,99 € HT/mois (119,88 € HT/an), compte pro Tiime obligatoire" }
-    - { label: "Facture électronique", tool: "Plateforme agréée par la DGFiP, incluse dès l'offre gratuite", other: "Plateforme agréée incluse dès l'offre Free" }
-    - { label: "Déclarations fiscales", tool: "Automatisées dès Premium : 2035, TVA, DAS2, télétransmission aux impôts et à l'AGA", other: "Collaboration complète avec votre expert-comptable dès Smart (17,99 € HT/mois)" }
-    - { label: "Expert-comptable", tool: "Option Expert-Comptable dès 71 € HT/mois", other: "Accès gratuit aux données de facturation pour votre comptable dès l'offre Free" }
-    - { label: "Essai", tool: "30 jours satisfait ou remboursé (Plus et Premium)", other: "60 jours gratuits sur les offres payantes" }
-    - { label: "Mon ressenti", tool: "Complet et intuitif pour une micro", other: "Justificatifs très précis" }
+goIf:
+  - "Vous êtes en micro-entreprise et vous gérez votre compta seul"
+  - "Vous voulez démarrer gratuitement, avec la facture électronique incluse"
+  - "Vous cherchez un outil intuitif, sans prise de tête"
+skipIf:
+  - "Vous avez besoin d'un comptable : Tiime est plus adapté (voir le comparatif)"
 handsOn:
-  testedFor: "Utilisation des deux outils en micro-entreprise"
-  verdict: "Si vous avez besoin d'un comptable, je pars sur Tiime. Sinon, en micro, je pars sur Indy."
-alternatives: ["Pennylane"]
+  testedFor: "Utilisation en micro-entreprise"
+  verdict: "Complet, gratuit surtout, et intuitif pour une micro. C'est mon choix quand on gère tout seul."
+alternatives: ["Tiime", "Pennylane"]
 ---
 
-## Pourquoi comparer Indy et Tiime
+## Mon retour après usage
 
-J'ai utilisé les deux outils en micro-entreprise, et ce sont deux des solutions que je croise le plus chez les indépendants français. Point commun : chacun propose une offre gratuite avec la **facture électronique** (via une plateforme agréée), des devis et des factures illimités. La vraie différence se joue ailleurs : ce que vous voulez faire vous-même, et ce que vous voulez confier à un comptable.
+J'ai utilisé Indy en micro-entreprise. C'est une solution **complète, gratuite surtout, et intuitive** pour ce profil. La facturation est très bonne, et je n'ai trouvé **peu, voire pas de point noir** à l'usage. Le service client a été réactif.
 
-Mon retour porte sur l'usage en **micro-entreprise**. Les tarifs ci-dessous ont été relevés sur les pages officielles le 5 octobre 2026 ; vérifiez-les avant de vous engager, ils bougent.
+## Ce que contient chaque offre
 
-## Les offres en un coup d'œil
-
-### Indy
+Tarifs relevés sur la page officielle le 5 octobre 2026 : vérifiez-les avant de vous engager, ils bougent.
 
 | Offre | Prix | Ce que ça ajoute |
 |---|---|---|
-| Essentiel | 0 € | Facture électronique (plateforme agréée), devis et factures illimités, comptabilité automatisée, compte pro avec carte en option |
+| Essentiel | 0 € | Facture électronique (plateforme agréée par la DGFiP), devis et factures illimités, comptabilité automatisée, compte pro avec carte en option |
 | Plus | dès 9 € HT/mois (108 € HT/an, 12 € en mensuel) | Signature électronique des devis, relance automatique des impayés, compte pro avec 3 sous-comptes, accompagnement personnalisé |
 | Premium | dès 22 € HT/mois (264 € HT/an, 28 € en mensuel) | Déclarations fiscales obligatoires automatisées (2035, TVA, DAS2…), télétransmission aux impôts et à l'AGA en un clic, DSFU, accompagnement prioritaire |
 | Option Expert-Comptable | dès 71 € HT/mois (852 € HT/an, 87 € en mensuel) | Un expert-comptable partenaire valide votre bilan et vos déclarations |
 
 Le tarif Premium affiché correspond à une entreprise individuelle à l'IR ; il change pour une EI à l'IS.
 
-### Tiime
+## Le point à connaître avant de choisir
 
-| Offre | Prix | Ce que ça ajoute |
-|---|---|---|
-| Free | 0 € | Facture électronique (plateforme agréée), factures et devis illimités, suivi du chiffre d'affaires, acomptes, avoirs, relances, accès gratuit des données de facturation pour votre expert-comptable |
-| Initial | 9,99 € HT/mois (119,88 € HT/an) | Compte pro Tiime obligatoire, catégorisation et matching des transactions, transactions en temps réel, ajout de justificatifs par photo ou PDF |
-| Smart | 17,99 € HT/mois (215,88 € HT/an) | Synchronisation bancaire illimitée, notes de frais et indemnités kilométriques, archivage des justificatifs à valeur probante, multi-utilisateurs, collaboration complète avec votre expert-comptable, compte pro inclus |
-| Business | 24,99 € HT/mois (299,88 € HT/an) | Liens de paiement, signature électronique des devis, prévisionnel de trésorerie, recouvrement des impayés, Stripe et GoCardless, automatisation via Make |
+Les déclarations fiscales automatisées ne sont **pas** dans les offres Essentiel et Plus. Pour qu'Indy les prépare et les télétransmette (2035, TVA, DAS2…), il faut passer à Premium, à partir de 22 € HT/mois. Pour démarrer en micro, l'offre gratuite suffit largement ; regardez Premium quand vos obligations déclaratives le justifient.
 
-## Là où Indy gagne
+## Indy ou Tiime ?
 
-C'est la solution complète, **gratuite surtout**, et intuitive quand on est en micro. Si vous voulez tout faire vous-même, c'est l'outil que je recommande.
-
-Côté démarches, Indy va plus loin dans l'automatisation : à partir de l'offre Premium, les déclarations fiscales obligatoires (2035, TVA, DAS2…) sont automatisées et télétransmises aux impôts et à votre AGA en un clic.
-
-## Là où Tiime gagne
-
-Les **justificatifs** : je les ai trouvés très précis sur Tiime. Et dès qu'un comptable entre en jeu, Tiime est plus adapté : votre expert-comptable accède gratuitement à vos données de facturation dès l'offre Free, et la collaboration complète arrive avec l'offre Smart.
-
-## Les points à surveiller
-
-Franchement, je n'ai trouvé **peu, voire pas de point noir** sur les deux outils. Pour la facturation, les deux sont très bons, et le service client des deux a été réactif.
-
-Ce qu'il faut surtout regarder, c'est la structure des offres :
-
-- chez Indy, les déclarations fiscales automatisées ne sont **pas** dans les offres Essentiel et Plus : il faut Premium, à partir de 22 € HT/mois ;
-- chez Tiime, l'offre Initial impose le compte pro Tiime : si vous voulez garder votre banque actuelle, regardez plutôt Free ou comptez avec ce prérequis.
-
-## Mon choix selon votre profil
-
-- **Micro-entrepreneur qui gère tout seul : Indy.** Gratuit pour démarrer, complet, simple à prendre en main.
-- **Vous avez besoin d'un comptable : Tiime.** L'accès gratuit pour votre expert-comptable et la précision des justificatifs font la différence.
-
-## Combien ça coûte sur un an (HT, facturation annuelle)
-
-| | Indy | Tiime |
-|---|---|---|
-| Gratuit | 0 € (Essentiel) | 0 € (Free) |
-| Premier palier payant | 108 € (Plus) | 119,88 € (Initial) |
-| Palier intermédiaire | 264 € (Premium, EI à l'IR) | 215,88 € (Smart) |
-| Avec comptable | 852 € (Option Expert-Comptable) | 299,88 € (Business) |
-
-Attention, les lignes ne se comparent pas à l'euro près : le contenu de chaque palier diffère, comme le détaillent les tableaux plus haut. Pour une micro qui n'a pas besoin de déclarations automatisées, le gratuit suffit souvent à démarrer chez l'un comme chez l'autre.
+Si vous avez besoin d'un comptable, je vous conseille Tiime. Si vous êtes en micro et que vous gérez tout seul, je pars sur Indy. J'ai détaillé les offres, les prix et mon retour sur les deux dans le comparatif : [Indy vs Tiime, lequel choisir en micro-entreprise ?](/blog/indy-vs-tiime/)
