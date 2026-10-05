@@ -62,3 +62,7 @@ Variez les mises en page d'un jour à l'autre (colonne « Mise en page » = sugg
 
 ## Suivi (outil | statut | lien affilié obtenu | date de publication)
 Tenez ce suivi dans ce fichier une fois les candidatures lancées.
+
+| Outil | Statut | Lien affilié | Publication |
+|---|---|---|---|
+| Indy (vs Tiime) | rédigé, programmé | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-06 |

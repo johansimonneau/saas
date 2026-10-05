@@ -99,7 +99,7 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
       </tbody></table>
     )}
 
-    <AffiliateCTA name={d.tool.name} url={url} trial={d.tool.freeTrial} pricing={d.tool.pricing} />
+    <AffiliateCTA name={d.tool.name} url={url} trial={d.tool.freeTrial} pricing={d.tool.pricing} sponsored={!!d.tool.affiliateUrl} />
     {L === 'classique' && <p><strong>Notre verdict :</strong> {d.handsOn.verdict}</p>}
     <AdSlot slot="" label="Publicité" />
 
@@ -118,7 +118,7 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
     )}
     {d.alternatives.length > 0 && <p><strong>Alternatives :</strong> {d.alternatives.join(', ')}</p>}
     <AdSlot slot="" label="Publicité" />
-    <AffiliateCTA name={d.tool.name} url={url} trial={d.tool.freeTrial} pricing={d.tool.pricing} />
+    <AffiliateCTA name={d.tool.name} url={url} trial={d.tool.freeTrial} pricing={d.tool.pricing} sponsored={!!d.tool.affiliateUrl} />
   </article>
 </Base>
 <style>
