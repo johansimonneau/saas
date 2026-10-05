@@ -95,3 +95,16 @@ Tant qu'un outil n'a pas de `affiliateUrl`, **aucune page ne renvoie vers son si
 - Comparatif (`duel`) : `versus.affiliateUrl` pour le second outil ; un seul formulaire regroupe les outils sans lien.
 - Fiche d'un éditeur qui a soumis son outil et que vous voulez lier directement : `directLink: true` (lien simple, sans mention d'affiliation).
 - Les demandes arrivent **directement par e-mail** (Web3Forms, même mécanisme et même clé que le portfolio), avec le visiteur en « Répondre à ».
+
+## Routines automatiques (Claude Code, dans « Routines »)
+Elles ouvrent toujours une **pull request** : rien n'est publié sans que vous la fusionniez.
+
+| Routine | Fréquence | Ce qu'elle fait |
+|---|---|---|
+| Analyse quotidienne d'un nouvel outil | tous les jours, 05:47 (Paris) | Prend le prochain outil du backlog, lit son site officiel et 3 sources fiables, prépare la fiche annuaire (`sources`, `verifiedOn`) et un dossier `docs/recherches/<outil>.md`. Fiche non indexée tant que vous n'avez pas ajouté votre test (`editorial: true`). |
+| Top / Meilleurs / Comparatifs | tous les 3 jours (jours 1, 4, 7… du mois), 06:27 (Paris) | Rédige un classement sourcé pour le blog à partir de `docs/TOPICS.md` (critères publics et pondération affichés ; « Testé par la rédaction » seulement pour vos vrais tests). |
+| Checkup SaaSbrief | le 1er et le 15 de chaque mois, 09:12 (Paris) | Audit sécurité, performance (Lighthouse), UX et mobile ; vérifie aussi les règles du site (pas de nom hors pages légales, pas de lien direct vers un outil, pas de texte provisoire) ; corrige le sûr et ouvre une PR. |
+
+Pour modifier ou désactiver une routine : onglet Routines de Claude Code. Le portfolio a sa propre routine de checkup (hebdomadaire avec un rythme d'une semaine sur deux), indépendante de celles-ci.
+
+**Réseau** : les sessions des routines utilisent la politique réseau de votre environnement. Si des domaines d'outils sont bloqués (message `EGRESS_BLOCKED`), la routine le signale et passe la fiche en `pending` ; pour qu'elle puisse lire les sites des outils, élargissez l'accès réseau de l'environnement.
