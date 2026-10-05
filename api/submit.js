@@ -10,6 +10,13 @@ const APPS = ['Web','iOS','Android','Desktop'];
 const str = (v, max) => (typeof v === 'string' ? v.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, max) : '');
 const list = (v, sep, max, itemMax = 80) => (typeof v === 'string' ? v.split(sep) : Array.isArray(v) ? v : [])
   .map(x => str(x, itemMax)).filter(Boolean).slice(0, max);
+// Liste « une par ligne », mais accepte aussi virgules, points-virgules ou puces si tout est sur une seule ligne.
+const lines = (v, max, itemMax) => {
+  const raw = typeof v === 'string' ? v : Array.isArray(v) ? v.join('\n') : '';
+  let parts = raw.split(/\r?\n/).map(x => x.replace(/^[\s\-•*·]+/, '')).filter(x => x.trim());
+  if (parts.length < 3) parts = raw.split(/[\n;,•·]+/).map(x => x.replace(/^[\s\-*]+/, '')).filter(x => x.trim());
+  return parts.map(x => str(x, itemMax)).filter(Boolean).slice(0, max);
+};
 const url = v => { const s = str(v, 300); try { const u = new URL(s); return u.protocol === 'https:' ? u.href : ''; } catch { return ''; } };
 const q = s => JSON.stringify(s); // chaîne YAML sûre (JSON est du YAML valide)
 
@@ -20,7 +27,7 @@ export function validate(b) {
     category: str(b.category, 40), tags: list(b.tags, ',', 8, 30), audiences: list(b.audiences, ',', 6).filter(a => AUDIENCES.includes(a)),
     logo: url(b.logo), demoUrl: url(b.demoUrl), pricingModel: str(b.pricingModel, 20), startingPrice: str(b.startingPrice, 60),
     freeTrialDays: Number.isInteger(+b.freeTrialDays) && b.freeTrialDays !== '' ? Math.min(Math.max(+b.freeTrialDays, 0), 365) : null,
-    features: list(b.features, '\n', 12, 140), integrations: list(b.integrations, '\n', 40, 40),
+    features: lines(b.features, 12, 140), integrations: lines(b.integrations, 40, 40),
     languages: list(b.languages, ',', 10, 30), supportChannels: list(b.supportChannels, ',', 8, 30),
     apps: list(b.apps, ',', 4).filter(a => APPS.includes(a)), frenchSupport: !!b.frenchSupport, api: !!b.api,
     companyName: str(b.companyName, 80), companyCountry: str(b.companyCountry, 40), founded: Number.isInteger(+b.founded) && b.founded !== '' ? +b.founded : null,
@@ -35,7 +42,7 @@ export function validate(b) {
   if (!CATEGORIES.includes(d.category)) e.push('Catégorie invalide');
   if (!d.audiences.length) e.push('Choisissez au moins un profil');
   if (!PRICING.includes(d.pricingModel)) e.push('Modèle tarifaire invalide');
-  if (d.features.length < 3) e.push('Au moins 3 fonctionnalités');
+  if (d.features.length < 3) e.push('Au moins 3 fonctionnalités (une par ligne)');
   if (!d.companyName || !d.companyCountry) e.push('Société et pays requis');
   if (!d.contactName || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.contactEmail)) e.push('Contact (nom + e-mail valide) requis');
   if (!b.consent) e.push('Consentement requis');
