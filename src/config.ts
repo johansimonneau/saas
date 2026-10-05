@@ -1,7 +1,7 @@
 // Un seul endroit pour changer la marque. Remplacez les valeurs avant le lancement.
 export const SITE = {
   name: 'SaaSDaily',
-  tagline: 'Un outil SaaS testé et expliqué, chaque jour.',
+  tagline: 'Les outils SaaS des indépendants et dirigeants de TPE, testés un par un.',
   url: 'https://example.com',
   lang: 'fr',
   author: 'Votre Nom',
@@ -12,8 +12,9 @@ export const SITE = {
 };
 
 export const CATEGORIES = [
-  'CRM', 'Emailing', 'Gestion de projet', 'SEO', 'Analytics',
-  'Support client', 'Comptabilité', 'RH', 'Automatisation', 'Outils IA', 'Design', 'Autre',
+  'Facturation', 'Comptabilité', 'Banque pro', 'CRM', 'Gestion de projet',
+  'Emailing', 'Marketing et SEO', 'Support client', 'RH et paie', 'Juridique',
+  'Automatisation', 'Outils IA', 'Autre',
 ] as const;
 
 // Slug d'URL sans accents : "Comptabilité" -> "comptabilite"
@@ -25,10 +26,10 @@ export const catSlug = (c: string) =>
 const TODO = '[À COMPLÉTER]';
 export const LEGAL = {
   editorName: 'Johan Simonneau',            // éditeur (personne physique ou raison sociale)
-  legalForm: TODO,                          // ex. Micro-entreprise, EI, SASU
-  siret: TODO,
-  vatNumber: TODO,                          // ou « TVA non applicable, art. 293 B du CGI »
-  address: TODO,
+  legalForm: 'Entrepreneur individuel',
+  siret: '879 545 564 00020',  // SIREN 879 545 564 · RNE depuis le 01/10/2019 · non inscrit au RCS
+  vatNumber: 'FR24879545564',
+  address: '7 rue de Ligner, 37520 La Riche, France',
   email: TODO,                              // contact et exercice des droits RGPD
   phone: '',                                // facultatif
   publicationDirector: 'Johan Simonneau',

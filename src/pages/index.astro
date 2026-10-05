@@ -8,7 +8,7 @@ const reviews = (await getCollection('reviews', r => !r.data.draft && r.data.pub
 ---
 <Base title={SITE.name} description={SITE.tagline}>
   <h1>{SITE.tagline}</h1>
-  <p>Des présentations SaaS honnêtes et testées pour les petites équipes : ce que fait l'outil, pour qui, combien il coûte, et quand l'éviter.</p>
+  <p>Facturation, compta, CRM, gestion de projet, automatisation… Chaque jour, un outil SaaS passé au crible par un indépendant : ce qu'il fait, pour quel profil, ce qu'il coûte vraiment, et quand l'éviter.</p>
   <h2>Derniers articles</h2>
   <ul>
     {reviews.slice(0, 20).map(r => (

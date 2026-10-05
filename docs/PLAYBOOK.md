@@ -44,3 +44,14 @@ visible. **L'IA rédige le brouillon, vous apportez la preuve.**
 ## Publication programmée
 Un article avec `pubDate` future reste masqué jusqu'à cette date. Ajoutez un Deploy Hook Vercel et un cron
 quotidien (GitHub Actions `schedule`) pour reconstruire chaque matin : vous pouvez ainsi écrire en avance.
+
+## Ligne éditoriale (à garder à chaque article)
+Positionnement : média d'indépendants et de dirigeants de TPE, dans l'esprit d'independant.io et du
+Blog du Dirigeant (conseils concrets entre pairs), avec une lecture « outil » façon BDM (tests, comparatifs, actualité).
+- **Lecteur cible :** freelance, micro-entrepreneur, gérant de TPE de 1 à 10 personnes. Pas de grand compte.
+- **Angle systématique :** coût réel annuel, temps gagné, courbe d'apprentissage, conformité française
+  (facturation électronique, TVA, RGPD, hébergement UE quand c'est pertinent).
+- **Voix :** celle d'un indépendant qui a utilisé l'outil, à la première personne, sans jargon.
+  Le recul de consultant (conseil aux affaires) est l'atout E-E-A-T : montrez-le (cas d'usage clients, chiffres réels).
+- **Priorité aux outils pratiques en France :** Qonto, Pennylane, Indy, Tiime, Brevo, Malt-adjacents, etc.
+  (à vérifier outil par outil : programme d'affiliation et tarifs du jour).

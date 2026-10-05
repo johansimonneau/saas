@@ -15,7 +15,7 @@ title: "Avis ${name} ${new Date(date).getFullYear()} : tarifs, avantages et limi
 description: "TODO (80-160 car.) : pour qui est ${name}, sa principale force, sa principale limite et son prix."
 pubDate: ${date}
 draft: true
-category: Autre
+category: Autre   # voir CATEGORIES dans src/config.ts
 tool:
   name: "${name}"
   website: "https://TODO.com"
@@ -36,9 +36,9 @@ alternatives: []
 
 TODO : un paragraphe. Quel problème, pour qui.
 
-## Pour qui ?
+## Pour quel profil ?
 
-TODO
+TODO : freelance, micro-entrepreneur, dirigeant de TPE ? À partir de quel volume d'activité ça vaut le coup.
 
 ## Qui devrait passer son chemin ?
 
@@ -50,7 +50,7 @@ TODO : 3 à 5 fonctionnalités réellement utilisées, avec un exemple concret c
 
 ## Tarifs
 
-TODO : offres, ce qui est limité, coûts cachés. Datez : « Vérifié le ${date} ».
+TODO : offres, ce qui est limité, coûts cachés. Coût annuel réel pour un indépendant seul vs une TPE de 5 personnes. Datez : « Vérifié le ${date} ».
 
 ## ${name} face aux alternatives
 
