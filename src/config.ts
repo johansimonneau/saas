@@ -9,6 +9,9 @@ export const SITE = {
   adsensePublisherId: '',
   // Statistiques : domaine Plausible, par exemple. Vide = désactivé.
   analyticsDomain: '',
+  // Formulaire « en savoir plus » : Web3Forms envoie directement un e-mail à l'adresse liée à cette clé
+  // (même clé publique que le portfolio). Restreignez-la à votre domaine dans le tableau de bord Web3Forms.
+  web3formsKey: 'd5498fee-c4ba-4887-aeb1-70ee410fd1a1',
 };
 
 // Classification : 4 grands rayons > catégories. Source unique pour menus, filtres et schémas.

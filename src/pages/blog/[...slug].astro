@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { SITE } from '../../config';
-import { getPosts, fmtDate } from '../../lib/content';
+import { getPosts, getTools, fmtDate } from '../../lib/content';
 
 export async function getStaticPaths() {
   return (await getPosts()).map(entry => ({ params: { slug: entry.id }, props: { entry } }));
@@ -12,6 +12,7 @@ const d = entry.data;
 const { Content, headings } = await render(entry);
 const minutes = Math.max(1, Math.round((entry.body ?? '').split(/\s+/).length / 220));
 const toc = headings.filter(h => h.depth === 2);
+const toolIds = new Set((await getTools()).map(t => t.id));
 const jsonLd = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: d.title, description: d.description,
   datePublished: d.pubDate.toISOString(), dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
   author: { '@type': 'Organization', name: d.author }, publisher: { '@type': 'Organization', name: SITE.name } };
@@ -27,6 +28,18 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'BlogPosting', headl
 
   <div class="layout">
     <article class="body">
+      {d.ranking.length > 0 && (
+        <ol class="ranking">{d.ranking.map((r, i) => (
+          <li class="card rk">
+            <span class="rank">{i + 1}</span>
+            <div>
+              <h3>{r.slug && toolIds.has(r.slug) ? <a href={`/annuaire/${r.slug}/`}>{r.name}</a> : r.name}
+                {r.tested ? <span class="chip lime">Testé par la rédaction</span> : <span class="chip">Classé sur critères publics</span>}</h3>
+              <p class="muted">{r.bestFor}{r.price && ` · ${r.price}`}</p>
+              <p>{r.verdict}</p>
+            </div>
+          </li>))}</ol>
+      )}
       <Content />
       <div class="card author"><strong>{d.author}</strong><br />Des outils testés en conditions réelles, par un indépendant. <a href="/about/">Notre méthode</a>.</div>
       <div class="card more"><strong>Un outil testé par jour.</strong> <a href="/tests/">Voir les tests →</a> · <a href="/annuaire/">Parcourir l'annuaire →</a></div>
@@ -51,6 +64,11 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'BlogPosting', headl
   .body :global(img) { max-width: 100%; border: 2px solid var(--ink); border-radius: var(--radius); }
   .body :global(table) { font-size: .95rem; box-shadow: var(--shadow); }
   .side { position: sticky; top: 90px; display: grid; gap: 1rem; font-size: .95rem; }
+  .ranking { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: 1rem; }
+  .rk { display: grid; grid-template-columns: 56px 1fr; gap: 1rem; align-items: start; }
+  .rk h3 { margin: 0 0 .2rem; display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+  .rk p { margin: .2rem 0; }
+  .rank { display: grid; place-items: center; width: 48px; height: 48px; border: 2px solid var(--ink); border-radius: 12px; background: var(--lime); font-weight: 900; font-size: 1.4rem; }
   .take { background: var(--lime); }
   .take ul { margin: .5rem 0 0; padding-left: 1.1rem; }
   .toc a { display: block; padding: .25rem 0; color: var(--ink); text-decoration: none; }

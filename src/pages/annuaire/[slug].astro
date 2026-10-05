@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import ToolCTA from '../../components/ToolCTA.astro';
 import { groupOf, GROUP_COLORS, catSlug } from '../../config';
-import { getReviews } from '../../lib/content';
+import { getReviews, fmtDate } from '../../lib/content';
 
 export async function getStaticPaths() {
   const tools = await getCollection('annuaire', t => t.data.status === 'published');
@@ -53,7 +53,9 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
       <tr><th>RGPD</th><td>{d.compliance.gdpr ? 'Déclaré conforme' : 'Non précisé'}{d.compliance.dpa && ' · DPA disponible'}</td></tr>
       {d.compliance.certifications.length > 0 && <tr><th>Certifications</th><td>{d.compliance.certifications.join(', ')}</td></tr>}
     </tbody></table>
-    <p class="muted"><small>Informations déclarées par l'éditeur{d.editorial ? ' et vérifiées par notre rédaction' : ', non vérifiées à ce stade'}.</small></p>
+    {d.sources.length > 0 && d.verifiedOn
+      ? <p class="muted"><small>Informations vérifiées le {fmtDate(d.verifiedOn)} d'après le site officiel de l'éditeur et {d.sources.length} sources tierces : {d.sources.map((s, i) => <>{i > 0 && ', '}<a href={s.url} rel="nofollow noopener" target="_blank">{s.title}</a></>)}.</small></p>
+      : <p class="muted"><small>Informations déclarées par l'éditeur{d.editorial ? ' et vérifiées par notre rédaction' : ', non vérifiées à ce stade'}.</small></p>}
 
     {reviews.length > 0 && <><h2>Notre test</h2><ul>{reviews.map(r => <li><a href={`/tests/${r.id}/`}>{r.data.title}</a></li>)}</ul></>}
   </article>

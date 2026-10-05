@@ -94,4 +94,4 @@ Tant qu'un outil n'a pas de `affiliateUrl`, **aucune page ne renvoie vers son si
 - Dès que vous avez un lien d'affiliation : renseignez `tool.affiliateUrl` (tests) ou `affiliateUrl` (fiches annuaire) : le bouton devient un lien sponsorisé automatiquement.
 - Comparatif (`duel`) : `versus.affiliateUrl` pour le second outil ; un seul formulaire regroupe les outils sans lien.
 - Fiche d'un éditeur qui a soumis son outil et que vous voulez lier directement : `directLink: true` (lien simple, sans mention d'affiliation).
-- Les demandes arrivent par e-mail (Resend) si `RESEND_API_KEY` et `CONTACT_TO_EMAIL` sont définies sur Vercel, sinon en issue (étiquette `contact`) dans le dépôt privé des soumissions.
+- Les demandes arrivent **directement par e-mail** (Web3Forms, même mécanisme et même clé que le portfolio), avec le visiteur en « Répondre à ».

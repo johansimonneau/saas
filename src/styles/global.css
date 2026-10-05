@@ -51,4 +51,14 @@ th { background: #f0edff; }
 input, select, textarea { font: inherit; width: 100%; padding: .6rem .7rem; border: 2px solid var(--ink); border-radius: 10px; background: #fff; }
 input:focus, select:focus, textarea:focus { outline: 3px solid var(--lime); }
 label { font-weight: 700; font-size: .92rem; display: block; margin-bottom: .25rem; }
-@media (max-width: 640px) { .nav { gap: .7rem; } }
+@media (max-width: 640px) {
+  .nav { gap: .7rem; }
+  .site-header .wrap { padding-top: .5rem; padding-bottom: .5rem; }
+  .nav .btn { padding: .35rem .7rem; font-size: .85rem; box-shadow: 2px 2px 0 var(--ink); }
+}
+/* Mobile : les tableaux défilent horizontalement au lieu de déborder de la page. */
+@media (max-width: 760px) {
+  table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: .9rem; }
+  th, td { min-width: 110px; }
+  th:first-child, td:first-child { min-width: 90px; }
+}

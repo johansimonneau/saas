@@ -90,6 +90,8 @@ const annuaire = defineCollection({
       certifications: z.array(z.string()).default([]),
     }).default({ gdpr: false, dpa: false, certifications: [] }),
     demoUrl: z.string().url().optional(),
+    verifiedOn: z.coerce.date().optional(),   // date de la dernière vérification éditoriale
+    sources: z.array(z.object({ title: z.string(), url: z.string().url() })).max(6).default([]),  // sources tierces consultées
     affiliateUrl: z.string().url().optional(),
     directLink: z.boolean().default(false),   // true = autorise un lien direct vers le site (sinon : formulaire « en savoir plus »)
   }),
@@ -110,6 +112,15 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     author: z.string().default(SITE.author),
     takeaways: z.array(z.string()).default([]),   // « L'essentiel en 30 secondes »
+    // Pour les « Top / Meilleurs » : classement affiché avant le texte, dans l'ordre du tableau.
+    ranking: z.array(z.object({
+      name: z.string(),
+      slug: z.string().optional(),            // id de la fiche annuaire (lien interne si elle existe)
+      bestFor: z.string(),
+      price: z.string().optional(),
+      verdict: z.string(),
+      tested: z.boolean().default(false),     // true = testé par la rédaction
+    })).default([]),
   }),
 });
 

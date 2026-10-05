@@ -1,4 +1,5 @@
 ---
+import { SITE } from '../config';
 // Remplace le lien direct vers un outil tant qu'aucun programme d'affiliation n'est associé.
 interface Props { names: string[]; uid: string }
 const { names, uid } = Astro.props;
@@ -11,7 +12,7 @@ const label = names.join(' ou ');
   </div>
   <details class="more">
     <summary class="btn lime">Je veux en savoir plus →</summary>
-    <form class="cform" novalidate>
+    <form class="cform" data-key={SITE.web3formsKey} novalidate>
       {names.length > 1
         ? <><label for={`t-${uid}`}>Votre question concerne</label><select id={`t-${uid}`} name="tool">{names.map(n => <option>{n}</option>)}</select></>
         : <input type="hidden" name="tool" value={names[0]} />}
@@ -43,15 +44,24 @@ const label = names.join(' ou ');
       e.preventDefault();
       if (!f.reportValidity()) return;
       var msg = f.querySelector('.msg'), btn = f.querySelector('button[type=submit]'), fd = new FormData(f);
-      var data = { tool: fd.get('tool'), email: fd.get('email'), name: fd.get('name'), message: fd.get('message'),
-        company_site: fd.get('company_site'), consent: fd.has('consent'), page: location.pathname };
+      if (fd.get('company_site')) { f.reset(); msg.textContent = '✅ Merci, c\'est envoyé. Nous revenons vers vous rapidement.'; return; }
+      var tool = fd.get('tool'), name = (fd.get('name') || '').trim();
       btn.disabled = true; msg.textContent = 'Envoi…';
       try {
-        var r = await fetch('/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
+        var r = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: f.dataset.key,
+            subject: 'Quelqu\'un souhaite en savoir plus sur ' + tool,
+            from_name: name || 'Visiteur SaaSbrief',
+            email: fd.get('email'),
+            Outil: tool, 'Prénom': name || '—', Message: (fd.get('message') || '').trim() || '—', Page: location.href
+          })
+        });
         var j = await r.json().catch(function () { return {}; });
-        if (r.ok) { f.reset(); msg.textContent = '✅ Merci, c\'est envoyé. Nous revenons vers vous rapidement.'; }
-        else { msg.textContent = '⚠️ ' + (j.error || 'Erreur, réessayez plus tard.'); btn.disabled = false; }
-      } catch (err) { msg.textContent = '⚠️ Réseau indisponible, réessayez.'; btn.disabled = false; }
+        if (!r.ok || !j.success) throw new Error('web3forms');
+        f.reset(); msg.textContent = '✅ Merci, c\'est envoyé. Nous revenons vers vous rapidement.';
+      } catch (err) { msg.textContent = '⚠️ L\'envoi a échoué. Réessayez dans un instant.'; btn.disabled = false; }
     });
   })();
 </script>
