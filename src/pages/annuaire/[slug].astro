@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import AffiliateCTA from '../../components/AffiliateCTA.astro';
+import ToolCTA from '../../components/ToolCTA.astro';
 import { groupOf, GROUP_COLORS, catSlug } from '../../config';
 import { getReviews } from '../../lib/content';
 
@@ -13,11 +13,13 @@ const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 const reviews = (await getReviews()).filter(r => r.data.tool.name.toLowerCase() === d.name.toLowerCase());
-const url = d.affiliateUrl ?? d.website;
-const rel = d.affiliateUrl ? 'sponsored nofollow noopener' : (d.editorial ? 'noopener' : 'nofollow noopener');
+// Lien direct uniquement si lien affilié ou autorisation explicite (directLink) ; sinon formulaire « en savoir plus ».
+const directUrl = d.directLink ? d.website : undefined;
+const hasLink = !!(d.affiliateUrl || directUrl);
+const ctaItems = [{ name: d.name, affiliateUrl: d.affiliateUrl, directUrl }];
 // Fiches non enrichies par l'éditeur : noindex pour éviter le contenu mince/dupliqué.
 const indexable = d.editorial || reviews.length > 0;
-const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: d.name, url: d.website, applicationCategory: 'BusinessApplication', description: d.tagline,
+const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: d.name, ...(d.affiliateUrl && { url: d.affiliateUrl }), applicationCategory: 'BusinessApplication', description: d.tagline,
   offers: { '@type': 'Offer', price: d.pricingModel === 'Gratuit' ? '0' : undefined, priceCurrency: 'EUR' } };
 ---
 <Base title={`${d.name} : avis, prix et alternatives`} description={`${d.name} : ${d.tagline}. Fonctionnalités, tarifs, intégrations et conformité RGPD.`} accent={GROUP_COLORS[groupOf(d.category)]} noindex={!indexable} jsonLd={jsonLd}>
@@ -26,8 +28,8 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
       {d.sponsored && <span class="chip lime">Sponsorisé</span>}</p>
     <h1>{d.name}</h1>
     <p class="lead muted">{d.tagline}</p>
-    <p><a class="btn lime" href={url} rel={rel} target="_blank">Visiter {d.name} →</a>
-       {d.demoUrl && <a class="btn ghost" href={d.demoUrl} rel="nofollow noopener" target="_blank">Voir la démo</a>}</p>
+    <ToolCTA items={ctaItems} pricing={d.startingPrice ?? d.pricingModel} trial={d.freeTrialDays != null} uid="haut" />
+    {hasLink && d.demoUrl && <p><a class="btn ghost" href={d.demoUrl} rel="nofollow noopener" target="_blank">Voir la démo</a></p>}
 
     <div class="prose"><Content /></div>
 
@@ -54,6 +56,5 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication
     <p class="muted"><small>Informations déclarées par l'éditeur{d.editorial ? ' et vérifiées par notre rédaction' : ', non vérifiées à ce stade'}.</small></p>
 
     {reviews.length > 0 && <><h2>Notre test</h2><ul>{reviews.map(r => <li><a href={`/tests/${r.id}/`}>{r.data.title}</a></li>)}</ul></>}
-    <AffiliateCTA name={d.name} url={url} pricing={d.startingPrice ?? d.pricingModel} trial={d.freeTrialDays != null} sponsored={!!d.affiliateUrl} />
   </article>
 </Base>
