@@ -32,6 +32,13 @@ handsOn:
   testedFor: "Utilisation en micro-entreprise"
   verdict: "Complet, gratuit surtout, et intuitif pour une micro. C'est mon choix quand on gère tout seul."
 alternatives: ["Tiime", "Pennylane"]
+faq:
+  - q: "Indy est-il gratuit pour un micro-entrepreneur ?"
+    a: "Oui, l'offre Essentiel est à 0 € : devis et factures illimités, comptabilité automatisée et facture électronique via une plateforme agréée par la DGFiP. Les offres payantes commencent à 9 € HT par mois en paiement annuel. Tarifs relevés le 5 octobre 2026."
+  - q: "Que faut-il payer pour automatiser les déclarations fiscales ?"
+    a: "L'offre Premium, dès 22 € HT par mois (affichage pour une entreprise individuelle à l'IR) : déclarations 2035, TVA et DAS2 automatisées, télétransmission aux impôts et à l'AGA en un clic. Essentiel et Plus ne les incluent pas."
+  - q: "Indy ou Tiime ?"
+    a: "En micro et en autonomie : Indy. Avec un expert-comptable dans la boucle : Tiime. Le comparatif détaille les offres, les prix et nos retours d'usage."
 ---
 
 ## Mon retour après usage
