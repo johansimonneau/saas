@@ -108,3 +108,8 @@ Elles ouvrent toujours une **pull request** : rien n'est publié sans que vous l
 Pour modifier ou désactiver une routine : onglet Routines de Claude Code. Le portfolio a sa propre routine de checkup (hebdomadaire avec un rythme d'une semaine sur deux), indépendante de celles-ci.
 
 **Réseau** : les sessions des routines utilisent la politique réseau de votre environnement. Si des domaines d'outils sont bloqués (message `EGRESS_BLOCKED`), la routine le signale et passe la fiche en `pending` ; pour qu'elle puisse lire les sites des outils, élargissez l'accès réseau de l'environnement.
+
+## Routine d'analyse automatique : sources et rythme
+- Rythme : une fiche d'annuaire par jour, une branche `claude/routine-fiche-<date>`, une PR, jamais de merge automatique.
+- Sources de référence à privilégier (dans cet ordre) : le site officiel de l'outil ; les sites gouvernementaux (impots.gouv.fr, economie.gouv.fr, entreprises.gouv.fr, cnil.fr) ; independant.io ; Blog du Modérateur ; Blog du Dirigeant. Compléter au besoin par Capterra, G2 ou Trustpilot.
+- Un fait n'entre dans la fiche que s'il est sur le site officiel ou dans une de ces sources. Ton positif et factuel, rapport final court.
