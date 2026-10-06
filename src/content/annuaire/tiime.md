@@ -13,10 +13,16 @@ audiences: ["Freelance", "Micro-entrepreneur"]
 pricingModel: Freemium
 startingPrice: "Gratuit ; Initial 9,99 € HT/mois"
 freeTrialDays: 60
+logo: "/tools/tiime/logo.webp"
 seo:
   title: "Avis Tiime 2026 : prix, gratuit et alternatives"
   description: "Avis Tiime 2026 : offre Free gratuite, Initial 9,99 € HT/mois, Smart 17,99 €, 60 jours d'essai, compte pro et expert-comptable. Notre retour d'usage."
 screenshots:
+  - src: "/tools/tiime/hero.webp"
+    alt: "Capture de la page d'accueil de Tiime : titre « La facturation électronique simple 100 % gratuite », liste d'avantages, bouton d'inscription gratuite et notes Google, Trustpilot et stores"
+    caption: "Capture d'écran de la page d'accueil du site officiel de Tiime, relevée le 2026-10-06."
+    width: 1400
+    height: 875
   - src: "/tools/tiime/tarifs.webp"
     alt: "Page des tarifs de Tiime : offres Free gratuite, Initial à 9,99 € HT par mois, Smart à 17,99 € et Business à 24,99 €"
     caption: "Les offres de Tiime telles qu'affichées sur sa page tarifs, relevées le 5 octobre 2026."

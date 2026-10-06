@@ -12,10 +12,16 @@ tags: ["comptabilité", "facturation", "micro-entrepreneur", "facture électroni
 audiences: ["Freelance", "Micro-entrepreneur"]
 pricingModel: Freemium
 startingPrice: "Gratuit ; Plus dès 9 € HT/mois"
+logo: "/tools/indy/logo.webp"
 seo:
   title: "Avis Indy 2026 : prix, gratuit et alternatives"
   description: "Avis Indy 2026 : offre gratuite, tarifs (Plus dès 9 € HT/mois, Premium dès 22 €), facture électronique, déclarations fiscales. Notre retour en micro-entreprise."
 screenshots:
+  - src: "/tools/indy/hero.webp"
+    alt: "Capture de la page d'accueil d'Indy : titre « Simplifiez bien plus que votre comptabilité », boutons Démarrer et Découvrir nos offres, illustrations de tableau de recettes et de carte bancaire"
+    caption: "Capture d'écran de la page d'accueil du site officiel d'Indy, relevée le 2026-10-06."
+    width: 1400
+    height: 875
   - src: "/tools/indy/tarifs.webp"
     alt: "Page des tarifs d'Indy : offres Essentiel à 0 €, Plus dès 9 € HT par mois, Premium dès 22 € et Option Expert-Comptable dès 71 €"
     caption: "Les offres d'Indy telles qu'affichées sur sa page tarifs, relevées le 5 octobre 2026."
