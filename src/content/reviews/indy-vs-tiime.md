@@ -36,6 +36,15 @@ handsOn:
   testedFor: "Utilisation des deux outils en micro-entreprise"
   verdict: "Si vous avez besoin d'un comptable, je pars sur Tiime. Sinon, en micro, je pars sur Indy."
 alternatives: ["Pennylane"]
+faq:
+  - q: "Indy ou Tiime : lequel choisir quand on est micro-entrepreneur ?"
+    a: "Si vous gérez votre comptabilité seul, Indy : offre gratuite complète, intuitive en micro. Si un expert-comptable travaille avec vous, Tiime : accès gratuit pour le comptable dès l'offre Free et justificatifs très précis."
+  - q: "Lequel est le moins cher ?"
+    a: "Les deux ont une offre gratuite avec facture électronique. Premier palier payant : Indy Plus à 9 € HT par mois (108 € HT par an), Tiime Initial à 9,99 € HT par mois (119,88 € HT par an). Les contenus des paliers diffèrent, voir les tableaux de l'article. Tarifs relevés le 5 octobre 2026."
+  - q: "Quel outil prépare les déclarations fiscales ?"
+    a: "Indy les automatise à partir de l'offre Premium (dès 22 € HT par mois) : 2035, TVA, DAS2, télétransmission aux impôts et à l'AGA. Tiime mise sur la collaboration avec l'expert-comptable, complète à partir de l'offre Smart (17,99 € HT par mois)."
+  - q: "La facture électronique est-elle gratuite chez Indy et Tiime ?"
+    a: "Oui, les deux l'incluent dès leur offre gratuite, via une plateforme agréée selon leurs pages tarifs."
 ---
 
 ## Pourquoi comparer Indy et Tiime
