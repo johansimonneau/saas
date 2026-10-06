@@ -111,3 +111,8 @@ Pour modifier ou désactiver une routine : onglet Routines de Claude Code. Le po
 
 ## Standard des fiches annuaire
 Toute fiche doit respecter `docs/STANDARD-FICHE.md` : logo, captures du site officiel, résumé « en bref », tarifs détaillés, points forts et limites, « pour qui », FAQ de 5 à 8 questions, données structurées et titre/description optimisés (SEO + GEO). Les routines le lisent avant chaque fiche. Référence : `indy.md` et `tiime.md`.
+
+## Routine d'analyse automatique : sources et rythme
+- Rythme : une fiche d'annuaire par jour, une branche `claude/routine-fiche-<date>`, une PR, jamais de merge automatique.
+- Sources de référence à privilégier (dans cet ordre) : le site officiel de l'outil ; les sites gouvernementaux (impots.gouv.fr, economie.gouv.fr, entreprises.gouv.fr, cnil.fr) ; independant.io ; Blog du Modérateur ; Blog du Dirigeant. Compléter au besoin par Capterra, G2 ou Trustpilot.
+- Un fait n'entre dans la fiche que s'il est sur le site officiel ou dans une de ces sources. Ton positif et factuel, rapport final court.
