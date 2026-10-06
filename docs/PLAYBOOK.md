@@ -108,3 +108,6 @@ Elles ouvrent toujours une **pull request** : rien n'est publié sans que vous l
 Pour modifier ou désactiver une routine : onglet Routines de Claude Code. Le portfolio a sa propre routine de checkup (hebdomadaire avec un rythme d'une semaine sur deux), indépendante de celles-ci.
 
 **Réseau** : les sessions des routines utilisent la politique réseau de votre environnement. Si des domaines d'outils sont bloqués (message `EGRESS_BLOCKED`), la routine le signale et passe la fiche en `pending` ; pour qu'elle puisse lire les sites des outils, élargissez l'accès réseau de l'environnement.
+
+## Standard des fiches annuaire
+Toute fiche doit respecter `docs/STANDARD-FICHE.md` : logo, captures du site officiel, résumé « en bref », tarifs détaillés, points forts et limites, « pour qui », FAQ de 5 à 8 questions, données structurées et titre/description optimisés (SEO + GEO). Les routines le lisent avant chaque fiche. Référence : `indy.md` et `tiime.md`.
