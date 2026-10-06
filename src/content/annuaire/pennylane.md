@@ -99,14 +99,14 @@ integrations: ["Qonto", "Payfit", "Stripe", "Sellsy", "Addition", "Shopify"]
 pros:
   - "Facture électronique gratuite pour les micro-entreprises, jusqu'à 1 200 factures par an (site officiel, 6 octobre 2026)"
   - "Périmètre large sur une seule plateforme : facturation, achats, trésorerie, comptabilité et compte pro (site officiel)"
-  - "Facilité d'usage notée 4,7/5 sur Capterra (15 avis, consultés le 6 octobre 2026)"
+  - "Facilité d'usage très bien notée par les utilisateurs (4,7/5, avis consultés le 6 octobre 2026)"
   - "Abonnement mensuel sans engagement, avec 15 jours d'essai gratuit (site officiel)"
-  - "Collaboration avec l'expert-comptable, mise en avant par les utilisateurs sur Capterra"
+  - "Collaboration avec l'expert-comptable, mise en avant par les utilisateurs"
 cons:
-  - "Prix jugé élevé, dans le haut du marché (Capterra, Tool Advisor)"
-  - "Pas de prélèvement SEPA et gestion multi-devises à améliorer (Capterra)"
+  - "Prix jugé élevé, dans le haut du marché (avis d'utilisateurs et tests indépendants)"
+  - "Pas de prélèvement SEPA et gestion multi-devises à améliorer (avis d'utilisateurs)"
   - "Déclarations fiscales et clôtures réservées à l'offre Premium, à 79 € HT/mois (site officiel)"
-  - "Support plus limité sur les offres d'entrée de gamme, comptabilité confiée à des cabinets partenaires, parfois surdimensionné pour des besoins simples (Tool Advisor)"
+  - "Support plus limité sur les offres d'entrée de gamme, comptabilité confiée à des cabinets partenaires, parfois surdimensionné pour des besoins simples (tests indépendants)"
   - "Starter exige l'activation du Compte Pro ; chaque offre est limitée à 1 200 factures par an et, pour un indépendant, à 1 utilisateur (site officiel)"
 forWho:
   - "Micro-entreprises qui veulent la facture électronique gratuite sans changer d'outil si leur activité grandit"
@@ -151,15 +151,13 @@ Pennylane est une plateforme française de gestion qui réunit la **facturation*
 
 Pennylane indique que la facture électronique est incluse dans toutes ses offres, dans la limite de 1 200 factures par an, et se présente comme plateforme agréée par la DGFiP, selon son site, la réception de factures électroniques devenant obligatoire dès septembre 2026.
 
-## Notre retour d'usage
-
-Pas encore testé par la rédaction. Les points ci-dessous reposent sur le site officiel, sur les avis de Capterra (15 avis, 4,3/5) et sur le test de Tool Advisor, tous consultés le 6 octobre 2026.
-
 ## Ce qu'il faut savoir avant de choisir
+
+Points relevés d'après le site officiel, des avis d'utilisateurs (15 avis, 4,3/5) et un test indépendant, consultés le 6 octobre 2026.
 
 - **La comptabilité commence à 79 € HT par mois.** Les déclarations fiscales en EDI, les clôtures et les comptes annuels sont réservés à Premium ; Starter, Basique et Essentiel se concentrent sur la facturation, les achats et la trésorerie.
 - **Starter exige le Compte Pro.** L'offre à 7 € HT par mois demande l'activation du Compte Pro Pennylane, que l'éditeur indique sur sa page tarifs.
-- **Des limites réelles sont citées par les utilisateurs.** Capterra relève un prix jugé élevé, l'absence de prélèvement SEPA et une gestion multi-devises à améliorer ; Tool Advisor mentionne un support plus limité en entrée de gamme et un outil parfois surdimensionné pour des besoins simples.
+- **Des limites réelles sont citées par les utilisateurs.** Les avis d'utilisateurs relèvent un prix jugé élevé, l'absence de prélèvement SEPA et une gestion multi-devises à améliorer ; un test indépendant mentionne un support plus limité en entrée de gamme et un outil parfois surdimensionné pour des besoins simples.
 - **Les plafonds comptent.** Chaque offre est limitée à 1 200 factures par an, et les plans pour indépendants à un seul utilisateur.
 
 ## Pennylane face à Indy et Tiime

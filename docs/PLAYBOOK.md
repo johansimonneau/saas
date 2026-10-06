@@ -116,3 +116,5 @@ Toute fiche doit respecter `docs/STANDARD-FICHE.md` : logo, captures du site off
 - Rythme : une fiche d'annuaire par jour, une branche `claude/routine-fiche-<date>`, une PR, jamais de merge automatique.
 - Sources de référence à privilégier (dans cet ordre) : le site officiel de l'outil ; les sites gouvernementaux (impots.gouv.fr, economie.gouv.fr, entreprises.gouv.fr, cnil.fr) ; independant.io ; Blog du Modérateur ; Blog du Dirigeant. Utiliser systématiquement Capterra, G2 et Trustpilot (note, nombre d'avis, points forts et faibles cités) pour nourrir l'analyse et le dossier `docs/recherches/`.
 - Un fait n'entre dans la fiche que s'il est sur le site officiel ou dans une de ces sources. Ton positif et factuel, rapport final court.
+- Dans les fiches, ne jamais nommer ces sources tierces (voir `docs/STANDARD-FICHE.md`) ; elles figurent seulement dans `sources` et dans le dossier de recherche.
+- Tant que la direction n'a pas testé l'outil, ne pas le mentionner dans la fiche (ni « Notre avis », ni « Pas encore testé »).
