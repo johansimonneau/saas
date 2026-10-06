@@ -16,7 +16,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 |---|---|---|---|---|---|---|---|
 | 1 | Indy | Comptabilité | Jusqu'à 345 € par lead | direct (page « Affiliation Indy ») | A | « avis Indy », « Indy vs Tiime » | duel |
 | 2 | Tiime | Comptabilité | 10 à 250 € par conversion selon l'offre | Affilae | A | « avis Tiime », « Tiime prix » | verdict |
-| 3 | Pennylane | Comptabilité | Programme blogueurs/comparateurs, paiement sous 90 j, montants non publiés | Affilae | A | « avis Pennylane » | story |
+| 3 | Pennylane (fiche proposée le 2026-10-06) | Comptabilité | Programme blogueurs/comparateurs, paiement sous 90 j, montants non publiés | Affilae | A | « avis Pennylane » | story |
 | 4 | Qonto | Banque pro | CPA par compte activé (20-50 € selon sources tierces) | Awin | B | « avis Qonto », « Qonto tarifs » | classique |
 | 5 | Axonaut | Facturation | 300 € fixes par achat | direct (support Axonaut) | A | « avis Axonaut » | checklist |
 | 6 | Sellsy | CRM | ~20 % sur le montant du lead apporté | direct (Sellsy Partner Program) | B | « Sellsy avis » | verdict |
@@ -66,3 +66,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 | Outil | Statut | Lien affilié | Publication |
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
+| Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
