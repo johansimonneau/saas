@@ -111,5 +111,5 @@ Pour modifier ou désactiver une routine : onglet Routines de Claude Code. Le po
 
 ## Routine d'analyse automatique : sources et rythme
 - Rythme : une fiche d'annuaire par jour, une branche `claude/routine-fiche-<date>`, une PR, jamais de merge automatique.
-- Sources de référence à privilégier (dans cet ordre) : le site officiel de l'outil ; les sites gouvernementaux (impots.gouv.fr, economie.gouv.fr, entreprises.gouv.fr, cnil.fr) ; independant.io ; Blog du Modérateur ; Blog du Dirigeant. Compléter au besoin par Capterra, G2 ou Trustpilot.
+- Sources de référence à privilégier (dans cet ordre) : le site officiel de l'outil ; les sites gouvernementaux (impots.gouv.fr, economie.gouv.fr, entreprises.gouv.fr, cnil.fr) ; independant.io ; Blog du Modérateur ; Blog du Dirigeant. Utiliser systématiquement Capterra, G2 et Trustpilot (note, nombre d'avis, points forts et faibles cités) pour nourrir l'analyse et le dossier `docs/recherches/`.
 - Un fait n'entre dans la fiche que s'il est sur le site officiel ou dans une de ces sources. Ton positif et factuel, rapport final court.
