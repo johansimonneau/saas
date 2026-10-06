@@ -2,8 +2,9 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import ToolCTA from '../../components/ToolCTA.astro';
-import { groupOf, GROUP_COLORS, catSlug } from '../../config';
-import { getReviews, fmtDate } from '../../lib/content';
+import ToolCard from '../../components/ToolCard.astro';
+import { SITE, groupOf, GROUP_COLORS, catSlug } from '../../config';
+import { getReviews, getTools, fmtDate } from '../../lib/content';
 
 export async function getStaticPaths() {
   const tools = await getCollection('annuaire', t => t.data.status === 'published');
@@ -12,51 +13,213 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
-const reviews = (await getReviews()).filter(r => r.data.tool.name.toLowerCase() === d.name.toLowerCase());
+const abs = (p: string) => /^https?:/.test(p) ? p : new URL(p, Astro.site).href;
+const pageUrl = abs(`/annuaire/${entry.id}/`);
+
+// Contenus liés : tests ET comparatifs qui mentionnent l'outil.
+const name = d.name.toLowerCase();
+const related = (await getReviews()).filter(r => r.data.tool.name.toLowerCase() === name || r.data.versus?.name.toLowerCase() === name);
+const all = await getTools();
+const alts = d.alternatives.map(id => all.find(t => t.id === id)).filter(Boolean) as typeof all;
+const sameCat = all.filter(t => t.id !== entry.id && t.data.category === d.category && !d.alternatives.includes(t.id)).slice(0, 3);
+
 // Lien direct uniquement si lien affilié ou autorisation explicite (directLink) ; sinon formulaire « en savoir plus ».
 const directUrl = d.directLink ? d.website : undefined;
 const hasLink = !!(d.affiliateUrl || directUrl);
 const ctaItems = [{ name: d.name, affiliateUrl: d.affiliateUrl, directUrl }];
 // Fiches non enrichies par l'éditeur : noindex pour éviter le contenu mince/dupliqué.
-const indexable = d.editorial || reviews.length > 0;
-const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: d.name, ...(d.affiliateUrl && { url: d.affiliateUrl }), applicationCategory: 'BusinessApplication', description: d.tagline,
-  offers: { '@type': 'Offer', price: d.pricingModel === 'Gratuit' ? '0' : undefined, priceCurrency: 'EUR' } };
+const indexable = d.editorial || related.length > 0;
+
+const year = (d.verifiedOn ?? d.listedAt).getFullYear();
+const title = d.seo.title ?? `${d.name} : avis, prix et alternatives (${year})`;
+const clip = (s: string, n: number) => (s.length <= n ? s : s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…');
+const description = d.seo.description ?? clip(`${d.name} : ${d.summary ?? d.tagline} Tarifs, fonctionnalités, avis et alternatives.`, 160);
+const accent = GROUP_COLORS[groupOf(d.category)];
+const logo = d.logo ? abs(d.logo) : undefined;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: abs('/') },
+      { '@type': 'ListItem', position: 2, name: 'Annuaire', item: abs('/annuaire/') },
+      { '@type': 'ListItem', position: 3, name: d.category, item: abs(`/annuaire/categorie/${catSlug(d.category)}/`) },
+      { '@type': 'ListItem', position: 4, name: d.name, item: pageUrl },
+    ] },
+    { '@type': 'SoftwareApplication', '@id': `${pageUrl}#logiciel`, name: d.name, description: d.summary ?? d.tagline,
+      applicationCategory: 'BusinessApplication', operatingSystem: 'Web', inLanguage: 'fr',
+      ...(logo && { image: logo }), ...(d.affiliateUrl && { url: d.affiliateUrl }),
+      publisher: { '@type': 'Organization', name: d.company.name, address: { '@type': 'PostalAddress', addressCountry: d.company.country } },
+      ...(d.plans.some(p => p.priceValue != null) && { offers: d.plans.filter(p => p.priceValue != null).map(p => ({
+        '@type': 'Offer', name: p.name, price: String(p.priceValue), priceCurrency: 'EUR',
+        priceSpecification: { '@type': 'UnitPriceSpecification', price: String(p.priceValue), priceCurrency: 'EUR', unitCode: 'MON', valueAddedTaxIncluded: false } })) }),
+    },
+    { '@type': 'WebPage', '@id': pageUrl, url: pageUrl, name: title, description, inLanguage: 'fr',
+      dateModified: (d.verifiedOn ?? d.listedAt).toISOString(), isPartOf: { '@type': 'WebSite', name: SITE.name, url: abs('/') }, about: { '@id': `${pageUrl}#logiciel` } },
+    ...(d.faq.length > 0 ? [{ '@type': 'FAQPage', mainEntity: d.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }] : []),
+  ],
+};
+const facts = [
+  { k: 'Tarif d\'entrée', v: d.startingPrice ?? d.pricingModel },
+  { k: 'Pour', v: d.audiences.join(', ') },
+  { k: d.freeTrialDays != null ? 'Essai gratuit' : 'Modèle', v: d.freeTrialDays != null ? `${d.freeTrialDays} jours` : d.pricingModel },
+  { k: 'Éditeur', v: `${d.company.name} (${d.company.country})` },
+];
+const toc = [
+  d.plans.length > 0 && ['tarifs', 'Tarifs'], ['fonctionnalites', 'Fonctionnalités'],
+  (d.pros.length + d.cons.length > 0) && ['avis', 'Avis'], (d.forWho.length + d.notFor.length > 0) && ['pour-qui', 'Pour qui ?'],
+  d.faq.length > 0 && ['faq', 'FAQ'],
+].filter(Boolean) as [string, string][];
 ---
-<Base title={`${d.name} : avis, prix et alternatives`} description={`${d.name} : ${d.tagline}. Fonctionnalités, tarifs, intégrations et conformité RGPD.`} accent={GROUP_COLORS[groupOf(d.category)]} noindex={!indexable} jsonLd={jsonLd}>
-  <article>
-    <p class="stack"><a class="chip accent" href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a>
-      {d.sponsored && <span class="chip lime">Sponsorisé</span>}</p>
-    <h1>{d.name}</h1>
-    <p class="lead muted">{d.tagline}</p>
-    <ToolCTA items={ctaItems} pricing={d.startingPrice ?? d.pricingModel} trial={d.freeTrialDays != null} uid="haut" />
-    {hasLink && d.demoUrl && <p><a class="btn ghost" href={d.demoUrl} rel="nofollow noopener" target="_blank">Voir la démo</a></p>}
+<Base title={title} description={description} accent={accent} noindex={!indexable} jsonLd={jsonLd}>
+  <nav class="crumbs" aria-label="Fil d'Ariane">
+    <a href="/">Accueil</a> › <a href="/annuaire/">Annuaire</a> › <a href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a> › <span aria-current="page">{d.name}</span>
+  </nav>
+
+  <article class="fiche">
+    <header class="card hero-card">
+      <div class="id">
+        {d.logo ? <img class="logo" src={d.logo} alt={`Logo ${d.name}`} width="72" height="72" /> : <span class="logo ph">{d.name.slice(0, 1)}</span>}
+        <div>
+          <p class="stack"><a class="chip accent" href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a>
+            <span class="chip">{d.pricingModel}</span>
+            {d.company.country === 'France' && <span class="chip">🇫🇷 Éditeur français</span>}
+            {d.sponsored && <span class="chip lime">Sponsorisé</span>}</p>
+          <h1>{d.name}</h1>
+          <p class="lead">{d.tagline}</p>
+        </div>
+      </div>
+      <ToolCTA items={ctaItems} pricing={d.startingPrice ?? d.pricingModel} trial={d.freeTrialDays != null} uid="haut" />
+      {hasLink && d.demoUrl && <p><a class="btn ghost" href={d.demoUrl} rel="nofollow noopener" target="_blank">Voir la démo</a></p>}
+    </header>
+
+    <section class="card bref" aria-labelledby="bref">
+      <h2 id="bref">{d.name} en bref</h2>
+      {d.summary && <p class="answer">{d.summary}</p>}
+      <dl class="facts">{facts.map(f => <div><dt>{f.k}</dt><dd>{f.v}</dd></div>)}</dl>
+      {d.verifiedOn && <p class="muted small">Informations vérifiées le <time datetime={d.verifiedOn.toISOString().slice(0, 10)}>{fmtDate(d.verifiedOn)}</time>.</p>}
+    </section>
+
+    {toc.length > 1 && <nav class="jump" aria-label="Sur cette page">{toc.map(([id, label]) => <a class="chip" href={`#${id}`}>{label}</a>)}</nav>}
+
+    {d.screenshots.map(s => (
+      <figure class="shot">
+        <img src={s.src} alt={s.alt} loading="lazy" decoding="async" {...(s.width && s.height ? { width: s.width, height: s.height } : {})} />
+        {s.caption && <figcaption>{s.caption}</figcaption>}
+      </figure>
+    ))}
 
     <div class="prose"><Content /></div>
 
-    <h2>En un coup d'œil</h2>
-    <table><tbody>
-      <tr><th>Tarif</th><td>{d.pricingModel}{d.startingPrice && ` — ${d.startingPrice}`}{d.freeTrialDays && ` · essai ${d.freeTrialDays} j`}</td></tr>
-      <tr><th>Pour</th><td>{d.audiences.join(', ')}</td></tr>
-      {(d.languages.length > 0 || d.frenchSupport) && <tr><th>Langues</th><td>{[d.languages.join(', '), d.frenchSupport && 'support en français'].filter(Boolean).join(' · ')}</td></tr>}
-      {(d.apps.length > 0 || d.api) && <tr><th>Plateformes</th><td>{[d.apps.join(', '), d.api && 'API disponible'].filter(Boolean).join(' · ')}</td></tr>}
-      {d.supportChannels.length > 0 && <tr><th>Support</th><td>{d.supportChannels.join(', ')}</td></tr>}
-    </tbody></table>
+    {d.plans.length > 0 && (
+      <section id="tarifs">
+        <h2>Tarifs de {d.name}</h2>
+        <div class="plans">{d.plans.map(p => (
+          <div class={`card plan ${p.popular ? 'pop' : ''}`}>
+            {p.popular && <span class="chip lime">Le plus populaire</span>}
+            <h3>{p.name}</h3>
+            <p class="price">{p.price}</p>
+            {p.billing && <p class="muted small">{p.billing}</p>}
+            {p.highlights.length > 0 && <ul>{p.highlights.map(h => <li>{h}</li>)}</ul>}
+          </div>))}</div>
+        <p class="muted small">Prix relevés sur la page officielle{d.verifiedOn ? ` le ${fmtDate(d.verifiedOn)}` : ''} ; ils évoluent, vérifiez-les avant de vous engager.</p>
+      </section>
+    )}
 
-    <h2>Fonctionnalités</h2>
-    <ul>{d.features.map(f => <li>{f}</li>)}</ul>
-    {d.integrations.length > 0 && <><h2>Intégrations</h2><p class="stack">{d.integrations.map(i => <span class="chip">{i}</span>)}</p></>}
+    <section id="fonctionnalites">
+      <h2>Fonctionnalités de {d.name}</h2>
+      <ul class="feat">{d.features.map(f => <li>{f}</li>)}</ul>
+      {d.integrations.length > 0 && <><h3>Intégrations</h3><p class="stack">{d.integrations.map(i => <span class="chip">{i}</span>)}</p></>}
+    </section>
 
-    <h2>Éditeur et conformité</h2>
-    <table><tbody>
-      <tr><th>Société</th><td>{d.company.name} ({d.company.country}){d.company.founded && `, fondée en ${d.company.founded}`}{d.company.teamSize && ` · équipe ${d.company.teamSize}`}</td></tr>
-      {d.compliance.hosting && <tr><th>Hébergement</th><td>{d.compliance.hosting}</td></tr>}
-      <tr><th>RGPD</th><td>{d.compliance.gdpr ? 'Déclaré conforme' : 'Non précisé'}{d.compliance.dpa && ' · DPA disponible'}</td></tr>
-      {d.compliance.certifications.length > 0 && <tr><th>Certifications</th><td>{d.compliance.certifications.join(', ')}</td></tr>}
-    </tbody></table>
-    {d.sources.length > 0 && d.verifiedOn
-      ? <p class="muted"><small>Informations vérifiées le {fmtDate(d.verifiedOn)} d'après le site officiel de l'éditeur et {d.sources.length} sources tierces : {d.sources.map((s, i) => <>{i > 0 && ', '}<a href={s.url} rel="nofollow noopener" target="_blank">{s.title}</a></>)}.</small></p>
-      : <p class="muted"><small>Informations déclarées par l'éditeur{d.editorial ? ' et vérifiées par notre rédaction' : ', non vérifiées à ce stade'}.</small></p>}
+    {(d.pros.length + d.cons.length > 0) && (
+      <section id="avis">
+        <h2>Avis : points forts et points d'attention</h2>
+        <div class="two">
+          {d.pros.length > 0 && <div class="card go"><h3>✅ Points forts</h3><ul>{d.pros.map(p => <li>{p}</li>)}</ul></div>}
+          {d.cons.length > 0 && <div class="card nogo"><h3>⚠️ Points d'attention</h3><ul>{d.cons.map(c => <li>{c}</li>)}</ul></div>}
+        </div>
+      </section>
+    )}
 
-    {reviews.length > 0 && <><h2>Notre test</h2><ul>{reviews.map(r => <li><a href={`/tests/${r.id}/`}>{r.data.title}</a></li>)}</ul></>}
+    {(d.forWho.length + d.notFor.length > 0) && (
+      <section id="pour-qui">
+        <h2>{d.name} : pour qui ?</h2>
+        <div class="two">
+          {d.forWho.length > 0 && <div class="card go"><h3>Convient si…</h3><ul>{d.forWho.map(p => <li>{p}</li>)}</ul></div>}
+          {d.notFor.length > 0 && <div class="card nogo"><h3>À éviter si…</h3><ul>{d.notFor.map(c => <li>{c}</li>)}</ul></div>}
+        </div>
+      </section>
+    )}
+
+    {d.faq.length > 0 && (
+      <section id="faq">
+        <h2>Questions fréquentes sur {d.name}</h2>
+        {d.faq.map(f => <div class="qa"><h3>{f.q}</h3><p>{f.a}</p></div>)}
+      </section>
+    )}
+
+    <section>
+      <h2>Éditeur et conformité</h2>
+      <table><tbody>
+        <tr><th>Société</th><td>{d.company.name} ({d.company.country}){d.company.founded && `, fondée en ${d.company.founded}`}{d.company.teamSize && ` · équipe ${d.company.teamSize}`}</td></tr>
+        {d.compliance.hosting && <tr><th>Hébergement</th><td>{d.compliance.hosting}</td></tr>}
+        {(d.compliance.gdpr || d.compliance.dpa) && <tr><th>RGPD</th><td>{d.compliance.gdpr ? 'Déclaré conforme' : ''}{d.compliance.dpa && ' · DPA disponible'}</td></tr>}
+        {d.compliance.certifications.length > 0 && <tr><th>Certifications</th><td>{d.compliance.certifications.join(', ')}</td></tr>}
+        {(d.languages.length > 0 || d.frenchSupport) && <tr><th>Langues</th><td>{[d.languages.join(', '), d.frenchSupport && 'support en français'].filter(Boolean).join(' · ')}</td></tr>}
+        {(d.apps.length > 0 || d.api) && <tr><th>Plateformes</th><td>{[d.apps.join(', '), d.api && 'API disponible'].filter(Boolean).join(' · ')}</td></tr>}
+        {d.supportChannels.length > 0 && <tr><th>Support</th><td>{d.supportChannels.join(', ')}</td></tr>}
+      </tbody></table>
+      {d.sources.length > 0
+        ? <p class="muted small">Informations vérifiées{d.verifiedOn ? ` le ${fmtDate(d.verifiedOn)}` : ''} d'après le site officiel de l'éditeur et {d.sources.length} sources tierces : {d.sources.map((s, i) => <>{i > 0 && ', '}<a href={s.url} rel="nofollow noopener" target="_blank">{s.title}</a></>)}.</p>
+        : <p class="muted small">Informations déclarées par l'éditeur{d.editorial ? ' et vérifiées par notre rédaction' : ', non vérifiées à ce stade'}.</p>}
+    </section>
+
+    {related.length > 0 && (
+      <section>
+        <h2>Nos contenus sur {d.name}</h2>
+        <ul>{related.map(r => <li><a href={`/tests/${r.id}/`}>{r.data.title}</a></li>)}</ul>
+      </section>
+    )}
+
+    {(alts.length + sameCat.length > 0) && (
+      <section>
+        <h2>Alternatives à {d.name}</h2>
+        <div class="grid">{[...alts, ...sameCat].map(t => <ToolCard tool={t} />)}</div>
+      </section>
+    )}
+
+    <ToolCTA items={ctaItems} pricing={d.startingPrice ?? d.pricingModel} trial={d.freeTrialDays != null} uid="bas" />
   </article>
 </Base>
+<style>
+  .crumbs { font-size: .85rem; color: var(--muted); padding: 1rem 0 .3rem; }
+  .crumbs a { color: var(--muted); }
+  .hero-card { background: var(--card); border-left: 10px solid var(--accent); margin: .5rem 0 1.2rem; }
+  .id { display: flex; gap: 1.1rem; align-items: center; }
+  .logo { width: 72px; height: 72px; border: 2px solid var(--ink); border-radius: 16px; object-fit: contain; background: #fff; padding: 6px; flex: none; }
+  .logo.ph { display: grid; place-items: center; background: var(--accent); color: #fff; font-weight: 900; font-size: 2rem; padding: 0; }
+  .hero-card h1 { margin: .2rem 0; }
+  .hero-card .lead { margin: 0; color: var(--muted); font-size: 1.1rem; }
+  .bref { background: var(--lime); margin-bottom: 1rem; }
+  .bref h2 { margin: 0 0 .4rem; font-size: 1.3rem; }
+  .answer { font-size: 1.12rem; font-weight: 600; margin: .3rem 0 1rem; }
+  .facts { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin: 0; }
+  .facts div { background: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: .55rem .8rem; }
+  .facts dt { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .facts dd { margin: .1rem 0 0; font-weight: 700; }
+  .small { font-size: .85rem; }
+  .jump { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0; position: sticky; top: 64px; z-index: 5; padding: .4rem 0; background: var(--paper); }
+  .shot { margin: 1.5rem 0; } .shot img { width: 100%; height: auto; border: 2px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); background: #fff; }
+  .shot figcaption { font-size: .85rem; color: var(--muted); margin-top: .5rem; }
+  .prose { max-width: 760px; font-size: 1.05rem; }
+  section > h2 { scroll-margin-top: 110px; }
+  .plans { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .plan h3 { margin: .4rem 0 .1rem; } .plan .price { font-size: 1.5rem; font-weight: 900; margin: 0; letter-spacing: -.02em; }
+  .plan ul { padding-left: 1.1rem; margin: .6rem 0 0; font-size: .92rem; } .plan.pop { background: #f4f0ff; border-color: var(--brand); }
+  .feat { columns: 2 320px; padding-left: 1.2rem; } .feat li { margin-bottom: .45rem; break-inside: avoid; }
+  .two { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 700px) { .two { grid-template-columns: 1fr; } .id { flex-direction: column; align-items: flex-start; } .jump { position: static; } }
+  .go { background: #ecfdf0; } .nogo { background: #fff1ee; } .card h3 { margin-top: 0; } .card ul { margin: 0; padding-left: 1.1rem; }
+  .qa { border-top: 2px solid var(--ink); padding: .8rem 0; } .qa h3 { margin: 0 0 .3rem; font-size: 1.1rem; } .qa p { margin: 0; max-width: 760px; }
+</style>

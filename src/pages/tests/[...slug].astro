@@ -23,11 +23,12 @@ const jsonLd = {
   itemReviewed: { '@type': 'SoftwareApplication', name: d.tool.name, applicationCategory: 'BusinessApplication', ...(d.tool.affiliateUrl && { url: d.tool.affiliateUrl }) },
   ...(d.rating && { reviewRating: { '@type': 'Rating', ratingValue: d.rating, bestRating: 5 } }),
 };
+const faqLd = d.faq.length > 0 ? { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: d.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) } : null;
 const L = d.layout;
 const stars = (n: number) => '★'.repeat(Math.round(n)) + '☆'.repeat(5 - Math.round(n));
 const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis à jour le ${fmtDate(d.updatedDate)}` : ''}`;
 ---
-<Base title={d.title} description={d.description} ogType="article" jsonLd={jsonLd} accent={accent}>
+<Base title={d.title} description={d.description} ogType="article" jsonLd={faqLd ? [jsonLd, faqLd] : jsonLd} accent={accent}>
   <article class={`t t-${L}`}>
 
     {/* ── HERO : change selon la mise en page ── */}
@@ -112,6 +113,13 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
 
     <div class="prose"><Content /></div>
 
+    {d.faq.length > 0 && (
+      <section class="faq">
+        <h2>Questions fréquentes</h2>
+        {d.faq.map(f => <div class="qa"><h3>{f.q}</h3><p>{f.a}</p></div>)}
+      </section>
+    )}
+
     {L !== 'checklist' && (d.pros.length > 0 || d.cons.length > 0) && (
       <div class="two">
         {d.pros.length > 0 && <div class="card go"><h3>Ce qu'on aime</h3><ul>{d.pros.map(p => <li>{p}</li>)}</ul></div>}
@@ -125,6 +133,7 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
 </Base>
 <style>
   .small { font-size: .85rem; }
+  .qa { border-top: 2px solid var(--ink); padding: .8rem 0; max-width: 760px; } .qa h3 { margin: 0 0 .3rem; font-size: 1.1rem; } .qa p { margin: 0; }
   .prose { max-width: 720px; }
   .two { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; margin: 1.5rem 0; }
   @media (max-width: 700px) { .two { grid-template-columns: 1fr; } }

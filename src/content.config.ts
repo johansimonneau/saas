@@ -47,6 +47,7 @@ const reviews = defineCollection({
       verdict: z.string(),
     }),
     alternatives: z.array(z.string()).default([]),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).max(10).default([]),   // FAQ visible + données structurées
   }),
 });
 
@@ -57,7 +58,23 @@ const annuaire = defineCollection({
     name: z.string(),
     tagline: z.string().max(90),
     website: z.string().url(),
-    logo: z.string().url().optional(),
+    logo: z.string().optional(),               // /tools/<slug>/logo.webp (hébergé ici) ou URL
+    summary: z.string().max(320).optional(),   // « En bref » : réponse directe en 1-2 phrases (SEO + GEO)
+    screenshots: z.array(z.object({            // captures hébergées dans /public/tools/<slug>/
+      src: z.string(), alt: z.string(), caption: z.string().optional(),
+      width: z.number().int().optional(), height: z.number().int().optional(),
+    })).default([]),
+    plans: z.array(z.object({                  // offres et prix relevés sur la page officielle
+      name: z.string(), price: z.string(), priceValue: z.number().optional(),  // priceValue : € HT/mois, pour les données structurées
+      billing: z.string().optional(), highlights: z.array(z.string()).default([]), popular: z.boolean().default(false),
+    })).default([]),
+    pros: z.array(z.string()).default([]),
+    cons: z.array(z.string()).default([]),
+    forWho: z.array(z.string()).default([]),
+    notFor: z.array(z.string()).default([]),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).max(10).default([]),
+    alternatives: z.array(z.string()).default([]),  // ids de fiches annuaire (ex. "tiime")
+    seo: z.object({ title: z.string().max(70).optional(), description: z.string().max(165).optional() }).default({}),
     status: z.enum(['pending', 'published']).default('pending'),
     editorial: z.boolean().default(false),   // true = fiche enrichie par l'éditeur du site => indexable
     sponsored: z.boolean().default(false),

@@ -109,6 +109,9 @@ Pour modifier ou désactiver une routine : onglet Routines de Claude Code. Le po
 
 **Réseau** : les sessions des routines utilisent la politique réseau de votre environnement. Si des domaines d'outils sont bloqués (message `EGRESS_BLOCKED`), la routine le signale et passe la fiche en `pending` ; pour qu'elle puisse lire les sites des outils, élargissez l'accès réseau de l'environnement.
 
+## Standard des fiches annuaire
+Toute fiche doit respecter `docs/STANDARD-FICHE.md` : logo, captures du site officiel, résumé « en bref », tarifs détaillés, points forts et limites, « pour qui », FAQ de 5 à 8 questions, données structurées et titre/description optimisés (SEO + GEO). Les routines le lisent avant chaque fiche. Référence : `indy.md` et `tiime.md`.
+
 ## Routine d'analyse automatique : sources et rythme
 - Rythme : une fiche d'annuaire par jour, une branche `claude/routine-fiche-<date>`, une PR, jamais de merge automatique.
 - Sources de référence à privilégier (dans cet ordre) : le site officiel de l'outil ; les sites gouvernementaux (impots.gouv.fr, economie.gouv.fr, entreprises.gouv.fr, cnil.fr) ; independant.io ; Blog du Modérateur ; Blog du Dirigeant. Utiliser systématiquement Capterra, G2 et Trustpilot (note, nombre d'avis, points forts et faibles cités) pour nourrir l'analyse et le dossier `docs/recherches/`.
