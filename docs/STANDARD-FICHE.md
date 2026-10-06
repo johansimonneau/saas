@@ -13,15 +13,15 @@ Modèles de référence : `src/content/annuaire/indy.md` et `tiime.md`.
 | `screenshots` | au moins 2 : `hero.webp` (haut de la page d'accueil du site officiel) et `tarifs.webp` ; `alt` descriptif, `caption` datée, `width`/`height` renseignés. |
 | `plans` | toutes les offres relevées sur la page officielle : `name`, `price`, `priceValue` (€ HT/mois, nombre), `billing` (annuel/mensuel, essai), `highlights` (3-7), `popular` si l'éditeur l'indique. |
 | `features` | 6-12, issues du site officiel, avec le palier entre parenthèses quand c'est pertinent. |
-| `pros` / `cons` | 3-6 chacun, chaque point sourcé ou marqué « retour d'usage de la rédaction ». Au moins 2 limites réelles. |
+| `pros` / `cons` | 3-6 chacun, chaque point sourcé (site officiel, avis d'utilisateurs, test indépendant) ; « retour d'usage » seulement après un test de la direction. Au moins 2 limites réelles. |
 | `forWho` / `notFor` | 2-4 chacun, avec une alternative citée dans `notFor`. |
 | `faq` | 5 à 8 questions réelles (« X est-il gratuit ? », « À partir de quelle offre… ? », « X ou Y ? »), réponse directe en 1-3 phrases, avec chiffres et date de relevé. |
 | `alternatives` | ids de fiches existantes. |
-| `sources` | 3 sources tierces fiables, de domaines différents (jamais le site de l'éditeur). `verifiedOn` = date du jour. |
+| `sources` | 3 sources tierces fiables, de domaines différents (jamais le site de l'éditeur). `verifiedOn` = date du jour. Ces sources restent en données internes : la page n'affiche que leur nombre. |
 | `company` | raison sociale et pays lus sur le site officiel (mentions légales). |
 
 ## 2. Texte (corps Markdown, 350 mots minimum)
-`## Présentation de X` (qui, quoi, quel prix d'entrée) · `## Notre retour d'usage` (uniquement si la rédaction l'a testé ; sinon « Pas encore testé par la rédaction ») · `## Ce qu'il faut savoir avant de choisir` (3-4 puces concrètes) · `## X face à Y` avec lien interne vers le test ou le comparatif.
+`## Présentation de X` (qui, quoi, quel prix d'entrée) · `## Notre retour d'usage` (uniquement si la direction a testé l'outil ; sinon cette section est absente et rien ne mentionne l'absence de test) · `## Ce qu'il faut savoir avant de choisir` (3-4 puces concrètes) · `## X face à Y` avec lien interne vers le test ou le comparatif.
 Règles GEO : phrases autonomes et factuelles, entité nommée en toutes lettres (« Indy », pas « l'outil »), chiffres datés, réponse d'abord puis le détail, pas de promesse non sourcée.
 
 ## 3. Logo et captures (la routine les fabrique)
@@ -37,3 +37,9 @@ Aucun lien direct vers le site de l'outil (seul `website` en métadonnée), nom 
 
 ## 5. Contrôle avant PR
 `npm run build` passe ; la page `dist/annuaire/<slug>/index.html` existe ; 1 seul `<h1>` ; aucune `<img>` sans `alt` ; JSON-LD parsable (BreadcrumbList, SoftwareApplication, WebPage, FAQPage) ; titre ≤ 60 caractères avec le suffixe du site ; description 140-165 ; plus de 900 mots visibles ; pas de débordement mobile à 390 px.
+
+
+## Ne jamais nommer les sources tierces dans une fiche
+Dans le texte, les points forts/limites et la page, ne citer ni Capterra, G2, Trustpilot, independant.io, Blog du Modérateur, Blog du Dirigeant, ni aucun autre média ou comparateur. Écrire « avis d'utilisateurs » ou « test indépendant ». Les noms et URL restent dans `sources` (frontmatter, non affichés) et dans `docs/recherches/<slug>.md`.
+
+Tant que la direction n'a pas testé l'outil : aucune mention de test, de « rédaction », de « Notre avis » ni de « pas encore testé » dans la fiche ; pas de lien vers un test inexistant.

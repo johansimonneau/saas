@@ -171,7 +171,7 @@ const toc = [
         {d.supportChannels.length > 0 && <tr><th>Support</th><td>{d.supportChannels.join(', ')}</td></tr>}
       </tbody></table>
       {d.sources.length > 0
-        ? <p class="muted small">Informations vérifiées{d.verifiedOn ? ` le ${fmtDate(d.verifiedOn)}` : ''} d'après le site officiel de l'éditeur et {d.sources.length} sources tierces : {d.sources.map((s, i) => <>{i > 0 && ', '}<a href={s.url} rel="nofollow noopener" target="_blank">{s.title}</a></>)}.</p>
+        ? <p class="muted small">Informations vérifiées{d.verifiedOn ? ` le ${fmtDate(d.verifiedOn)}` : ''} d'après le site officiel de l'éditeur et {d.sources.length} sources tierces indépendantes.</p>
         : <p class="muted small">Informations déclarées par l'éditeur{d.editorial ? ' et vérifiées par notre rédaction' : ', non vérifiées à ce stade'}.</p>}
     </section>
 
