@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../config';
+import { mask } from '../lib/mask';
 // Remplace le lien direct vers un outil tant qu'aucun programme d'affiliation n'est associé.
 interface Props { names: string[]; uid: string }
 const { names, uid } = Astro.props;
@@ -12,7 +13,7 @@ const label = names.join(' ou ');
   </div>
   <details class="more">
     <summary class="btn lime">Je veux en savoir plus →</summary>
-    <form class="cform" data-key={SITE.web3formsKey} novalidate>
+    <form class="cform" data-k={mask(SITE.web3formsKey)} novalidate>
       {names.length > 1
         ? <><label for={`t-${uid}`}>Votre question concerne</label><select id={`t-${uid}`} name="tool">{names.map(n => <option>{n}</option>)}</select></>
         : <input type="hidden" name="tool" value={names[0]} />}
@@ -51,7 +52,7 @@ const label = names.join(' ou ');
         var r = await fetch('https://api.web3forms.com/submit', {
           method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
-            access_key: f.dataset.key,
+            access_key: window.__unmask(f.dataset.k),
             subject: 'Quelqu\'un souhaite en savoir plus sur ' + tool,
             from_name: name || 'Visiteur SaaSbrief',
             email: fd.get('email'),

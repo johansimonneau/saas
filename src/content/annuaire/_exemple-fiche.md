@@ -4,7 +4,7 @@ name: "Exemple SaaS"
 tagline: "Facturation simple pour les indépendants"
 website: "https://example.com"
 status: pending          # passez à « published » après relecture
-editorial: false         # true une fois la fiche enrichie par vos soins : elle devient indexable
+editorial: false         # true une fois la fiche vérifiée et enrichie par vos soins (mention « vérifiée par notre rédaction »)
 sponsored: false
 listedAt: 2026-10-06
 category: Facturation

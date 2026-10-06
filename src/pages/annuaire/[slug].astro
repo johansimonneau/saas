@@ -27,8 +27,6 @@ const sameCat = all.filter(t => t.id !== entry.id && t.data.category === d.categ
 const directUrl = d.directLink ? d.website : undefined;
 const hasLink = !!(d.affiliateUrl || directUrl);
 const ctaItems = [{ name: d.name, affiliateUrl: d.affiliateUrl, directUrl }];
-// Fiches non enrichies par l'éditeur : noindex pour éviter le contenu mince/dupliqué.
-const indexable = d.editorial || related.length > 0;
 
 const year = (d.verifiedOn ?? d.listedAt).getFullYear();
 const title = d.seo.title ?? `${d.name} : avis, prix et alternatives (${year})`;
@@ -71,7 +69,7 @@ const toc = [
   d.faq.length > 0 && ['faq', 'FAQ'],
 ].filter(Boolean) as [string, string][];
 ---
-<Base title={title} description={description} accent={accent} noindex={!indexable} jsonLd={jsonLd}>
+<Base title={title} description={description} accent={accent} jsonLd={jsonLd}>
   <nav class="crumbs" aria-label="Fil d'Ariane">
     <a href="/">Accueil</a> › <a href="/annuaire/">Annuaire</a> › <a href={`/annuaire/categorie/${catSlug(d.category)}/`}>{d.category}</a> › <span aria-current="page">{d.name}</span>
   </nav>

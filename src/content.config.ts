@@ -76,7 +76,7 @@ const annuaire = defineCollection({
     alternatives: z.array(z.string()).default([]),  // ids de fiches annuaire (ex. "tiime")
     seo: z.object({ title: z.string().max(70).optional(), description: z.string().max(165).optional() }).default({}),
     status: z.enum(['pending', 'published']).default('pending'),
-    editorial: z.boolean().default(false),   // true = fiche enrichie par l'éditeur du site => indexable
+    editorial: z.boolean().default(false),   // true = fiche vérifiée et enrichie par la rédaction (mention affichée, listée dans llms.txt)
     sponsored: z.boolean().default(false),
     popularity: z.number().optional(),       // plus haut = plus populaire ; vide = tirage au sort du jour
     listedAt: z.coerce.date(),

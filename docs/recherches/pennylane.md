@@ -42,4 +42,3 @@ Quel profil (micro, EI, société) ? Quelle offre testée ? Combien de temps pou
 ## Points non vérifiés
 - Le mapping des deux listes DGFiP : la page décrit une liste « satisfaisant à l'ensemble des conditions, incluant les tests d'interopérabilité » et une liste « en attente de tests ». Les fichiers sont nommés `attente_rapport_audit` et `attente_test_interop` ; Pennylane est dans le premier, que nous rapprochons de la première liste par l'ordre de la page. À reconfirmer sur le site de la DGFiP.
 - Contenu exact de chaque offre au-delà du résumé tarifaire ; nombre de connexions bancaires par offre (non précisé).
-- Fiche non `editorial` : non indexée tant qu'un test n'est pas lié.

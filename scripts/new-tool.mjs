@@ -15,7 +15,7 @@ name: "${name}"
 tagline: "TODO : une phrase, 90 caractères max"
 website: "https://TODO.com"
 status: pending          # published une fois complétée
-editorial: true          # true = fiche enrichie par vos soins (indexable)
+editorial: true          # true = fiche vérifiée et enrichie par vos soins
 listedAt: ${date}
 category: ${category}
 tags: []

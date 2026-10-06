@@ -1,6 +1,7 @@
 ---
 import LegalPage from '../components/LegalPage.astro';
 import { SITE, LEGAL as L } from '../config';
+import Protected from '../components/Protected.astro';
 ---
 <LegalPage title="Conditions générales d'utilisation" description={`Conditions d'utilisation du site ${SITE.name} (conditions générales).`}>
   <p>{SITE.name} est un site d'information gratuit : il ne vend aucun produit ni service, il n'y a donc pas de conditions générales de vente. Si une offre payante est lancée (guide, newsletter premium...), des CGV spécifiques seront publiées avant toute vente.</p>
@@ -27,5 +28,5 @@ import { SITE, LEGAL as L } from '../config';
   <p>Voir la <a href="/confidentialite/">politique de confidentialité</a>.</p>
 
   <h2>7. Droit applicable et litiges</h2>
-  <p>Droit français. En cas de litige, contactez-nous d'abord à {L.email}. Le consommateur peut recourir gratuitement à un médiateur de la consommation.</p>
+  <p>Droit français. En cas de litige, contactez-nous d'abord à <Protected value={L.email} mailto />. Le consommateur peut recourir gratuitement à un médiateur de la consommation.</p>
 </LegalPage>

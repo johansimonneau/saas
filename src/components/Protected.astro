@@ -1,0 +1,9 @@
+---
+// Affiche une donnée d'identité sans la mettre en clair dans le HTML ; elle est décodée dans le navigateur.
+import { mask } from '../lib/mask';
+interface Props { value: string; mailto?: boolean }
+const { value, mailto = false } = Astro.props;
+---
+{value && (mailto
+  ? <a data-p={mask(value)} href="#">(affiché avec JavaScript)</a>
+  : <span data-p={mask(value)}>(affiché avec JavaScript)</span>)}

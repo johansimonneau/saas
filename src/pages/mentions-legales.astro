@@ -1,17 +1,18 @@
 ---
 import LegalPage from '../components/LegalPage.astro';
 import { SITE, LEGAL as L } from '../config';
+import Protected from '../components/Protected.astro';
 ---
 <LegalPage title="Mentions légales" description={`Mentions légales du site ${SITE.name} : éditeur, hébergeur et contact.`}>
   <h2>Éditeur du site</h2>
   <p>
-    {SITE.name} ({SITE.url}) est édité par <strong>{L.editorName}</strong>, {L.legalForm}.<br />
-    SIRET : {L.siret}<br />
-    TVA : {L.vatNumber}<br />
-    Adresse : {L.address}<br />
-    E-mail : {L.email}{L.phone && <> · Téléphone : {L.phone}</>}
+    {SITE.name} ({SITE.url}) est édité par <strong><Protected value={L.editorName} /></strong>, {L.legalForm}.<br />
+    SIRET : <Protected value={L.siret} /><br />
+    TVA : <Protected value={L.vatNumber} /><br />
+    Adresse : <Protected value={L.address} /><br />
+    E-mail : <Protected value={L.email} mailto />{L.phone && <> · Téléphone : <Protected value={L.phone} /></>}
   </p>
-  <p>Directeur de la publication : {L.publicationDirector}.</p>
+  <p>Directeur de la publication : <Protected value={L.publicationDirector} />.</p>
 
   <h2>Hébergeur</h2>
   <p>{L.hostName}, {L.hostAddress} — <a href={L.hostUrl} rel="noopener">{L.hostUrl}</a>.</p>

@@ -33,7 +33,7 @@ Règles GEO : phrases autonomes et factuelles, entité nommée en toutes lettres
 6. Les logos et captures sont la propriété de leurs éditeurs : usage limité à la présentation et à la critique de l'outil, jamais retouchés, toujours datés et attribués.
 
 ## 4. Règles du site (inchangées)
-Aucun lien direct vers le site de l'outil (seul `website` en métadonnée), nom de l'éditeur du site absent, `editorial: false` tant qu'il n'y a pas de test de la rédaction, `status: published` seulement si site officiel consulté ET 3 sources distinctes, aucune invention : un fait non vérifié est écarté ou signalé dans le dossier de recherche (`docs/recherches/<slug>.md`).
+Aucun lien direct vers le site de l'outil (seul `website` en métadonnée), nom de l'éditeur du site absent, `editorial: false` tant que la rédaction n'a pas vérifié la fiche elle-même, `status: published` seulement si site officiel consulté ET 3 sources distinctes, aucune invention : un fait non vérifié est écarté ou signalé dans le dossier de recherche (`docs/recherches/<slug>.md`).
 
 ## 5. Contrôle avant PR
 `npm run build` passe ; la page `dist/annuaire/<slug>/index.html` existe ; 1 seul `<h1>` ; aucune `<img>` sans `alt` ; JSON-LD parsable (BreadcrumbList, SoftwareApplication, WebPage, FAQPage) ; titre ≤ 60 caractères avec le suffixe du site ; description 140-165 ; plus de 900 mots visibles ; pas de débordement mobile à 390 px.

@@ -67,7 +67,7 @@ captures et chiffres propres à l'article. Ne réutilisez pas de paragraphes d'u
    Variables Vercel : `GITHUB_TOKEN` (droit Issues), `SUBMISSIONS_REPO` (`owner/repo`).
 2. L'issue contient le fichier prêt à coller dans `src/content/annuaire/<slug>.md` et une checklist de modération.
 3. Vérifiez le site, réécrivez la description (jamais de copier-coller), passez `status: published`.
-4. Fiche non enrichie = `noindex` automatique. Passez `editorial: true` après avoir ajouté votre contenu (test lié, avis, comparaison) pour l'indexer.
+4. Toutes les fiches publiées sont indexables. `editorial: true` marque une fiche vérifiée et enrichie par la rédaction (mention affichée, présence dans `llms.txt`).
 5. Pages de facettes (catégorie/profil/prix) avec moins de 3 éléments : `noindex` et absentes du sitemap, automatiquement.
 
 ## Blog
@@ -77,7 +77,7 @@ Le blog vit sous `/blog/` ; son layout est autonome, il peut être déplacé sur
 
 ## Rubriques : ce qui va où
 - **Tests** : avis sur un seul outil **et** comparatifs face à face (mise en page `duel`). C'est la rubrique principale, un contenu par jour.
-- **Annuaire** : **une nouvelle fiche chaque jour** (`npm run tool -- "Nom" --category=Facturation`). Complétez avec les faits de la page officielle, ajoutez un lien vers votre test, puis `status: published`. Une fiche `editorial: true` est indexée.
+- **Annuaire** : **une nouvelle fiche chaque jour** (`npm run tool -- "Nom" --category=Facturation`). Complétez avec les faits de la page officielle, ajoutez un lien vers votre test, puis `status: published`. Une fiche `editorial: true` est signalée comme vérifiée par la rédaction.
 - **Blog** : guides et retours d'expérience, hors tests d'outils (même charte que le site).
 
 ## Outils populaires (pied de page)

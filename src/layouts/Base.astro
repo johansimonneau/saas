@@ -22,5 +22,20 @@ const { accent, ...rest } = Astro.props;
   </header>
   <main class="wrap"><slot /></main>
   <Footer />
+  <script is:inline>
+    // Décode les données d'identité masquées (voir src/lib/mask.ts).
+    window.__unmask = function (b) {
+      var r = atob(b), n = r.length - 8, o = new Uint8Array(n);
+      for (var i = 0; i < n; i++) o[i] = r.charCodeAt(8 + i) ^ r.charCodeAt(i % 8);
+      return new TextDecoder().decode(o);
+    };
+    document.querySelectorAll('[data-p]').forEach(function (el) {
+      try {
+        var v = window.__unmask(el.getAttribute('data-p'));
+        if (el.tagName === 'A') el.href = 'mailto:' + v;
+        el.textContent = v; el.removeAttribute('data-p');
+      } catch (e) {}
+    });
+  </script>
 </body>
 </html>
