@@ -4,7 +4,7 @@ Le routine prend le premier sujet **non publié**, puis coche la ligne. Règles 
 mention « Testé par la rédaction » uniquement pour les outils réellement testés (`tested: true`), sources citées en fin d'article.
 
 - [ ] Meilleurs logiciels de facturation pour micro-entrepreneur
-- [ ] Meilleurs logiciels de comptabilité en ligne pour freelances
+- [x] Meilleurs logiciels de comptabilité en ligne pour freelances
 - [ ] Meilleures banques pro pour indépendants
 - [ ] Meilleurs logiciels de facturation électronique gratuits (plateformes agréées)
 - [ ] Meilleurs CRM gratuits pour freelances
