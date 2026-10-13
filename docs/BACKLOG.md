@@ -23,7 +23,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | 7 | Brevo | Emailing | ~5 € par inscription gratuite, ~100 € par abonné payant, cookie 90 j (sources divergentes), approbation requise | PartnerStack | B | « avis Brevo », « Brevo vs Mailchimp » | duel |
 | 8 | Systeme.io | Marketing et SEO | 60 % récurrent à vie, inscription libre | direct | A | « avis Systeme.io » | story |
 | 9 | Lemlist | Marketing et SEO | 18 à 22 % récurrent pendant 12 mois | direct (help.lemlist.com) | A | « avis Lemlist » | classique |
-| 10 | Waalaxy | Marketing et SEO | Jusqu'à 50 % récurrent | direct (waalaxy.com/affiliate) | A | « avis Waalaxy » | checklist |
+| 10 | Waalaxy (fiche proposée le 2026-10-13) | Marketing et SEO | Jusqu'à 50 % récurrent | direct (waalaxy.com/affiliate) | A | « avis Waalaxy » | checklist |
 
 ## Priorité 2 : volume de recherche, programmes confirmés par des sources tierces
 | # | Outil | Catégorie | Affiliation trouvée | Réseau | Conf. | Mot-clé | Mise en page |
@@ -67,3 +67,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Waalaxy | fiche proposée le 2026-10-13 (non fusionnée) | à demander (waalaxy.com/affiliate) | |
