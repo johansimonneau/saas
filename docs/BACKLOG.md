@@ -28,7 +28,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 ## Priorité 2 : volume de recherche, programmes confirmés par des sources tierces
 | # | Outil | Catégorie | Affiliation trouvée | Réseau | Conf. | Mot-clé | Mise en page |
 |---|---|---|---|---|---|---|---|
-| 11 | HubSpot | CRM | 30 % récurrent jusqu'à 1 an | direct | B | « HubSpot avis », « HubSpot prix » | verdict |
+| 11 | HubSpot (fiche proposée le 2026-10-14) | CRM | 30 % récurrent jusqu'à 1 an | direct | B | « HubSpot avis », « HubSpot prix » | verdict |
 | 12 | Pipedrive | CRM | 20 à 30 % récurrent selon palier | direct | B | « avis Pipedrive » | duel |
 | 13 | ClickUp | Gestion de projet | ~20 % récurrent | direct | B | « avis ClickUp » | classique |
 | 14 | monday.com | Gestion de projet | CPA jusqu'à 500 $ par inscription qualifiée | direct | B | « avis monday.com » | story |
