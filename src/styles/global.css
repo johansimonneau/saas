@@ -34,7 +34,7 @@ h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 1.8em 0 .5em; }
 .btn.lime { background: var(--lime); color: var(--ink) !important; }
 .btn.ghost { background: var(--card); color: var(--ink) !important; }
 .chip { display: inline-block; font-size: .78rem; font-weight: 700; padding: .15rem .6rem; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); text-decoration: none; color: var(--ink); }
-.chip.accent { background: var(--accent); color: #fff; }
+.chip.accent { background: color-mix(in srgb, var(--accent) 75%, #000); color: #fff; } /* assombri pour un contraste >= 4.5:1 */
 .chip.lime { background: var(--lime); }
 .card { background: var(--card); border: 2px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.1rem 1.2rem; }
 .grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
