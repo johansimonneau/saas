@@ -29,7 +29,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | # | Outil | Catégorie | Affiliation trouvée | Réseau | Conf. | Mot-clé | Mise en page |
 |---|---|---|---|---|---|---|---|
 | 11 | HubSpot | CRM | 30 % récurrent jusqu'à 1 an | direct | B | « HubSpot avis », « HubSpot prix » | verdict |
-| 12 | Pipedrive | CRM | 20 à 30 % récurrent selon palier | direct | B | « avis Pipedrive » | duel |
+| 12 | Pipedrive (fiche proposée le 2026-10-15) | CRM | 20 à 30 % récurrent selon palier | direct | B | « avis Pipedrive » | duel |
 | 13 | ClickUp | Gestion de projet | ~20 % récurrent | direct | B | « avis ClickUp » | classique |
 | 14 | monday.com | Gestion de projet | CPA jusqu'à 500 $ par inscription qualifiée | direct | B | « avis monday.com » | story |
 | 15 | Zoho CRM | CRM | 15 % récurrent 12 mois | direct | B | « Zoho CRM avis » | checklist |
