@@ -6,7 +6,7 @@ mention « Testé par la rédaction » uniquement pour les outils réellement te
 - [ ] Meilleurs logiciels de facturation pour micro-entrepreneur
 - [ ] Meilleurs logiciels de comptabilité en ligne pour freelances
 - [ ] Meilleures banques pro pour indépendants
-- [ ] Meilleurs logiciels de facturation électronique gratuits (plateformes agréées)
+- [x] Meilleurs logiciels de facturation électronique gratuits (plateformes agréées)
 - [ ] Meilleurs CRM gratuits pour freelances
 - [ ] Meilleurs CRM pour TPE
 - [ ] Meilleurs outils d'emailing pour petites entreprises
