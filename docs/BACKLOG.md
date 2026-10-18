@@ -32,7 +32,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | 12 | Pipedrive | CRM | 20 à 30 % récurrent selon palier | direct | B | « avis Pipedrive » | duel |
 | 13 | ClickUp | Gestion de projet | ~20 % récurrent | direct | B | « avis ClickUp » | classique |
 | 14 | monday.com | Gestion de projet | CPA jusqu'à 500 $ par inscription qualifiée | direct | B | « avis monday.com » | story |
-| 15 | Zoho CRM | CRM | 15 % récurrent 12 mois | direct | B | « Zoho CRM avis » | checklist |
+| 15 | Zoho CRM (fiche proposée le 2026-10-18) | CRM | 15 % récurrent 12 mois | direct | B | « Zoho CRM avis » | checklist |
 | 16 | Webflow | Marketing et SEO | 50 % pendant 12 mois, cookie 90 j | Partnerize | B | « Webflow avis » | verdict |
 | 17 | Revolut Business | Banque pro | Programme affilié existant (page officielle), barème à demander | direct | A | « Revolut Business avis » | duel |
 | 18 | Typeform | Automatisation | Programme PartnerStack, cookie 90 j (barème non publié) | PartnerStack | B | « Typeform avis » | classique |
@@ -67,3 +67,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Zoho CRM | fiche proposée le 2026-10-18 (non fusionnée) | à demander (programme direct) | |
