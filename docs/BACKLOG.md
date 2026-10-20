@@ -67,3 +67,5 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Revolut Business | non traité le 2026-10-20 : site officiel protégé par un contrôle anti-robot (403) | | |
+| Typeform | fiche proposée le 2026-10-20 | à demander via PartnerStack | |
