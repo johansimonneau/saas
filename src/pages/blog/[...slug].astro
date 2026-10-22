@@ -76,7 +76,7 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'BlogPosting', headl
   .author, .more { margin-top: 2rem; font-size: 1rem; line-height: 1.55; }
   .more { background: #f4f0ff; }
 </style>
-<script is:inline>
+<script>
   const bar = document.getElementById('progress');
   addEventListener('scroll', () => { const h = document.documentElement; bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%'; }, { passive: true });
 </script>
