@@ -11,7 +11,7 @@ const tools = await getTools();
     <p class="lead">Filtrez par besoin, profil et budget. Chaque fiche est relue avant publication.</p>
   </section>
 
-  <form class="filters card" onsubmit="return false">
+  <form class="filters card" id="filters">
     <input id="q" type="search" placeholder="Rechercher un outil, une fonction…" aria-label="Rechercher" />
     <select id="cat" aria-label="Catégorie">
       <option value="">Toutes catégories</option>
@@ -30,7 +30,7 @@ const tools = await getTools();
   .filters { display: grid; gap: .7rem; grid-template-columns: 2fr 1.5fr 1.2fr 1fr; margin: 1rem 0; }
   @media (max-width: 760px) { .filters { grid-template-columns: 1fr; } }
 </style>
-<script is:inline>
+<script>
   const $ = id => document.getElementById(id);
   const cards = [...document.querySelectorAll('#list .tcard')];
   function apply() {
@@ -45,4 +45,5 @@ const tools = await getTools();
     $('count').textContent = n + ' outil' + (n > 1 ? 's' : '');
   }
   ['q', 'cat', 'aud', 'price'].forEach(id => $(id).addEventListener('input', apply));
+  $('filters').addEventListener('submit', e => e.preventDefault());
 </script>

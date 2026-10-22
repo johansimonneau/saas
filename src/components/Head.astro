@@ -22,7 +22,7 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonical} />
 <meta name="twitter:card" content="summary" />
-{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />}
 {SITE.adsensePublisherId && (
   <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsensePublisherId}`} crossorigin="anonymous"></script>
 )}

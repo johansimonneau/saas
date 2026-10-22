@@ -19,6 +19,8 @@ const lines = (v, max, itemMax) => {
 };
 const url = v => { const s = str(v, 300); try { const u = new URL(s); return u.protocol === 'https:' ? u.href : ''; } catch { return ''; } };
 const q = s => JSON.stringify(s); // chaîne YAML sûre (JSON est du YAML valide)
+// Texte libre affiché hors du bloc de code : en `code` pour neutraliser liens, @mentions et mise en forme Markdown.
+const code = s => '`' + String(s).replace(/`/g, "'") + '`';
 
 export function validate(b) {
   const e = [];
@@ -65,25 +67,31 @@ export function toIssueBody(d) {
     `compliance:`, d.hosting && `  hosting: ${q(d.hosting)}`, `  gdpr: ${d.gdpr}`, `  dpa: ${d.dpa}`, `  certifications: ${arr(d.certifications)}`,
     d.demoUrl && `demoUrl: ${q(d.demoUrl)}`,
   ].filter(Boolean).join('\n');
+  // Bloc de code plus long que toute suite de ` dans la description : impossible d'en sortir.
+  const fence = '`'.repeat(Math.max(3, ...[...d.description.matchAll(/`+/g)].map(m => m[0].length + 1)));
   return { slug, body:
 `**Fichier à créer : \`src/content/annuaire/${slug}.md\`** (puis \`status: published\` après relecture)
 
-\`\`\`md
+${fence}md
 ---
 ${fm}
 ---
 
 ${d.description}
-\`\`\`
+${fence}
 
-**Contact (privé)** : ${d.contactName} <${d.contactEmail}>
-**Programme d'affiliation proposé** : ${d.affiliateProgram || 'non'}
+**Contact (privé)** : ${code(d.contactName)} ${code(d.contactEmail)}
+**Programme d'affiliation proposé** : ${d.affiliateProgram ? code(d.affiliateProgram) : 'non'}
 
 Checklist modération : [ ] site réel et actif · [ ] description non copiée · [ ] aucune promesse mensongère · [ ] RGPD plausible · [ ] liens https`};
 }
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Méthode non autorisée' });
+  // Uniquement depuis le formulaire du site : un autre site ne peut pas faire soumettre un visiteur à son insu.
+  const origin = req.headers.origin;
+  if (origin) { let host = ''; try { host = new URL(origin).host; } catch {} if (host !== req.headers.host) return res.status(403).json({ error: 'Origine non autorisée' }); }
+  if (!String(req.headers['content-type'] || '').startsWith('application/json')) return res.status(415).json({ error: 'Format non supporté' });
   const b = typeof req.body === 'string' ? (() => { try { return JSON.parse(req.body); } catch { return {}; } })() : (req.body || {});
   if (b.company_site) return res.status(200).json({ ok: true }); // honeypot : on fait semblant
   const { d, errors } = validate(b);
