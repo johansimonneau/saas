@@ -37,7 +37,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | 17 | Revolut Business | Banque pro | Programme affilié existant (page officielle), barème à demander | direct | A | « Revolut Business avis » | duel |
 | 18 | Typeform | Automatisation | Programme PartnerStack, cookie 90 j (barème non publié) | PartnerStack | B | « Typeform avis » | classique |
 | 19 | Calendly | Automatisation | Programme PartnerStack (barème non publié) | PartnerStack | B | « Calendly prix » | checklist |
-| 20 | Airtable | Gestion de projet | Programme PartnerStack (barème non publié) | PartnerStack | B | « Airtable avis » | story |
+| 20 | Airtable (fiche proposée le 2026-10-22) | Gestion de projet | Programme PartnerStack (barème non publié) | PartnerStack | B | « Airtable avis » | story |
 
 ## Priorité 3 : audience forte, affiliation incertaine ou non confirmée
 | # | Outil | Catégorie | Affiliation trouvée | Conf. | Remarque |
@@ -67,3 +67,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Airtable | fiche proposée le 2026-10-22 (non fusionnée) | à demander via PartnerStack | |
