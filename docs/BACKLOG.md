@@ -42,7 +42,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 ## Priorité 3 : audience forte, affiliation incertaine ou non confirmée
 | # | Outil | Catégorie | Affiliation trouvée | Conf. | Remarque |
 |---|---|---|---|---|---|
-| 21 | Notion | Gestion de projet | 50 % pendant 12 mois, mais **fermé aux nouveaux affiliés** actuellement | B | Gros trafic : faire le test sans compter sur la commission |
+| 21 | Notion (fiche proposée le 2026-10-24) | Gestion de projet | 50 % pendant 12 mois, mais **fermé aux nouveaux affiliés** actuellement | B | Gros trafic : faire le test sans compter sur la commission |
 | 22 | Zapier | Automatisation | Pas de programme ouvert simple ; passe par le programme Experts/Partenaires | B | Test + tutoriels |
 | 23 | Make | Automatisation | Rien trouvé | C | Candidat naturel face à Zapier |
 | 24 | Shine | Banque pro | Rien trouvé | C | Cible micro-entrepreneurs |
