@@ -8,7 +8,7 @@ mention « Testé par la rédaction » uniquement pour les outils réellement te
 - [ ] Meilleures banques pro pour indépendants
 - [ ] Meilleurs logiciels de facturation électronique gratuits (plateformes agréées)
 - [ ] Meilleurs CRM gratuits pour freelances
-- [ ] Meilleurs CRM pour TPE
+- [x] Meilleurs CRM pour TPE
 - [ ] Meilleurs outils d'emailing pour petites entreprises
 - [ ] Meilleurs outils de gestion de projet pour indépendants
 - [ ] Meilleurs outils d'automatisation sans code (Zapier, Make et alternatives)
