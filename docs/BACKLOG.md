@@ -43,7 +43,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | # | Outil | Catégorie | Affiliation trouvée | Conf. | Remarque |
 |---|---|---|---|---|---|
 | 21 | Notion | Gestion de projet | 50 % pendant 12 mois, mais **fermé aux nouveaux affiliés** actuellement | B | Gros trafic : faire le test sans compter sur la commission |
-| 22 | Zapier | Automatisation | Pas de programme ouvert simple ; passe par le programme Experts/Partenaires | B | Test + tutoriels |
+| 22 | Zapier (fiche proposée le 2026-10-25) | Automatisation | Pas de programme ouvert simple ; passe par le programme Experts/Partenaires | B | Test + tutoriels |
 | 23 | Make | Automatisation | Rien trouvé | C | Candidat naturel face à Zapier |
 | 24 | Shine | Banque pro | Rien trouvé | C | Cible micro-entrepreneurs |
 | 25 | Evoliz | Facturation | Rien trouvé | C | Comparatif facturation électronique |
@@ -67,3 +67,6 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Zapier | fiche proposée le 2026-10-25 (non fusionnée) | programme Experts/Partenaires, à vérifier | |
+
+Note 2026-10-25 : Revolut Business (n° 17) non analysé, son site officiel est protégé par un défi anti-bot (403).
