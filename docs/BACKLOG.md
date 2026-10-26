@@ -67,3 +67,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Shine | fiche proposée le 2026-10-26 (non fusionnée) | rien trouvé | |
