@@ -46,7 +46,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | 22 | Zapier | Automatisation | Pas de programme ouvert simple ; passe par le programme Experts/Partenaires | B | Test + tutoriels |
 | 23 | Make | Automatisation | Rien trouvé | C | Candidat naturel face à Zapier |
 | 24 | Shine | Banque pro | Rien trouvé | C | Cible micro-entrepreneurs |
-| 25 | Evoliz | Facturation | Rien trouvé | C | Comparatif facturation électronique |
+| 25 | Evoliz (fiche proposée le 2026-10-28) | Facturation | Rien trouvé | C | Comparatif facturation électronique |
 | 26 | Freebe | Facturation | Rien trouvé | C | Freelances uniquement |
 | 27 | Abby | Facturation | Rien trouvé | C | Cité dans les comparatifs 2026 |
 | 28 | Dougs | Comptabilité | Rien trouvé | C | Expert-comptable en ligne, fort ticket |
@@ -67,3 +67,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Evoliz | fiche proposée le 2026-10-28 (non fusionnée) | rien trouvé | |
