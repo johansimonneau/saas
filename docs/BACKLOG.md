@@ -47,7 +47,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | 23 | Make | Automatisation | Rien trouvé | C | Candidat naturel face à Zapier |
 | 24 | Shine | Banque pro | Rien trouvé | C | Cible micro-entrepreneurs |
 | 25 | Evoliz | Facturation | Rien trouvé | C | Comparatif facturation électronique |
-| 26 | Freebe | Facturation | Rien trouvé | C | Freelances uniquement |
+| 26 | Freebe (fiche proposée le 2026-10-29) | Facturation | Rien trouvé | C | Freelances uniquement |
 | 27 | Abby | Facturation | Rien trouvé | C | Cité dans les comparatifs 2026 |
 | 28 | Dougs | Comptabilité | Rien trouvé | C | Expert-comptable en ligne, fort ticket |
 | 29 | Payfit | RH et paie | Rien trouvé | C | Plutôt TPE 10+ salariés |
