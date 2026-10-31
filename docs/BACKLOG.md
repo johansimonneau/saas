@@ -49,7 +49,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | 25 | Evoliz | Facturation | Rien trouvé | C | Comparatif facturation électronique |
 | 26 | Freebe | Facturation | Rien trouvé | C | Freelances uniquement |
 | 27 | Abby | Facturation | Rien trouvé | C | Cité dans les comparatifs 2026 |
-| 28 | Dougs | Comptabilité | Rien trouvé | C | Expert-comptable en ligne, fort ticket |
+| 28 | Dougs (fiche proposée le 2026-10-31) | Comptabilité | Rien trouvé | C | Expert-comptable en ligne, fort ticket |
 | 29 | Payfit | RH et paie | Rien trouvé | C | Plutôt TPE 10+ salariés |
 | 30 | Legalstart / LegalPlace / Captain Contrat | Juridique | Les comparateurs du secteur touchent des commissions, barèmes non confirmés | C | Un seul comparatif « création d'entreprise en ligne » |
 
@@ -67,3 +67,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Dougs | fiche proposée le 2026-10-31 (non fusionnée) | à demander | |
