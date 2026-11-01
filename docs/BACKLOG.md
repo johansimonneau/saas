@@ -50,7 +50,7 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | 26 | Freebe | Facturation | Rien trouvé | C | Freelances uniquement |
 | 27 | Abby | Facturation | Rien trouvé | C | Cité dans les comparatifs 2026 |
 | 28 | Dougs | Comptabilité | Rien trouvé | C | Expert-comptable en ligne, fort ticket |
-| 29 | Payfit | RH et paie | Rien trouvé | C | Plutôt TPE 10+ salariés |
+| 29 | Payfit (fiche proposée le 2026-11-01) | RH et paie | Rien trouvé | C | Plutôt TPE 10+ salariés |
 | 30 | Legalstart / LegalPlace / Captain Contrat | Juridique | Les comparateurs du secteur touchent des commissions, barèmes non confirmés | C | Un seul comparatif « création d'entreprise en ligne » |
 
 ## Hors affiliation classique
