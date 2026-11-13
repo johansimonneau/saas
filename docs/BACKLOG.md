@@ -67,3 +67,6 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+
+## Ajouts hors liste initiale
+- Youtrust, ex-Yousign (Juridique, signature électronique) : fiche proposée le 2026-11-13. Revolut Business, Make et Abby : sites officiels toujours inaccessibles (403 anti-bot) le 2026-11-13, à reprendre.
