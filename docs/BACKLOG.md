@@ -53,6 +53,11 @@ Lisez les règles de chaque programme (marque, codes promo, e-mailing) avant de 
 | 29 | Payfit | RH et paie | Rien trouvé | C | Plutôt TPE 10+ salariés |
 | 30 | Legalstart / LegalPlace / Captain Contrat | Juridique | Les comparateurs du secteur touchent des commissions, barèmes non confirmés | C | Un seul comparatif « création d'entreprise en ligne » |
 
+## Hors backlog initial (ajoutés par la routine)
+| # | Outil | Catégorie | Affiliation trouvée | Conf. | Remarque |
+|---|---|---|---|---|---|
+| 31 | Henrri (fiche proposée le 2026-11-14) | Facturation | Rien trouvé | C | Facturation gratuite, groupe Rivalis. Choisi car Revolut Business, Make et Abby sont bloqués par anti-robot ; Blank écarté (arrêt annoncé) |
+
 ## Hors affiliation classique
 **Malt** : programme d'apport d'affaires (5 % du montant facturé sur 12 mois, projets de 3 000 € minimum), pas un lien d'affiliation de blog. Utile pour un article « trouver des missions », sans revenu garanti.
 
@@ -67,3 +72,4 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Henrri | fiche proposée le 2026-11-14 (non fusionnée) | rien trouvé | |
