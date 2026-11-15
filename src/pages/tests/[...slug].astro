@@ -82,8 +82,8 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
     {/* ── BLOCS SPÉCIFIQUES AVANT LE CORPS ── */}
     {L === 'checklist' && (d.goIf.length > 0 || d.skipIf.length > 0) && (
       <div class="two">
-        <div class="card go"><h3>✅ Prenez-le si…</h3><ul>{d.goIf.map(x => <li>{x}</li>)}</ul></div>
-        <div class="card nogo"><h3>⛔ Passez votre chemin si…</h3><ul>{d.skipIf.map(x => <li>{x}</li>)}</ul></div>
+        <div class="card go"><h2 class="h3">✅ Prenez-le si…</h2><ul>{d.goIf.map(x => <li>{x}</li>)}</ul></div>
+        <div class="card nogo"><h2 class="h3">⛔ Passez votre chemin si…</h2><ul>{d.skipIf.map(x => <li>{x}</li>)}</ul></div>
       </div>
     )}
     {L === 'duel' && d.versus && (
@@ -138,7 +138,7 @@ const meta = `${SITE.author} · ${fmtDate(d.pubDate)}${d.updatedDate ? ` · mis 
   .two { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; margin: 1.5rem 0; }
   @media (max-width: 700px) { .two { grid-template-columns: 1fr; } }
   .go { background: #ecfdf0; } .nogo { background: #fff1ee; }
-  .card h3 { margin-top: 0; } .card ul { margin: 0; padding-left: 1.1rem; }
+  .card h3 { margin-top: 0; } .card h2.h3 { font-size: 1.17em; margin: 0 0 1em; } /* h2 (ordre des titres) au rendu d'un h3 */ .card ul { margin: 0; padding-left: 1.1rem; }
   .v-hero { padding: 2rem; display: flex; justify-content: space-between; gap: 1.5rem; align-items: center; margin-top: 2rem; background: var(--lime); }
   .big-score { text-align: center; background: var(--ink); color: #fff; border-radius: 16px; padding: 1rem 1.4rem; min-width: 120px; }
   .big-score b { font-size: 3.4rem; line-height: 1; } .big-score span { font-size: 1.2rem; opacity: .7; } .big-score small { display: block; color: var(--lime); letter-spacing: 2px; }
