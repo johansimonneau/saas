@@ -20,7 +20,7 @@ const tools = await getTools();
     <select id="aud" aria-label="Profil"><option value="">Tous profils</option>{AUDIENCES.map(a => <option>{a}</option>)}</select>
     <select id="price" aria-label="Tarif"><option value="">Tous tarifs</option>{PRICING_MODELS.map(p => <option>{p}</option>)}</select>
   </form>
-  <p class="muted" id="count">{tools.length} outil{tools.length > 1 ? 's' : ''}</p>
+  <p class="muted" id="count" role="status" aria-live="polite">{tools.length} outil{tools.length > 1 ? 's' : ''}</p>
 
   {tools.length === 0
     ? <div class="card"><strong>L'annuaire ouvre bientôt.</strong> Soyez le premier : <a href="/soumettre/">ajoutez votre SaaS</a>.</div>
