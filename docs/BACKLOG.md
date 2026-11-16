@@ -67,3 +67,9 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Swello | fiche proposée le 2026-11-16 (non fusionnée) | programme direct : 16 € HT (Medium) et 56 € HT (Large) par abonnement | |
+
+## Hors backlog initial (ajoutés par la routine)
+| # | Outil | Catégorie | Affiliation trouvée | Conf. | Remarque |
+|---|---|---|---|---|---|
+| 33 | Swello (fiche proposée le 2026-11-16) | Marketing et SEO (réseaux sociaux) | 16 € HT par abonnement Medium, 56 € HT par abonnement Large, attribution sous 14 jours | A | Choisi car Revolut Business, Make et Abby restent bloqués par anti-robot (403) le 2026-11-16 |
