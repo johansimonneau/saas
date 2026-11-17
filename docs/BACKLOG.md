@@ -67,3 +67,9 @@ Tenez ce suivi dans ce fichier une fois les candidatures lancées.
 |---|---|---|---|
 | Indy (vs Tiime) | publié | à demander (page « Affiliation Indy ») ; Tiime via Affilae | 2026-10-05 |
 | Pennylane | fiche proposée le 2026-10-06 (non fusionnée) | à demander via Affilae | |
+| Zervant | fiche proposée le 2026-11-17 (non fusionnée) | aucun programme d'affiliation relevé | |
+
+## Hors backlog initial (ajoutés par la routine)
+| # | Outil | Catégorie | Affiliation trouvée | Conf. | Remarque |
+|---|---|---|---|---|---|
+| 34 | Zervant (fiche proposée le 2026-11-17) | Facturation | Rien trouvé | C | Choisi car Revolut Business, Make et Abby restent bloqués par anti-robot (403) le 2026-11-17. Zervant annonce sa succession progressive par Shine Facture |
